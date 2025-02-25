@@ -1,0 +1,57 @@
+﻿  GameOverScreen.cpp
+  AsteroidItem.cpp
+  CameraComponent.cpp
+  Component.cpp
+  SphereColliderComponent.cpp
+  Display.cpp
+  Win32Game.cpp
+  ConstantBuffer.cpp
+  DeviceContext.cpp
+  GraphicsEngine.cpp
+  IndexBuffer.cpp
+  PixelShader.cpp
+  RenderSystem.cpp
+  SwapChain.cpp
+  Texture2D.cpp
+  VertexBuffer.cpp
+  VertexShader.cpp
+  InputSystem.cpp
+  Material.cpp
+  Mesh.cpp
+  Resource.cpp
+  ResourceManager.cpp
+  Window.cpp
+  Game.cpp
+  Entity.cpp
+  FogComponent.cpp
+  Font2D.cpp
+  Font.cpp
+  GameItem.cpp
+  main.cpp
+  Texture.cpp
+  MainGame.cpp
+  World.cpp
+  TransformComponent.cpp
+  MeshComponent.cpp
+  LightComponent.cpp
+  TerrainComponent.cpp
+  WaterComponent.cpp
+  TextComponent.cpp
+  ImageComponent.cpp
+  PhysicsEngine.cpp
+  PlayerControllerComponent.cpp
+  Spaceship.cpp
+  BoxItem.cpp
+  InfoItem.cpp
+  HUD.cpp
+  WinScreen.cpp
+  MainMenu.cpp
+  Level.cpp
+DirectXTKD.lib(SpriteBatch.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(SpriteBatch.obj)' or at ''; linking object as if no debug info
+DirectXTKD.lib(SpriteFont.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(SpriteFont.obj)' or at ''; linking object as if no debug info
+DirectXTKD.lib(BufferHelpers.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(BufferHelpers.obj)' or at ''; linking object as if no debug info
+DirectXTKD.lib(CommonStates.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(CommonStates.obj)' or at ''; linking object as if no debug info
+DirectXTKD.lib(VertexTypes.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(VertexTypes.obj)' or at ''; linking object as if no debug info
+DirectXTKD.lib(pch.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(pch.obj)' or at ''; linking object as if no debug info
+DirectXTKD.lib(BinaryReader.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(BinaryReader.obj)' or at ''; linking object as if no debug info
+  DirectXGame.vcxproj -> \\Mac\Home\Downloads\DirectXGame_Tut48 2\x64\Debug\DirectXGame.exe
