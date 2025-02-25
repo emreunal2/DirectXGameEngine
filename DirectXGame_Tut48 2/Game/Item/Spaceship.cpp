@@ -1,32 +1,10 @@
-/*MIT License
 
-C++ 3D Game Tutorial Series (https://github.com/PardCode/CPP-3D-Game-Tutorial-Series)
-
-Copyright (c) 2019-2023, PardCode
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.*/
 
 #include "Spaceship.h"
 #include "BoxItem.h"
 #include "InfoItem.h"
 #include "AsteroidItem.h"
-
+#include "LookDirectionCircle.h"
 
 
 Spaceship::Spaceship()
@@ -55,7 +33,7 @@ void Spaceship::onCreate()
 	//Set the mesh and material into the entity
 	m_spaceshipMesh->setMesh(mesh);
 	m_spaceshipMesh->addMaterial(mat);
-
+	
 	//Create the camera that follows the spaceship
 	m_cameraEntity = getWorld()->createEntity<Entity>();
 	m_camera = m_cameraEntity->createComponent<CameraComponent>();
@@ -64,12 +42,13 @@ void Spaceship::onCreate()
 	m_player = createComponent<PlayerControllerComponent>();
 
 	getTransform()->setPosition(Vector3D(0, 100, 0));	
-	getTransform()->setScale(Vector3D(0.5, 0.5, 0.5));
+
+	m_circleEntity = getWorld()->createEntity<LookDirectionCircle>();
+	m_circleEntity->getTransform()->setScale(Vector3D(1.5, 1.5, 1.5));
 }
 
 void Spaceship::onUpdate(f32 deltaTime)
 {
-	auto scale = 0.5f;
 
 	auto input = getInputSystem();
 
@@ -78,15 +57,15 @@ void Spaceship::onUpdate(f32 deltaTime)
 
 	f32 speed = 1.0f;
 	bool turbo = false;
-
+	f32 lookup = 0.0f;
 	//Spaceship controls
 	if (input->isKeyDown(Key::W))
 	{
-		m_forward = 1.0f;
+		lookup = 1.0f;
 	}
 	if (input->isKeyDown(Key::S))
 	{
-		m_forward = -1.0f;
+		lookup = -1.0f;
 	}
 	if (input->isKeyDown(Key::A))
 	{
@@ -96,60 +75,33 @@ void Spaceship::onUpdate(f32 deltaTime)
 	{
 		rightward = 1.0f;
 	}
-	if (input->isKeyDown(Key::Shift))
+	if (input->isKeyUp(Key::Space))
 	{
-		speed = 1.2f;
-		turbo = true;
+		m_jump = true;
 	}
-
-
-
-
-
-	//Handle position and rotation of spaceship and camera
-	//With smooth movements, thanks to the lerp function
-
-	if (m_forward)
+	if (input->isKeyDown(Key::LessThan))
 	{
-		if (turbo)
-		{
-			if (m_forward > 0.0f) m_cam_distance = 25.0f* scale;
-			else m_cam_distance = 5.0f * scale;
-		}
-		else
-		{
-			if (m_forward > 0.0f) m_cam_distance = 20.0f * scale;
-			else m_cam_distance = 9.0f * scale;
-		}
+		auto info = getWorld()->createEntity<InfoItem>();
+		info->setText(L"Time Scale = 0.5");
+		getWorld()->getGame()->setTimeScale(0.5f);
 	}
-	else
+	if (input->isKeyDown(Key::GreaterThan))
 	{
-		m_cam_distance = 18.0f * scale;
+		auto info = getWorld()->createEntity<InfoItem>();
+		info->setText(L"Time Scale = 1");
+		getWorld()->getGame()->setTimeScale(1.0f);
 	}
+	if (input->isKeyDown(Key::Equals))
+	{
 
-	auto vec = Vector3D::lerp(Vector3D(m_current_cam_distance, 0, 0),
-		Vector3D(m_cam_distance, 0, 0), 2.0f * deltaTime);
-	m_current_cam_distance = vec.x;
-
-	auto deltapos = input->getDeltaMousePosition();
-	m_yaw += deltapos.x * 0.001f;
-	m_pitch += deltapos.y * 0.001f;
-
-	if (m_pitch < -1.57f)
-		m_pitch = -1.57f;
-	else if (m_pitch > 1.57f)
-		m_pitch = 1.57f;
-
-
-	auto curr = Vector3D::lerp(Vector3D(m_oldPitch, m_oldYaw, 0), Vector3D(m_pitch, m_yaw, 0), 5.0f * deltaTime);
-	m_oldPitch = curr.x;
-	m_oldYaw = curr.y;
-
-	getTransform()->setRotation(Vector3D(m_oldPitch, m_oldYaw, 0));
-
-	auto curr_cam = Vector3D::lerp(Vector3D(m_camPitch, m_camYaw, 0), Vector3D(m_pitch, m_yaw, 0), 3.0f * deltaTime);
-	m_camPitch = curr_cam.x;
-	m_camYaw = curr_cam.y;
+		m_current_cam_distance -= m_zoomSpeed * deltaTime;
+		if (m_current_cam_distance < 20.0f) m_current_cam_distance = 20.0f;
+	}
+	if (input->isKeyDown(Key::Minus))
+	{
+		m_current_cam_distance += m_zoomSpeed * deltaTime;
+		if (m_current_cam_distance > 200.0f) m_current_cam_distance = 200.0f;
+	}
 
 	m_cameraEntity->getTransform()->setRotation(Vector3D(m_camPitch, m_camYaw, 0));
 
@@ -160,17 +112,17 @@ void Spaceship::onUpdate(f32 deltaTime)
 	auto xdir = w.getXDirection();
 	auto ydir = w.getYDirection();
 
+	auto pos = getTransform()->getPosition() + zdir * m_forward * deltaTime * 100.0f * speed + xdir * rightward * deltaTime * 100.0f * speed;
+	if (m_jump)
+	{
+		pos = pos + ydir * 50.0f * lookup;
+		m_jump = false;
+	}
+	//auto pos = getTransform()->getPosition() + zdir * m_forward * deltaTime * 100.0f * speed;
 
-	auto pos = getTransform()->getPosition() + zdir * m_forward * deltaTime * 100.0f * speed;
-
-	if (pos.x > 700) pos.x = 700;
-	if (pos.z > 700) pos.z = 700;
-	if (pos.x < -200) pos.x = -200;
-	if (pos.z < -200) pos.z = -200;
-	if (pos.y < 15) pos.y = 15;
 
 	getTransform()->setPosition(pos);
-
+	m_circleEntity->getTransform()->setPosition(pos + xdir * 20.0f * rightward + ydir * 20.0f * lookup);
 
 	Matrix4x4 w2;
 	m_cameraEntity->getTransform()->getWorldMatrix(w2);
@@ -180,7 +132,7 @@ void Spaceship::onUpdate(f32 deltaTime)
 
 
 	auto camPos = Vector3D(pos + zdir * -m_current_cam_distance);
-	camPos = camPos + ydir * 6.5f * scale;
+	camPos = camPos + ydir * 6.5f;
 
 	m_cameraEntity->getTransform()->setPosition(camPos);
 

@@ -1,4 +1,6 @@
-﻿  GameOverScreen.cpp
+﻿  LookDirectionCircle.cpp
+  Platform.cpp
+  GameOverScreen.cpp
   AsteroidItem.cpp
   CameraComponent.cpp
   Component.cpp
@@ -47,6 +49,7 @@
   WinScreen.cpp
   MainMenu.cpp
   Level.cpp
+C:\Users\932343\OneDrive - hull.ac.uk\GitHub\DirectXGameEngine\DirectXGame_Tut48 2\Game\Level\Level.cpp(119,55): warning C4244: 'argument': conversion from 'int' to 'f32', possible loss of data
 DirectXTKD.lib(SpriteBatch.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(SpriteBatch.obj)' or at ''; linking object as if no debug info
 DirectXTKD.lib(SpriteFont.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(SpriteFont.obj)' or at ''; linking object as if no debug info
 DirectXTKD.lib(BufferHelpers.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(BufferHelpers.obj)' or at ''; linking object as if no debug info
@@ -54,4 +57,4 @@ DirectXTKD.lib(CommonStates.obj) : warning LNK4099: PDB '' was not found with 'D
 DirectXTKD.lib(VertexTypes.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(VertexTypes.obj)' or at ''; linking object as if no debug info
 DirectXTKD.lib(pch.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(pch.obj)' or at ''; linking object as if no debug info
 DirectXTKD.lib(BinaryReader.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(BinaryReader.obj)' or at ''; linking object as if no debug info
-  DirectXGame.vcxproj -> \\Mac\Home\Downloads\DirectXGame_Tut48 2\x64\Debug\DirectXGame.exe
+  DirectXGame.vcxproj -> C:\Users\932343\OneDrive - hull.ac.uk\GitHub\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXGame.exe

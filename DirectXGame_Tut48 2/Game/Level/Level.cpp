@@ -1,34 +1,10 @@
-/*MIT License
-
-C++ 3D Game Tutorial Series (https://github.com/PardCode/CPP-3D-Game-Tutorial-Series)
-
-Copyright (c) 2019-2023, PardCode
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.*/
-
-
 #include "Level.h"
 #include "../MainGame.h"
 #include "../Item/Spaceship.h"
 #include "../Item/BoxItem.h"
 #include "../Item/AsteroidItem.h"
 #include <time.h>
+#include "../Item/Platform.h"
 
 Level::Level(Game* game) : m_game(game)
 {
@@ -46,6 +22,33 @@ Level::~Level()
 Entity* Level::getPlayer()
 {
 	return m_player;
+}
+
+void Level::toggleLightingMode()
+{
+	if (m_lightingMode == LightingMode::Daylight)
+	{
+		m_lightingMode = LightingMode::Torch;
+	}
+	else
+	{
+		m_lightingMode = LightingMode::Daylight;
+	}
+	updateLighting();
+}
+
+void Level::updateLighting()
+{
+	if (m_lightingMode == LightingMode::Daylight)
+	{
+		m_directionalLight->setColor(Vector4D(255.0f, 1.0f, 1.0f, 1));
+		m_spotLight->setColor(Vector4D(0, 0, 0, 0)); // Disable spot light
+	}
+	else
+	{
+		m_directionalLight->setColor(Vector4D(0, 0, 0, 0)); // Disable directional light
+		m_spotLight->setColor(Vector4D(255.0f, 1.0f, 1.0f, 1));
+	}
 }
 
 void Level::generateLevel()
@@ -92,16 +95,34 @@ void Level::generateLevel()
 	//light
 	{
 		m_entity = m_game->getWorld()->createEntity<Entity>();
-		auto lightComponent = m_entity->createComponent<LightComponent>();
-		lightComponent->setColor(Vector4D(1.0f, 1.0f, 1.0f, 1));
 		m_entity->getTransform()->setRotation(Vector3D(-0.707f, 0.707f, 0));
+		m_directionalLight = m_entity->createComponent<LightComponent>();
+		m_directionalLight->setColor(Vector4D(1.0f, 1.0f, 1.0f, 1));
+		m_entity->getTransform()->setRotation(Vector3D(-0.707f, 0.707f, 0));
+
+		m_spotLight = m_game->getWorld()->createEntity<Entity>()->createComponent<LightComponent>();
+		m_spotLight->setColor(Vector4D(255, 0.1f, 0.1f, 0.1f)); 
+		
 	}
 
 	m_player = m_game->getWorld()->createEntity<Spaceship>();
 	m_game->getInputSystem()->lockCursor(m_locked);
 
-	m_elapsedSecondsMatch = (f32)(rand() % 60 + (10 * m_levels)) + 30 + (10 * m_levels);
+	m_elapsedSecondsMatch = (f32)1;
 	m_maximumScore = floor(((rand() % 50 + (10 * m_levels)) + 20 + (10 * m_levels)) / 10.0f);
+
+	{
+		for (unsigned int i = 0; i < 10; i++)
+		{
+			auto entity = m_game->getWorld()->createEntity<Platform>();
+			entity->getTransform()->setPosition(Vector3D(rand()%100+(-50.0f), (i * (50.0f))-5.0f, 0));
+			entity->getTransform()->setScale(Vector3D(rand()%60+50, 1, 1));
+
+			auto boxEntity = m_game->getWorld()->createEntity<BoxItem>();
+			auto pos = Vector3D((f32)(rand() % 100) + (-50.0f), (i * (50.0f)), 0);
+			boxEntity->setPosition(pos);
+		}
+	}
 }
 
 void Level::onRestart()
@@ -135,13 +156,8 @@ void Level::onCreate()
 	skyMat->setCullMode(CullMode::Front);
 
 	generateLevel();
+	updateLighting();
 }
-
-
-
-
-
-
 
 void Level::onUpdate(f32 deltaTime)
 {
@@ -190,7 +206,7 @@ void Level::onUpdate(f32 deltaTime)
 		m_game->setTimeScale(1.0f);
 	}
 
-	m_elapsedSecondsMatch -= deltaTime;
+	m_elapsedSecondsMatch += deltaTime;
 	m_rotation += 1.57f * deltaTime;
 
 	m_entity->getTransform()->setRotation(Vector3D(0.707f, -3.14f, 0));
@@ -217,8 +233,22 @@ void Level::onUpdate(f32 deltaTime)
 	if (m_game->getInputSystem()->isKeyUp(Key::Escape))
 	{
 		static_cast<MainGame*>(m_game)->onReturnToMainMenu();
-		//m_game->getInputSystem()->lockCursor(m_locked);
 
+	}
+	if (m_game->getInputSystem()->isKeyUp(Key::R))
+	{
+		onRestart();
+	}
+	if (m_game->getInputSystem()->isKeyUp(Key::T))
+	{
+		toggleLightingMode();
+	}
+
+	if (m_lightingMode == LightingMode::Torch)
+	{
+		auto playerTransform = m_player->getTransform();
+		m_spotLight->getEntity()->getTransform()->setPosition(playerTransform->getPosition());
+		m_spotLight->getEntity()->getTransform()->setRotation(playerTransform->getRotation());
 	}
 
 	m_elapsedSecondsAsteroids += deltaTime;
@@ -229,10 +259,9 @@ void Level::onUpdate(f32 deltaTime)
 		//points
 		m_elapsedSecondsScores = 0.0f;
 		{
-			auto entity = m_game->getWorld()->createEntity<BoxItem>();
-			auto pos = Vector3D((f32)(rand() % 400) + (0.0f), (f32)(rand() % 100), (f32)(rand() % 400) + (0.0f));
-
-			entity->setPosition(pos);
+			//auto entity = m_game->getWorld()->createEntity<BoxItem>();
+			//auto pos = Vector3D((f32)(rand() % 400) + (0.0f), (f32)(rand() % 100), 0);
+			//entity->setPosition(pos);	
 		}
 	}
 

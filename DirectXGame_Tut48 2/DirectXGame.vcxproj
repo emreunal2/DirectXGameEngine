@@ -141,6 +141,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Item\LookDirectionCircle.h" />
+    <ClInclude Include="Game\Item\Platform.h" />
     <ClInclude Include="Game\UI\Screen\GameOverScreen.h" />
     <ClInclude Include="Game\Item\AsteroidItem.h" />
     <ClInclude Include="DX3D\Include\DX3D\Entity\CameraComponent.h" />
@@ -200,6 +202,8 @@
     <ClInclude Include="Game\Level\Level.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Item\LookDirectionCircle.cpp" />
+    <ClCompile Include="Game\Item\Platform.cpp" />
     <ClCompile Include="Game\UI\Screen\GameOverScreen.cpp" />
     <ClCompile Include="Game\Item\AsteroidItem.cpp" />
     <ClCompile Include="DX3D\Source\DX3D\Entity\CameraComponent.cpp" />
