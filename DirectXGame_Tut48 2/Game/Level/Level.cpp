@@ -106,7 +106,7 @@ void Level::generateLevel()
 	}
 
 	m_player = m_game->getWorld()->createEntity<Spaceship>();
-	m_game->getInputSystem()->lockCursor(m_locked);
+
 
 	m_elapsedSecondsMatch = (f32)1;
 	m_maximumScore = floor(((rand() % 50 + (10 * m_levels)) + 20 + (10 * m_levels)) / 10.0f);

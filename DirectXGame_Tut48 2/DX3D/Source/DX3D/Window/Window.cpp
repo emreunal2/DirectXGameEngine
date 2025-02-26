@@ -4,10 +4,15 @@
 #include <DX3D/Window/Window.h>
 #include <Windows.h>
 #include <exception>
+#include <imgui.h>
+#include <imgui_impl_win32.h>
+#include <imgui_impl_dx11.h>
 //Window* window=nullptr;
-
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndProc(HWND hwnd, ui32 msg, WPARAM wparam, LPARAM lparam)
 {
+	if (ImGui_ImplWin32_WndProcHandler(hwnd, msg, wparam, lparam))
+		return true;
 	//GetWindowLong(hwnd,)
 	switch (msg)
 	{

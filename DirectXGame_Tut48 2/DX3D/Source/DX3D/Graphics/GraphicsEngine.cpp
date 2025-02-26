@@ -272,7 +272,16 @@ void GraphicsEngine::update()
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 	ImGui::Begin("Hello, world!");
-	ImGui::Text("This is some useful text.");
+	ImGui::Text("Time Scale: %.2f", m_game->m_timeScale);
+	if (ImGui::Button("TimeScale Down")) 
+	{
+		m_game->setTimeScale(m_game->m_timeScale - 0.1f);
+	}
+	if (ImGui::Button("TimeScale Up"))
+	{
+		m_game->setTimeScale(m_game->m_timeScale + 0.1f);
+	}
+
 	ImGui::End();
 	ImGui::Render();
 

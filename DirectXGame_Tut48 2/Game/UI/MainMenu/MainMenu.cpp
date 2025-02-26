@@ -125,7 +125,7 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 		m_camera->getTransform()->setRotation(Vector3D(0.307f,0,0));
 	}
 
-	m_game->getInputSystem()->lockCursor(true);
+	m_game->getInputSystem()->lockCursor(false);
 	m_game->setTimeScale(1.0f);
 }
 
