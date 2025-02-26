@@ -30,18 +30,18 @@ public:
 	void setCullMode(const CullMode& mode);
 	void clearState();
 	void drawImage(const Texture2DPtr& texture, const Rect& size);
+	Microsoft::WRL::ComPtr<ID3D11Device> m_d3d_device;
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_imm_context;
 private:
 	void compilePrivateShaders();
 	void initRasterizerStates();
 private:
 	DeviceContextPtr m_imm_device_context;
 private:
-	Microsoft::WRL::ComPtr<ID3D11Device> m_d3d_device;
 	Microsoft::WRL::ComPtr<IDXGIDevice>  m_dxgi_device;
 	Microsoft::WRL::ComPtr<IDXGIAdapter>  m_dxgi_adapter;
 	Microsoft::WRL::ComPtr<IDXGIFactory>  m_dxgi_factory;
-	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_imm_context;
-
+	
 	Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_cull_front_state = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_cull_back_state = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_cull_none_state = nullptr;

@@ -27,7 +27,9 @@
 #include <DX3D/Entity/FogComponent.h>
 #include <DX3D/Entity/TextComponent.h>
 #include <DX3D/Entity/ImageComponent.h>
-
+#include <imgui.h>
+#include <imgui_impl_dx11.h>
+#include <imgui_impl_win32.h>
 #include <DX3D/Entity/Entity.h>
 
 
@@ -87,16 +89,20 @@ struct ConstantData
 GraphicsEngine::GraphicsEngine(Game* game): m_game(game)
 {
 	m_render_system = std::make_unique<RenderSystem>();
+	//create imgui
+
 }
 
 void GraphicsEngine::update()
 {
+
 	auto swapChain = m_game->m_display->m_swapChain;
 	auto context = m_render_system->getImmediateDeviceContext();
 	m_render_system->clearState();
 	
 	ConstantData constData = {};
 	constData.time = m_game->m_totalTime;
+
 
 	Vector4D fogColor = Vector4D(0, 0, 0, 0);
 
@@ -108,10 +114,6 @@ void GraphicsEngine::update()
 		constData.fog.start = f->getStart();
 		constData.fog.end = f->getEnd();
 	}
-
-
-
-
 
 	context->clearRenderTargetColor(swapChain, fogColor.x, fogColor.y, fogColor.z, 1);
 	auto winSize = m_game->m_display->getClientSize();
@@ -266,7 +268,15 @@ void GraphicsEngine::update()
 		auto size = i->getSize();
 		m_render_system->drawImage(texture, {(i32)pos.x,(i32)pos.y,size.width,size.height});
 	}*/
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+	ImGui::Begin("Hello, world!");
+	ImGui::Text("This is some useful text.");
+	ImGui::End();
+	ImGui::Render();
 
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 	swapChain->present(true);
 }

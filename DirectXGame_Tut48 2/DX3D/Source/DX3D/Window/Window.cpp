@@ -87,7 +87,6 @@ Window::Window()
 	if (!m_hwnd) DX3DError("Window not created successfully");
 
 	auto hwnd = static_cast<HWND>(m_hwnd);
-
 	SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)this);
 
 	//show up the window
