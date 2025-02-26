@@ -271,18 +271,27 @@ void GraphicsEngine::update()
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
-	ImGui::Begin("Hello, world!");
-	ImGui::Text("Time Scale: %.2f", m_game->m_timeScale);
-	if (ImGui::Button("TimeScale Down")) 
+
+	if (ImGui::BeginMainMenuBar())
 	{
-		m_game->setTimeScale(m_game->m_timeScale - 0.1f);
-	}
-	if (ImGui::Button("TimeScale Up"))
-	{
-		m_game->setTimeScale(m_game->m_timeScale + 0.1f);
+		if (ImGui::BeginMenu("Time Scale:", m_game->m_timeScale))
+		{
+			ImGui::Text("TimeScale: %.2f", m_game->m_timeScale);
+			if (ImGui::MenuItem("TimeScaleDown"))
+			{
+				m_game->setTimeScale(m_game->m_timeScale - 0.1f);
+			}
+			if (ImGui::MenuItem("TimeScaleUp"))
+			{
+				m_game->setTimeScale(m_game->m_timeScale + 0.1f);
+			}
+			ImGui::EndMenu();
+		}
+
 	}
 
-	ImGui::End();
+
+	ImGui::EndMainMenuBar();
 	ImGui::Render();
 
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
