@@ -23,7 +23,9 @@ void MainSimulation::onUpdate(f32 deltaTime)
 
 void MainSimulation::onNewGame()
 {
-
+	m_activeScenario.reset();
+	m_activeScenario = std::make_unique<Scenario>(this);
+	m_activeScenario->onCreate();
 }
 
 void MainSimulation::onLevelRestart()

@@ -7,7 +7,7 @@ i32 main()
 {
 	try
 	{
-		MainGame game;
+		MainSimulation game;
 		game.run();
 	}
 	catch (...) 

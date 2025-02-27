@@ -15,5 +15,7 @@ public:
 
 private:
 	Game* m_game = nullptr;
+	Entity* m_sphereEntity = nullptr;
+	f32 m_angle = 0;
 };
 
