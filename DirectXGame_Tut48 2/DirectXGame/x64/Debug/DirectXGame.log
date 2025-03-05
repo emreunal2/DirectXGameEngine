@@ -1,2 +1,5 @@
-﻿  Scenario.cpp
-  DirectXGame.vcxproj -> C:\users\932343\OneDrive - hull.ac.uk\GitHub\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXGame.exe
+﻿  GraphicsEngine.cpp
+DirectXTKD.lib(CommonStates.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(CommonStates.obj)' or at ''; linking object as if no debug info
+DirectXTKD.lib(SpriteBatch.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(SpriteBatch.obj)' or at ''; linking object as if no debug info
+DirectXTKD.lib(SpriteFont.obj) : warning LNK4099: PDB '' was not found with 'DirectXTKD.lib(SpriteFont.obj)' or at ''; linking object as if no debug info
+  DirectXGame.vcxproj -> C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXGame.exe

@@ -47,7 +47,7 @@ void Scenario::onCreate()
 		m_camera->getTransform()->setPosition(Vector3D(60, 100, -50));
 		m_camera->getTransform()->setRotation(Vector3D(0.307f, 0, 0));
 	}
-	m_game->getInputSystem()->lockCursor(true);
+	m_game->getInputSystem()->lockCursor(false);
 	auto sphere = m_game->getResourceManager()->createResourceFromFile<Mesh>(L"Assets/Meshes/sphere.obj");
 	auto sky = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/sky.jpg");
 	auto heightMap = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/height_map.png");

@@ -36,5 +36,9 @@ private:
 
 	std::list<Component*> m_uiComponents;
 	//std::set<ImageComponent*> m_images;
+
+	float backgroundRed = 255.0f;
+	float backgroundGreen = 255.0f;
+	float backgroundBlue = 255.0f;
 };
 

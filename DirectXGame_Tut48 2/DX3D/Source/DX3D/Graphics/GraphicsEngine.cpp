@@ -115,7 +115,7 @@ void GraphicsEngine::update()
 		constData.fog.end = f->getEnd();
 	}
 
-	context->clearRenderTargetColor(swapChain, fogColor.x, fogColor.y, fogColor.z, 1);
+	context->clearRenderTargetColor(swapChain, backgroundRed, backgroundGreen, backgroundBlue, 1);
 	auto winSize = m_game->m_display->getClientSize();
 	context->setViewportSize(winSize.width, winSize.height);
 
@@ -274,7 +274,7 @@ void GraphicsEngine::update()
 
 	if (ImGui::BeginMainMenuBar())
 	{
-		if (ImGui::BeginMenu("Time Scale:", m_game->m_timeScale))
+		if (ImGui::BeginMenu("Time Scale:"))
 		{
 			ImGui::Text("TimeScale: %.2f", m_game->m_timeScale);
 			if (ImGui::MenuItem("TimeScaleDown"))
@@ -285,6 +285,22 @@ void GraphicsEngine::update()
 			{
 				m_game->setTimeScale(m_game->m_timeScale + 0.1f);
 			}
+			if(ImGui::MenuItem("Pause/Play"))
+			{
+				if (m_game->m_timeScale != 0) {
+					m_game->setTimeScale(0);
+				}
+				else
+				{
+					m_game->setTimeScale(1);
+				}
+			}
+			ImGui::EndMenu();
+		}
+		
+		if (ImGui::BeginMenu("Background Color"))
+		{
+			ImGui::ColorEdit3("Background Color", (float*)&backgroundRed);
 			ImGui::EndMenu();
 		}
 
