@@ -27,6 +27,7 @@ void Scenario::generateScenario()
 		meshComponent->setMesh(sphere);
 		mat->addTexture(heightMap);
 		meshComponent->addMaterial(mat);
+		
 		auto transform = m_sphereEntity->getTransform();
 		transform->setScale(Vector3D(25, 25, 25));
 		transform->setPosition(Vector3D(75, 75, 100));

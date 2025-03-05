@@ -211,6 +211,7 @@
     <ClInclude Include="Game\Level\Level.h" />
     <ClInclude Include="Game\MainSimulation.h" />
     <ClInclude Include="Game\Scenario\Scenario.h" />
+    <ClInclude Include="Game\Item\SphereItem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX3D\Vendor\ImGui\imgui.cpp" />
@@ -273,6 +274,7 @@
     <ClCompile Include="Game\Level\Level.cpp" />
     <ClCompile Include="Game\MainSimulation.cpp" />
     <ClCompile Include="Game\Scenario\Scenario.cpp" />
+    <ClCompile Include="Game\Item\SphereItem.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

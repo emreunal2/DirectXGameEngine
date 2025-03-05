@@ -306,7 +306,6 @@ void GraphicsEngine::update()
 
 	}
 
-
 	ImGui::EndMainMenuBar();
 	ImGui::Render();
 
