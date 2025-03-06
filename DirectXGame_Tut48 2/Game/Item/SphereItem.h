@@ -1,22 +1,16 @@
 #pragma once
 #include <DX3D/All.h>
-class SphereItem : public Entity
+#include "GameItem.h"
+class SphereItem : public GameItem
 {
 public:
 	SphereItem();
 	virtual ~SphereItem();
 
-	void setPosition(const Vector3D& position);
-	void setDirection(const Vector3D& direction);
 
 protected:
 	virtual void onCreate();
 	virtual void onUpdate(f32 deltaTime);
-
-protected:
-	MeshComponent* m_itemMesh = nullptr;
-	SphereColliderComponent* m_collider = nullptr;
-	Vector3D m_pos;
-	Vector3D m_direction;
+	virtual void onCollision(Component* body1, Component* body2);
 };
 

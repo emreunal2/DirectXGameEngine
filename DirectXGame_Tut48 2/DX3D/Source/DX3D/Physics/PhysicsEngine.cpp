@@ -32,7 +32,8 @@ void PhysicsEngine::update()
 		}
 		else if (auto cc = dynamic_cast<SphereColliderComponent*>(c))
 		{
-			_processSpherePlayerCollision(cc, m_player);
+			//TODO: FIX THIS LATER 
+			//_processSpherePlayerCollision(cc, m_player);
 		}
 
 
