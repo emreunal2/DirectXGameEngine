@@ -31,12 +31,11 @@ void Scenario::generateScenario()
 		
 		auto transform = m_sphereEntity->getTransform();
 		transform->setScale(Vector3D(25, 25, 25));
-		transform->setPosition(Vector3D(75, 75, 100));
+		transform->setPosition(Vector3D(20, 20, 20));
 	}
 
 	auto entity = m_game->getWorld()->createEntity<SphereItem>();
 	entity->getTransform()->setPosition(Vector3D(70, 70, 70));
-	
 }
 
 void Scenario::onRestart()
@@ -77,6 +76,10 @@ void Scenario::onCreate()
 void Scenario::onUpdate(f32 deltaTime)
 {
 	m_angle += 3.14f * deltaTime;
-	m_sphereEntity->getTransform()->setRotation(Vector3D(0, m_angle * 0.4f, 0));
+	//m_sphereEntity->getTransform()->setRotation(Vector3D(0, m_angle * 0.4f, 0));
+	if (m_game->getInputSystem()->isKeyUp(Key::Enter))
+	{
+		static_cast<MainSimulation*>(m_game)->onMainMenu();
+	}
 	
 }

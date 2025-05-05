@@ -27,6 +27,10 @@ void SphereItem::onCreate()
 void SphereItem::onUpdate(f32 deltaTime)
 {
 	GameItem::onUpdate(deltaTime);
+	auto pos = getTransform()->getPosition();
+	m_direction = Vector3D(0, -1, 1);
+	pos = pos + m_direction * 9.8f *deltaTime;
+	getTransform()->setPosition(pos);
 }
 
 void SphereItem::onCollision(Component* body1, Component* body2)
