@@ -3,6 +3,7 @@
 #include <sstream>
 #include "Scenario/Scenario.h"
 #include "Scenario/FirstScenario.h"
+#include "Scenario/ScenarioMainMenu.h"
 #include "UI/MainMenu/MainMenu.h"
 #include "Level/Level.h"
 
@@ -22,5 +23,6 @@ protected:
 private:
 	std::unique_ptr<Scenario> m_activeScenario = nullptr;
 	std::unique_ptr<Level> m_firstScenario = nullptr;
+	std::unique_ptr<ScenarioMainMenu> m_mainMenu = nullptr;
 };
 

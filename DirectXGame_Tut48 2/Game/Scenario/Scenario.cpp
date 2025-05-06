@@ -76,7 +76,7 @@ void Scenario::onCreate()
 void Scenario::onUpdate(f32 deltaTime)
 {
 	m_angle += 3.14f * deltaTime;
-	//m_sphereEntity->getTransform()->setRotation(Vector3D(0, m_angle * 0.4f, 0));
+	m_sphereEntity->getTransform()->setRotation(Vector3D(0, m_angle * 0.4f, 0));
 	if (m_game->getInputSystem()->isKeyUp(Key::Enter))
 	{
 		static_cast<MainSimulation*>(m_game)->onMainMenu();
