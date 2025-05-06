@@ -268,6 +268,8 @@ void GraphicsEngine::update()
 		auto size = i->getSize();
 		m_render_system->drawImage(texture, {(i32)pos.x,(i32)pos.y,size.width,size.height});
 	}*/
+
+
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
@@ -276,14 +278,9 @@ void GraphicsEngine::update()
 	{
 		if (ImGui::BeginMenu("Time Scale:"))
 		{
-			ImGui::Text("TimeScale: %.2f", m_game->m_timeScale);
-			if (ImGui::MenuItem("TimeScaleDown"))
+			if (ImGui::SliderFloat("TimeScale", &m_game->m_timeScale, 0.0f, 2.0f))
 			{
-				m_game->setTimeScale(m_game->m_timeScale - 0.1f);
-			}
-			if (ImGui::MenuItem("TimeScaleUp"))
-			{
-				m_game->setTimeScale(m_game->m_timeScale + 0.1f);
+				m_game->setTimeScale(m_game->m_timeScale);
 			}
 			if(ImGui::MenuItem("Pause/Play"))
 			{
@@ -308,9 +305,7 @@ void GraphicsEngine::update()
 
 	ImGui::EndMainMenuBar();
 	ImGui::Render();
-
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-
 	swapChain->present(true);
 }
 
