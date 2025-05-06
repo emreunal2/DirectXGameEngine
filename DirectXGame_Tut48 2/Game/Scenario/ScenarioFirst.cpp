@@ -1,28 +1,28 @@
-#include "ScenarioMainMenu.h"
+#include "ScenarioFirst.h"
 #include "../MainSimulation.h"
 
-ScenarioMainMenu::ScenarioMainMenu(Game* game) : m_game(game)
+ScenarioFirst::ScenarioFirst(Game* game) : m_game(game)
 {
 }
 
-ScenarioMainMenu::~ScenarioMainMenu()
+ScenarioFirst::~ScenarioFirst()
 {
 	this->m_game->getWorld()->clear();
 }
 
-void ScenarioMainMenu::generateScenario()
+void ScenarioFirst::generateScenario()
 {
 
 }
 
-void ScenarioMainMenu::onRestart()
+void ScenarioFirst::onRestart()
 {
-
 }
 
-void ScenarioMainMenu::onCreate()
+void ScenarioFirst::onCreate()
 {
 	generateScenario();
+	m_game->setTimeScale(0.1f);
 	{
 		auto m_camera = m_game->getWorld()->createEntity<Entity>();
 		auto cam = m_camera->createComponent<CameraComponent>();
@@ -33,11 +33,11 @@ void ScenarioMainMenu::onCreate()
 	m_game->getInputSystem()->lockCursor(false);
 }
 
-void ScenarioMainMenu::onUpdate(f32 deltaTime)
+void ScenarioFirst::onUpdate(f32 deltaTime)
 {
-	m_game->setTimeScale(0.5);
-	//if (m_game->getInputSystem()->isKeyUp(Key::_1))
+	//m_game->setTimeScale(0.1f);
+	//if (m_game->getInputSystem()->isKeyUp(Key::Escape))
 	//{
-		//static_cast<MainSimulation*>(m_game)->onFirstScenario();
+		//static_cast<MainSimulation*>(m_game)->onMainMenu();
 	//}
 }
