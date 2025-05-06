@@ -5,6 +5,9 @@
 #include "Scenario/FirstScenario.h"
 #include "Scenario/ScenarioMainMenu.h"
 #include "Scenario/ScenarioFirst.h"
+#include "Scenario/ScenarioSecond.h"
+#include "Scenario/ScenarioThird.h"
+#include "Scenario/ScenarioFourth.h"
 #include "UI/MainMenu/MainMenu.h"
 #include "Level/Level.h"
 
@@ -17,6 +20,9 @@ public:
 	void onLevelRestart();
 	void onMainMenu();
 	void onFirstScenario();
+	void onSecondScenario();
+	void onThirdScenario();
+	void onFourthScenario();
 	void RestartScenarios();
 protected:
 	virtual void onCreate();
@@ -27,6 +33,9 @@ private:
 	std::unique_ptr<Scenario> m_activeScenario = nullptr;
 	std::unique_ptr<ScenarioFirst> m_firstScenario = nullptr;
 	std::unique_ptr<ScenarioMainMenu> m_mainMenu = nullptr;
+	std::unique_ptr<ScenarioSecond> m_secondScenario = nullptr;
+	std::unique_ptr<ScenarioThird> m_thirdScenario = nullptr;
+	std::unique_ptr<ScenarioFourth> m_fourthScenario = nullptr;
 	int activeScenario = NULL;
 
 };

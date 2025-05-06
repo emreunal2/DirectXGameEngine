@@ -214,6 +214,9 @@
     <ClInclude Include="Game\Item\SphereItem.h" />
     <ClInclude Include="Game\Scenario\ScenarioMainMenu.h" />
     <ClInclude Include="Game\Scenario\ScenarioFirst.h" />
+    <ClInclude Include="Game\Scenario\ScenarioSecond.h" />
+    <ClInclude Include="Game\Scenario\ScenarioThird.h" />
+    <ClInclude Include="Game\Scenario\ScenarioFourth.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX3D\Vendor\ImGui\imgui.cpp" />
@@ -279,6 +282,9 @@
     <ClCompile Include="Game\Item\SphereItem.cpp" />
     <ClCompile Include="Game\Scenario\ScenarioMainMenu.cpp" />
     <ClCompile Include="Game\Scenario\ScenarioFirst.cpp" />
+    <ClCompile Include="Game\Scenario\ScenarioSecond.cpp" />
+    <ClCompile Include="Game\Scenario\ScenarioThird.cpp" />
+    <ClCompile Include="Game\Scenario\ScenarioFourth.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
