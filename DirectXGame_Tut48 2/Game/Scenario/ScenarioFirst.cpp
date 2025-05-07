@@ -1,5 +1,6 @@
 #include "ScenarioFirst.h"
 #include "../MainSimulation.h"
+#include "../Item/SphereItem.h"
 
 ScenarioFirst::ScenarioFirst(Game* game) : m_game(game)
 {
@@ -12,7 +13,19 @@ ScenarioFirst::~ScenarioFirst()
 
 void ScenarioFirst::generateScenario()
 {
+	//Create 25 spheres with random velocity and position
+	for (int i = 0; i < 25; i++)
+	{
+		auto entity = m_game->getWorld()->createEntity<SphereItem>();
+		entity->getTransform()->setPosition(Vector3D(rand() % 100, rand() % 100, rand() % 100));
+		entity->getTransform()->setRotation(Vector3D(rand() % 360, rand() % 360, rand() % 360));
+		entity->setDirection(Vector3D(rand() % 10, rand() % 10, rand() % 10));
+		entity->getTransform()->setScale(Vector3D(5, 5, 5));
+	}
 
+	
+	//auto entity = m_game->getWorld()->createEntity<SphereItem>();
+	//entity->getTransform()->setPosition(Vector3D(70, 70, 70));
 }
 
 void ScenarioFirst::onRestart()
@@ -22,7 +35,6 @@ void ScenarioFirst::onRestart()
 void ScenarioFirst::onCreate()
 {
 	generateScenario();
-	m_game->setTimeScale(0.1f);
 	{
 		auto m_camera = m_game->getWorld()->createEntity<Entity>();
 		auto cam = m_camera->createComponent<CameraComponent>();
@@ -35,9 +47,7 @@ void ScenarioFirst::onCreate()
 
 void ScenarioFirst::onUpdate(f32 deltaTime)
 {
-	//m_game->setTimeScale(0.1f);
-	//if (m_game->getInputSystem()->isKeyUp(Key::Escape))
-	//{
-		//static_cast<MainSimulation*>(m_game)->onMainMenu();
-	//}
+	//get all objects
+
 }
+

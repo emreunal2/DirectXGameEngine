@@ -29,7 +29,6 @@ public:
 
 	void clear();
 
-
 private:
 	void createEntityInternal(Entity* entity, size_t id);
 	void removeEntity(Entity* entity);

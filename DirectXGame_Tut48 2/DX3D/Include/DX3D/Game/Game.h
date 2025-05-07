@@ -13,6 +13,8 @@ public:
 	virtual ~Game();
 
 	void setTimeScale(f32 timeScale);
+	void setGravity(f32 gravity);
+	float getGravity();
 	void run();
 	void quit();
 
@@ -42,7 +44,7 @@ private:
 	std::chrono::system_clock::time_point m_previousTime;
 	float m_totalTime = 0.0f;
 	float m_timeScale = 1.0f;
-
+	float m_gravity = 9.8f;
 
 	friend class GraphicsEngine;
 	friend class Display;

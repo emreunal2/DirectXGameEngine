@@ -27,12 +27,29 @@ void SphereItem::onCreate()
 void SphereItem::onUpdate(f32 deltaTime)
 {
 	GameItem::onUpdate(deltaTime);
-	auto pos = getTransform()->getPosition();
-	m_direction = Vector3D(0, -1, 1);
-	pos = pos + m_direction * 9.8f *deltaTime;
-	getTransform()->setPosition(pos);
+	ApplyMovement(deltaTime);
 }
 
 void SphereItem::onCollision(Component* body1, Component* body2)
 {
+}
+
+void SphereItem::ApplyMovement(f32 deltaTime)
+{
+	auto pos = getTransform()->getPosition();
+	// move left
+	m_direction = Vector3D(0, 0, 0);
+	ApplyGravity();
+	pos = pos + m_direction * deltaTime;
+	getTransform()->setPosition(pos);
+}
+
+// TODO GRAVITY SYSTEM MAY CAUSE PROBLEMS BECAUSE ITS NOT IN THE PHYSICS ENGINE AND
+// I USE GET GAME FOR EVERY ENTITY AT EVERY FRAME SO FIX IT 
+void SphereItem::ApplyGravity()
+{
+	//Apply to direction not position
+	auto gravityValue = getWorld()->getGame()->getGravity();
+	m_direction.y -= gravityValue;
+
 }

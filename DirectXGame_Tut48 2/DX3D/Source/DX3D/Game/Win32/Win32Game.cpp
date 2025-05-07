@@ -8,6 +8,14 @@ void Game::setTimeScale(f32 timeScale)
 {
 	m_timeScale = timeScale;
 }
+void Game::setGravity(f32 gravity)
+{
+	m_gravity = gravity;
+}
+f32 Game::getGravity()
+{
+	return m_gravity;
+}
 
 void Game::run()
 {

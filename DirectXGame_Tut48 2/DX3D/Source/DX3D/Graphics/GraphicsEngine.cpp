@@ -294,7 +294,26 @@ void GraphicsEngine::update()
 			}
 			ImGui::EndMenu();
 		}
-		
+		if (ImGui::BeginMenu("Gravity:"))
+		{
+			if (ImGui::SliderFloat("Gravity", &m_game->m_gravity, -20.0f, 20.0f))
+			{
+				m_game->setGravity(m_game->m_gravity);
+			}
+			if (ImGui::MenuItem("Reset Gravity"))
+			{
+				m_game->setGravity(9.8f);
+			}
+			if (ImGui::MenuItem("No Gravity"))
+			{
+				m_game->setGravity(0);
+			}
+			if (ImGui::MenuItem("Reverse Gravity"))
+			{
+				m_game->setGravity(-m_game->getGravity());
+			}
+			ImGui::EndMenu();
+		}
 		if (ImGui::BeginMenu("Background Color"))
 		{
 			ImGui::ColorEdit3("Background Color", (float*)&backgroundRed);
