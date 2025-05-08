@@ -1,8 +1,4 @@
 
-
-
-
-
 #include <DX3D/Input/InputSystem.h>
 #include <Windows.h>
 
@@ -13,7 +9,20 @@ InputSystem::InputSystem()
 InputSystem::~InputSystem()
 {
 }
+void InputSystem::simulateKeyPress(const Key& key)
+{
+	short keyCode = getInternalKeyCode(key);
+	INPUT input[2] = {};
+	input[0].type = INPUT_KEYBOARD;
+	input[0].ki.wVk = keyCode;
+	input[0].ki.dwFlags = 0;
 
+	input[1].type = INPUT_KEYBOARD;
+	input[1].ki.wVk = keyCode;
+	input[1].ki.dwFlags = KEYEVENTF_KEYUP;
+
+	SendInput(2, input, sizeof(INPUT));
+}
 bool InputSystem::isKeyDown(const Key& key)
 {
 	return (m_final_keys_state[getInternalKeyCode(key)] == 0);
@@ -66,7 +75,6 @@ void InputSystem::update()
 		SetCursorPos((int)m_lockAreaCenter.x, (int)m_lockAreaCenter.y);
 		m_old_mouse_pos = m_lockAreaCenter;
 	}
-
 
 
 	for (ui32 i = 0; i < 256; i++)

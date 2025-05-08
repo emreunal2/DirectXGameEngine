@@ -24,6 +24,9 @@ Display::Display(Game* game): m_game(game)
 
 Display::~Display()
 {
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
 }
 
 void Display::setFullScreen(const Rect& size, bool fullscreen)

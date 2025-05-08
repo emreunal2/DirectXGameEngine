@@ -31,6 +31,8 @@
 #include <imgui_impl_dx11.h>
 #include <imgui_impl_win32.h>
 #include <DX3D/Entity/Entity.h>
+#include <DX3D/Game/World.h>
+#include <DX3D/Input/InputSystem.h>
 
 
 __declspec(align(16))
@@ -306,7 +308,8 @@ void GraphicsEngine::update()
 			}
 			if (ImGui::MenuItem("No Gravity"))
 			{
-				m_game->setGravity(0);
+				m_game->getInputSystem()->simulateKeyPress(Key::_1);
+				//m_game->setGravity(0);
 			}
 			if (ImGui::MenuItem("Reverse Gravity"))
 			{
@@ -319,7 +322,6 @@ void GraphicsEngine::update()
 			ImGui::ColorEdit3("Background Color", (float*)&backgroundRed);
 			ImGui::EndMenu();
 		}
-
 	}
 
 	ImGui::EndMainMenuBar();

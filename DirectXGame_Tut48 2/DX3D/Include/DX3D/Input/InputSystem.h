@@ -4,6 +4,7 @@
 #include <DX3D/Prerequisites.h>
 #include <DX3D/Math/Vector2D.h>
 #include <DX3D/Math/Rect.h>
+#include <unordered_map>
 
 class InputSystem
 {
@@ -17,7 +18,7 @@ public:
 
 	void lockCursor(bool lock);
 	void setLockArea(const Rect& area);
-
+	void simulateKeyPress(const Key& key);
 
 	void update();
 private:

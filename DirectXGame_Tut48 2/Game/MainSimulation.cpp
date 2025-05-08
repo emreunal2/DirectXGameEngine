@@ -57,6 +57,11 @@ void MainSimulation::onUpdate(f32 deltaTime)
 	Game::onUpdate(deltaTime);
 	InputChecks();
 	SceneUpdates(deltaTime);
+	
+	/**m_imguiManager->beginFrame();
+	m_imguiManager->render();
+	m_imguiManager->endFrame();
+	*/
 }
 
 
