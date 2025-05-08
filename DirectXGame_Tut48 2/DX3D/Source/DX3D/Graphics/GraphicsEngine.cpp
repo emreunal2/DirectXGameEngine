@@ -31,7 +31,6 @@
 #include <imgui_impl_dx11.h>
 #include <imgui_impl_win32.h>
 #include <DX3D/Entity/Entity.h>
-#include <DX3D/Game/World.h>
 #include <DX3D/Input/InputSystem.h>
 
 
@@ -323,8 +322,31 @@ void GraphicsEngine::update()
 			ImGui::EndMenu();
 		}
 	}
-
 	ImGui::EndMainMenuBar();
+	ImGui::Begin("Scene Menu");
+	ImGui::Text("Scene Menu");
+
+	if (ImGui::Button("Main Menu"))
+	{
+		m_game->getInputSystem()->simulateKeyPress(Key::Escape);
+	}
+	if (ImGui::Button("First Scenario"))
+	{
+		m_game->getInputSystem()->simulateKeyPress(Key::_1);
+	}
+	if (ImGui::Button("Second Scenario"))
+	{
+		m_game->getInputSystem()->simulateKeyPress(Key::_2);
+	}
+	if (ImGui::Button("Third Scenario"))
+	{
+		m_game->getInputSystem()->simulateKeyPress(Key::_3);
+	}
+	if (ImGui::Button("Fourth Scenario"))
+	{
+		m_game->getInputSystem()->simulateKeyPress(Key::_4);
+	}
+	ImGui::End();
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 	swapChain->present(true);
