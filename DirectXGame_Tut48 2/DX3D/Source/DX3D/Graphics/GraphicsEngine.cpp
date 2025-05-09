@@ -307,8 +307,7 @@ void GraphicsEngine::update()
 			}
 			if (ImGui::MenuItem("No Gravity"))
 			{
-				m_game->getInputSystem()->simulateKeyPress(Key::_1);
-				//m_game->setGravity(0);
+				m_game->setGravity(0);
 			}
 			if (ImGui::MenuItem("Reverse Gravity"))
 			{

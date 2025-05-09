@@ -13,6 +13,6 @@ protected:
 	virtual void onUpdate(f32 deltaTime);
 	virtual void onCollision(Component* body1, Component* body2);
 	virtual void ApplyMovement(f32 deltaTime);
-	virtual void ApplyGravity();
+	virtual void ApplyGravity(f32 deltaTime);
 };
 

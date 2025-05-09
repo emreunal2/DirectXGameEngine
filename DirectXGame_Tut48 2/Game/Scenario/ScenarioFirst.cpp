@@ -1,6 +1,7 @@
 #include "ScenarioFirst.h"
 #include "../MainSimulation.h"
 #include "../Item/SphereItem.h"
+#include "../Item/StaticSphereItem.h"
 
 ScenarioFirst::ScenarioFirst(Game* game) : m_game(game)
 {
@@ -18,12 +19,17 @@ void ScenarioFirst::generateScenario()
 	{
 		auto entity = m_game->getWorld()->createEntity<SphereItem>();
 		entity->getTransform()->setPosition(Vector3D(rand() % 100, rand() % 100, rand() % 100));
-		entity->getTransform()->setRotation(Vector3D(rand() % 360, rand() % 360, rand() % 360));
-		entity->setDirection(Vector3D(rand() % 10, rand() % 10, rand() % 10));
+		//entity->getTransform()->setRotation(Vector3D(rand() % 360, rand() % 360, rand() % 360));
+		//entity->setDirection(Vector3D(25, 0, 0));
 		entity->getTransform()->setScale(Vector3D(5, 5, 5));
+
 	}
 
-	
+	// Create a static sphere
+	auto entity = m_game->getWorld()->createEntity<StaticSphereItem>();
+	entity->getTransform()->setPosition(Vector3D(rand() % 100, rand() % 100, rand() % 100));
+
+
 	//auto entity = m_game->getWorld()->createEntity<SphereItem>();
 	//entity->getTransform()->setPosition(Vector3D(70, 70, 70));
 }

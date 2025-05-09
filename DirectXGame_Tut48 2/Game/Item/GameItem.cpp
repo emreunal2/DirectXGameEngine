@@ -17,7 +17,8 @@ void GameItem::setPosition(const Vector3D& position)
 
 void GameItem::setDirection(const Vector3D& direction)
 {
-	m_direction = Vector3D::normalize(direction);
+	//m_direction = Vector3D::normalize(direction);
+	m_direction = direction;
 }
 
 void GameItem::onCreate()
