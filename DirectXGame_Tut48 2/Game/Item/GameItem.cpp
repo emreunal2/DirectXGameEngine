@@ -32,3 +32,12 @@ void GameItem::onUpdate(f32 deltaTime)
 {
 	Entity::onUpdate(deltaTime);
 }
+
+Vector3D GameItem::getPosition()
+{
+	return m_pos;
+}
+Vector3D GameItem::getDirection()
+{
+	return m_direction;
+}

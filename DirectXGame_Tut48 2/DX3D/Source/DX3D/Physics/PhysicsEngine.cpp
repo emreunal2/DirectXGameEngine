@@ -22,19 +22,20 @@ PhysicsEngine::~PhysicsEngine()
 
 void PhysicsEngine::update()
 {
-	for (auto c : m_components)
-	{
-		if (c == m_player) continue;
+	// OLD VERSION ?
+	//for (auto c : m_components)
+	//{
+		//if (c == m_player) continue;
 
-		if (auto cc = dynamic_cast<TerrainComponent*>(c))
-		{
-			_processTerrainPlayerCollision(cc, m_player);
-		}
-		else if (auto cc = dynamic_cast<SphereColliderComponent*>(c))
-		{
+		//if (auto cc = dynamic_cast<TerrainComponent*>(c))
+		//{
+			//_processTerrainPlayerCollision(cc, m_player);
+		//}
+		//else if (auto cc = dynamic_cast<SphereColliderComponent*>(c))
+		//{
 			//TODO: FIX THIS LATER 
 			//_processSpherePlayerCollision(cc, m_player);
-		}
+		//}
 
 
 		//for (auto c1 : m_components)
@@ -56,7 +57,25 @@ void PhysicsEngine::update()
 		//		if (auto cc1 = dynamic_cast<SphereColliderComponent*>(c1)) _processSphereSphereCollision(cc, cc1);
 		//	}
 		//}
+	//}
+
+	// NEW VERSION
+	
+	for (auto c1 : m_components)
+	{
+		if (auto sc1 = dynamic_cast<SphereColliderComponent*>(c1))
+		{
+			for (auto c2 : m_components)
+			{
+				if (c1 == c2) continue;
+				if (auto sc2 = dynamic_cast<SphereColliderComponent*>(c2))
+				{
+					_processSphereSphereCollision(sc1, sc2);
+				}
+			}
+		}
 	}
+	
 }
 
 void PhysicsEngine::addComponent(Component* component)

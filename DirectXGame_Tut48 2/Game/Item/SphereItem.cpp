@@ -22,8 +22,8 @@ void SphereItem::onCreate()
 	m_itemMesh->setMesh(mesh);
 	m_itemMesh->addMaterial(mat);
 	getTransform()->setScale(Vector3D(20, 20, 20));
-	setDirection(Vector3D(0, 0, 0));
-	m_collider->setRadius(10000.0f);
+	//setDirection(Vector3D(0, 0, 0));
+	m_collider->setRadius(5.0f);
 }
 
 void SphereItem::onUpdate(f32 deltaTime)
@@ -36,11 +36,19 @@ void SphereItem::onUpdate(f32 deltaTime)
 void SphereItem::onCollision(Component* body1, Component* body2)
 {
 
-	if (dynamic_cast<SphereItem*>(body2))
+	if (dynamic_cast<SphereItem*>(body2->getEntity()))
 	{
-		setDirection(Vector3D(50, 20, 35));
-		//set time scale
-		getWorld()->getGame()->setTimeScale(0.1f);
+		Vector3D v1 = getDirection();
+		Vector3D v2 = dynamic_cast<SphereItem*>(body2->getEntity())->getDirection();
+		Vector3D newVelocity;
+		newVelocity.x = (v1.x +v2.x) + 0.5f;
+		newVelocity.y = (v1.y + v2.y) + 0.5f;
+		newVelocity.z = (v1.z + v2.z) + 0.5f;
+		setDirection(newVelocity);
+	}
+	if (dynamic_cast<StaticSphereItem*>(body2->getEntity()))
+	{
+		setDirection(Vector3D(0, 0, 0));
 
 	}
 }
@@ -58,6 +66,7 @@ void SphereItem::ApplyGravity(f32 deltaTime)
 {
 	//Apply to direction not position
 	auto gravityValue = getWorld()->getGame()->getGravity();
+	//auto gravityValue = -9.81f;
 	m_direction.y -= gravityValue * deltaTime;
 
 }

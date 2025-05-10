@@ -12,6 +12,9 @@ public:
 
 	void setPosition(const Vector3D& position);
 	void setDirection(const Vector3D& direction);
+	
+	Vector3D getPosition();
+	Vector3D getDirection();
 
 protected:
 	virtual void onCreate();
