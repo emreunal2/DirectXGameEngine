@@ -36,6 +36,10 @@ void SphereItem::onUpdate(f32 deltaTime)
 void SphereItem::onCollision(Component* body1, Component* body2)
 {
 
+}
+void SphereItem::onCollisionEnter(Component* body1, Component* body2)
+{
+
 	if (dynamic_cast<SphereItem*>(body2->getEntity()))
 	{
 		Vector3D v1 = getDirection();

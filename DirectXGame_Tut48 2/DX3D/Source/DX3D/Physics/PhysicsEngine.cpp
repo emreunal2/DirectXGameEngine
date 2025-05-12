@@ -1,14 +1,9 @@
-
-
 #include <DX3D/Physics/PhysicsEngine.h>
-
 #include <DX3D/Entity/TerrainComponent.h>
 #include <DX3D/Entity/PlayerControllerComponent.h>
 #include <DX3D/Entity/SphereColliderComponent.h>
-
 #include <DX3D/Entity/Entity.h>
 #include <DX3D/Entity/TransformComponent.h>
-
 
 
 
@@ -89,6 +84,7 @@ void PhysicsEngine::addComponent(Component* component)
 	}
 	else if (auto c = dynamic_cast<SphereColliderComponent*>(component))
 		m_components.emplace(c);
+	std::cout << "Number of Components: " << m_components.size() << std::endl;
 }
 
 void PhysicsEngine::removeComponent(Component* component)
@@ -97,6 +93,13 @@ void PhysicsEngine::removeComponent(Component* component)
 	if (auto c = dynamic_cast<PlayerControllerComponent*>(component))
 	{
 		m_player = nullptr;
+	}
+	for (auto it = m_collisionPairs.begin(); it != m_collisionPairs.end(); )
+	{
+		if (it->a == component || it->b == component)
+			it = m_collisionPairs.erase(it);
+		else
+			++it;
 	}
 }
 
@@ -142,11 +145,30 @@ void PhysicsEngine::_processSphereSphereCollision(SphereColliderComponent* spher
 
 	auto distVec = sphere1->getEntity()->getTransform()->getPosition() - sphere2->getEntity()->getTransform()->getPosition();
 	auto dist = Vector3D::length(distVec);
+	float sumRadius = sphere1->getRadius() + sphere2->getRadius();
 
-	if (dist < sphere1->getRadius() + sphere2->getRadius())
+	bool isColliding = dist < sumRadius;
+	bool wasColliding = m_collisionPairs.find({ sphere1, sphere2 }) != m_collisionPairs.end();
+
+	if (isColliding && !wasColliding)
 	{
-		playerEntity->onCollision(sphere1, sphere2);
-		sphere2->getEntity()->onCollision(sphere2, sphere1);
+		sphere1->getEntity()->onCollisionEnter(sphere1, sphere2);
+		sphere2->getEntity()->onCollisionEnter(sphere2, sphere1);
+		m_collisionPairs.insert({ sphere1, sphere2 });
+		//debug which objects collided
+		std::cout << "Collision Enter: " << sphere1->getEntity();
+	}
+	else if (!isColliding && wasColliding)
+	{
+		sphere1->getEntity()->onCollisionExit(sphere1, sphere2);
+		sphere2->getEntity()->onCollisionExit(sphere2, sphere1);
+		m_collisionPairs.erase({ sphere1, sphere2 });
+		std::cout << "Collision Exit: " << m_collisionPairs.size() << std::endl;
+	}
+	else if (isColliding && wasColliding)
+	{
+		sphere1->getEntity()->onCollisionStay(sphere1, sphere2);
+		sphere2->getEntity()->onCollisionStay(sphere2, sphere1);
 	}
 }
 

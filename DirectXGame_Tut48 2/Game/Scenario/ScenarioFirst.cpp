@@ -15,6 +15,7 @@ ScenarioFirst::~ScenarioFirst()
 void ScenarioFirst::generateScenario()
 {
 	//Create 25 spheres with random velocity and position
+	/*
 	for (int i = 0; i < 25; i++)
 	{
 		auto entity = m_game->getWorld()->createEntity<SphereItem>();
@@ -26,10 +27,18 @@ void ScenarioFirst::generateScenario()
 		entity->getTransform()->setScale(Vector3D(5, 5, 5));
 
 	}
+	*/
+	auto entity = m_game->getWorld()->createEntity<SphereItem>();
+	entity->getTransform()->setPosition(Vector3D(0, 70, 70));
+	entity->setDirection(Vector3D(15, 0, 0));
+
+	auto entity2 = m_game->getWorld()->createEntity<SphereItem>();
+	entity2->getTransform()->setPosition(Vector3D(70, 70, 70));
+	entity2->setDirection(Vector3D(-50, 0, 0));
 
 	// Create a static sphere
-	auto entity = m_game->getWorld()->createEntity<StaticSphereItem>();
-	entity->getTransform()->setPosition(Vector3D(rand() % 100, rand() % 100, rand() % 100));
+	//auto entity = m_game->getWorld()->createEntity<StaticSphereItem>();
+	//entity->getTransform()->setPosition(Vector3D(rand() % 100, rand() % 100, rand() % 100));
 	//auto entity = m_game->getWorld()->createEntity<SphereItem>();
 	//entity->getTransform()->setPosition(Vector3D(70, 70, 70));
 }

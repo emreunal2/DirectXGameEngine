@@ -43,6 +43,9 @@ protected:
 	virtual void onCreate() {}
 	virtual void onUpdate(f32 deltaTime) {}
 	virtual void onCollision(Component* body1, Component* body2) {}
+	virtual void onCollisionEnter(Component* body1, Component* body2) {}
+	virtual void onCollisionStay(Component* body1, Component* body2) {}
+	virtual void onCollisionExit(Component* body1, Component* body2) {}
 	virtual void onRelease() {}
 private:
 	void createComponentInternal(Component* component, size_t id);

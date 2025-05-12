@@ -141,6 +141,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DX3D\Include\DX3D\Physics\CollisionPair.h" />
+    <ClInclude Include="DX3D\Include\DX3D\Physics\CollisionPair.h" />
     <ClInclude Include="DX3D\Vendor\ImGui\Include\imconfig.h" />
     <ClInclude Include="DX3D\Vendor\ImGui\Include\imgui.h" />
     <ClInclude Include="DX3D\Vendor\ImGui\Include\imgui_impl_dx11.h" />

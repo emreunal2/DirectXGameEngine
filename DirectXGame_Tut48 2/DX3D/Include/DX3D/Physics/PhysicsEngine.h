@@ -2,6 +2,7 @@
 
 #pragma once
 #include <DX3D/Prerequisites.h>
+#include <DX3D/Physics/CollisionPair.h>
 #include <set>
 
 
@@ -25,6 +26,7 @@ private:
 
 	std::set<Component*> m_components;
 	std::set<Component*> m_checkedComponents;
+	std::set<CollisionPair> m_collisionPairs;
 
 	PlayerControllerComponent* m_player = nullptr;
 };
