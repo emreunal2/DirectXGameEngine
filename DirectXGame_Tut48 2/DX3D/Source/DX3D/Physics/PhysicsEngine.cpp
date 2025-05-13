@@ -156,7 +156,7 @@ void PhysicsEngine::_processSphereSphereCollision(SphereColliderComponent* spher
 		sphere2->getEntity()->onCollisionEnter(sphere2, sphere1);
 		m_collisionPairs.insert({ sphere1, sphere2 });
 		//debug which objects collided
-		std::cout << "Collision Enter: " << sphere1->getEntity();
+		std::cout << "Collision Enter: " << sphere1->getEntity() << "and " << sphere2->getEntity() << std::endl;
 	}
 	else if (!isColliding && wasColliding)
 	{

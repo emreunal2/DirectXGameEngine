@@ -1,5 +1,6 @@
 #include "SphereItem.h"
 #include "StaticSphereItem.h"
+#include "StaticCubeItem.h"
 SphereItem::SphereItem()
 {
 }
@@ -24,7 +25,7 @@ void SphereItem::onCreate()
 	getTransform()->setScale(Vector3D(1, 1, 1));
 	//setDirection(Vector3D(0, 0, 0));
 	m_collider = createComponent<SphereColliderComponent>();
-	m_collider->setRadius(3.0f);
+	m_collider->setRadius(1.0f);
 }
 
 void SphereItem::onUpdate(f32 deltaTime)
@@ -55,6 +56,10 @@ void SphereItem::onCollisionEnter(Component* body1, Component* body2)
 	{
 		setDirection(Vector3D(0, 0, 0));
 
+	}
+	if (dynamic_cast<StaticCubeItem*>(body2->getEntity()))
+	{
+		setDirection(Vector3D(0, 0, 0));
 	}
 }
 
