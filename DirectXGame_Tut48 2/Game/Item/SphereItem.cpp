@@ -21,9 +21,10 @@ void SphereItem::onCreate()
 	//Set the mesh and material into the entity
 	m_itemMesh->setMesh(mesh);
 	m_itemMesh->addMaterial(mat);
-	getTransform()->setScale(Vector3D(20, 20, 20));
+	getTransform()->setScale(Vector3D(1, 1, 1));
 	//setDirection(Vector3D(0, 0, 0));
-	m_collider->setRadius(5.0f);
+	m_collider = createComponent<SphereColliderComponent>();
+	m_collider->setRadius(3.0f);
 }
 
 void SphereItem::onUpdate(f32 deltaTime)

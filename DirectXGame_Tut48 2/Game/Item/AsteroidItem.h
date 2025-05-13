@@ -22,5 +22,6 @@ protected:
 	f32 m_angle = 0;
 	f32 m_speed = 142.0f;
 	f32 m_elapsedSecondsLastUpdate = 0.0f;
+	SphereColliderComponent* m_collider = nullptr;
 };
 

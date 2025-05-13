@@ -21,7 +21,8 @@ void StaticSphereItem::onCreate()
 	m_itemMesh->addMaterial(mat);
 	getTransform()->setScale(Vector3D(10, 10, 10));
 	setDirection(Vector3D(0, 0, 0));
-	m_collider->setRadius(25.0f);
+	m_collider = createComponent<SphereColliderComponent>();
+	m_collider->setRadius(1.0f);
 	//m_collider->setStatic(true);
 }
 

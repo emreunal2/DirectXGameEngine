@@ -24,8 +24,8 @@ void GameItem::setDirection(const Vector3D& direction)
 void GameItem::onCreate()
 {
 	Entity::onCreate();
-	m_collider = createComponent<SphereColliderComponent>();
-	m_collider->setRadius(10.0f);
+	//m_collider = createComponent<SphereColliderComponent>();
+	//m_collider->setRadius(10.0f);
 }
 
 void GameItem::onUpdate(f32 deltaTime)

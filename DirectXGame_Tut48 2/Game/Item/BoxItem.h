@@ -18,5 +18,6 @@ protected:
 private:
 	f32 m_angle = 0;
 	f32 m_elapsedSeconds = 0.0f;
+	SphereColliderComponent* m_collider = nullptr;
 };
 

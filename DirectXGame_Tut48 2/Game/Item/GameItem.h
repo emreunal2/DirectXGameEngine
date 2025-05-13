@@ -22,7 +22,7 @@ protected:
 
 protected:
 	MeshComponent* m_itemMesh = nullptr;
-	SphereColliderComponent* m_collider = nullptr;
+	//SphereColliderComponent* m_collider = nullptr;
 
 	Vector3D m_pos;
 	Vector3D m_direction;

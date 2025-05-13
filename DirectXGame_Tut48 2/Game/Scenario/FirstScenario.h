@@ -9,5 +9,6 @@ public:
 	void onRestart();
 	void onCreate();
 	void onUpdate(f32 deltaTime);
+
 };
 
