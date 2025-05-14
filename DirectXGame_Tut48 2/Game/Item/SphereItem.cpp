@@ -55,7 +55,6 @@ void SphereItem::onCollisionEnter(Component* body1, Component* body2)
 	if (dynamic_cast<StaticSphereItem*>(body2->getEntity()))
 	{
 		setDirection(Vector3D(0, 0, 0));
-
 	}
 	if (dynamic_cast<StaticCubeItem*>(body2->getEntity()))
 	{

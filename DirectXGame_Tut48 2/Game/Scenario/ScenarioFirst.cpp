@@ -15,52 +15,37 @@ ScenarioFirst::~ScenarioFirst()
 
 void ScenarioFirst::generateScenario()
 {
-	//Create 25 spheres with random velocity and position
 	/*
-	for (int i = 0; i < 25; i++)
+	for (int i = 0; i < 15; i++)
 	{
-		auto entity = m_game->getWorld()->createEntity<SphereItem>();
-		entity->getTransform()->setPosition(Vector3D(rand() % 100, rand() % 100, rand() % 100));
-		//entity->getTransform()->setRotation(Vector3D(rand() % 360, rand() % 360, rand() % 360));
-		entity->setDirection(Vector3D(rand() % 10, rand() % 10, rand() % 10));
-
-
-		entity->getTransform()->setScale(Vector3D(5, 5, 5));
-
+		float radius = static_cast<float>((std::rand() % 3) + 1);
+		float length = radius + rand() % 2;
+		float posX = static_cast<float>((std::rand() % 90) - 45);
+		float posY = static_cast<float>((std::rand() % 20) - 10);
+		float posZ = static_cast<float>((std::rand() % 90) - 45);
+		CreateStaticSphere(radius, length, posX, posY, posZ);
 	}
-	*/
 
+	// Add moving spheres one by one from random points above the scene
+	for (int i = 0; i < 100; i++)
 	{
-		//cube creation
-		//auto cubeBottom = m_game->getWorld()->createEntity<StaticCubeItem>();
-		//cubeBottom->getTransform()->setPosition(Vector3D(0, -30, 0));
-		//cubeBottom->getTransform()->setScale(Vector3D(90, 0, 90));
-		//auto cubeTop = m_game->getWorld()->createEntity<StaticCubeItem>();
-		//cubeTop->getTransform()->setPosition(Vector3D(0, 30, 0));
-		//cubeTop->getTransform()->setScale(Vector3D(90, 0, 90));
-		//auto cubeLeft = m_game->getWorld()->createEntity<StaticCubeItem>();
-		//cubeLeft->getTransform()->setPosition(Vector3D(-30, 0, 0));
-		//cubeLeft->getTransform()->setScale(Vector3D(1, 1, 15));
-	}
-	
-	
-	
-	//auto entity = m_game->getWorld()->createEntity<SphereItem>();
-	//entity->getTransform()->setPosition(Vector3D(0, 0, 0));
-	//entity->setDirection(Vector3D(15, 0, 0));
+		float startX = static_cast<float>((std::rand() % 90) - 45);
+		float startY = static_cast<float>((std::rand() % 30) + 10);
+		float startZ = static_cast<float>((std::rand() % 90) - 45);
 
-	//auto entity2 = m_game->getWorld()->createEntity<StaticCubeItem>();
-	//entity2->getTransform()->setPosition(Vector3D(0, 0, 0));
-	//entity2->getTransform()->setScale(Vector3D(2, 2, 2));
-	
-	//auto entity3 = m_game->getWorld()->createEntity<StaticCubeItem>();
-	//entity3->getTransform()->setPosition(Vector3D(2, 0, 0));
-	//entity3->getTransform()->setScale(Vector3D(2, 2, 2));
+		float dirX = static_cast<float>((std::rand() % 10) - 5);
+		float dirY = static_cast<float>((std::rand() % 10) - 5);
+		float dirZ = static_cast<float>((std::rand() % 10) - 5);
 
-	CreateMovingSphere(3.0f, -15, 0, 0, 15, 0, 0);
-	CreateMovingSphere(3.0f, 15, 0, 0, -15, 0, 0);
-	auto entity = m_game->getWorld()->createEntity<StaticCubeItem>();
-	entity->getTransform()->setPosition(Vector3D(0, 0, 0));
+		CreateMovingSphere(1.5f, startX, startY, startZ, dirX, dirY, dirZ);
+	}*/
+	CreateStaticSphere(3.0f,6.0f,0,0,0);
+	CreateMovingSphere(1.0f, 0, 15, 0, 0, -20, 0);
+	CreateMovingSphere(2.0f, 15, 0, 0, -15, 0, 0);
+	CreateMovingSphere(1.0f, -15, 15, 0, 15, -15, 0);
+
+	CreateMovingSphere(1.0f, 15, 15, 15, -15, 0, 0);
+	CreateMovingSphere(1.0f, -15, 15, 15, 15, 0, 0);
 
 }
 
@@ -78,7 +63,7 @@ void ScenarioFirst::onCreate()
 		cam->setFieldOfView(1.3f);
 		cam->setType(CameraType::Perspective);
 
-		m_camera->getTransform()->setPosition(Vector3D(0, 0, -50));
+		m_camera->getTransform()->setPosition(Vector3D(0, 15, -50));
 		
 	}
 	m_game->getInputSystem()->lockCursor(false);
@@ -97,13 +82,22 @@ void ScenarioFirst::CreateMovingSphere(f32 radius, f32 posx, f32 posy, f32 posz,
 	entity->setDirection(Vector3D(dirx, diry, dirz));
 	entity->getTransform()->setScale(Vector3D(radius, radius, radius));
 	entity->getComponent<SphereColliderComponent>()->setRadius(radius);
+	entity->getComponent<SphereColliderComponent>()->setLength(radius);
 }
 
-void ScenarioFirst::CreateStaticSphere(f32 radius, f32 posx, f32 posy, f32 posz)
+void ScenarioFirst::CreateStaticSphere(f32 radius, f32 lenght, f32 posx, f32 posy, f32 posz)
 {
 	auto entity = m_game->getWorld()->createEntity<StaticSphereItem>();
 	entity->getTransform()->setPosition(Vector3D(posx, posy, posz));
-	entity->getTransform()->setScale(Vector3D(radius, radius, radius));
+	entity->getTransform()->setScale(Vector3D(radius, lenght, radius));
 	entity->getComponent<SphereColliderComponent>()->setRadius(radius);
+	entity->getComponent<SphereColliderComponent>()->setLength(lenght);
 }
 
+void ScenarioFirst::CreateStaticCube(f32 size, f32 posx, f32 posy, f32 posz)
+{
+	auto entity = m_game->getWorld()->createEntity<StaticCubeItem>();
+	entity->getTransform()->setPosition(Vector3D(posx, posy, posz));
+	entity->getTransform()->setScale(Vector3D(size, size, size));
+	entity->getComponent<SphereColliderComponent>()->setRadius(size/2);
+}

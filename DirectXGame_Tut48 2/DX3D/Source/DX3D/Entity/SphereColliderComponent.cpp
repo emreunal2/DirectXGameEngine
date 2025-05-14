@@ -26,6 +26,16 @@ f32 SphereColliderComponent::getRadius()
 	return m_radius;
 }
 
+void SphereColliderComponent::setLength(f32 length)
+{
+	m_length = length;
+}
+
+f32 SphereColliderComponent::getLength()
+{
+	return m_length;
+}
+
 
 void SphereColliderComponent::onCreateInternal()
 {

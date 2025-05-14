@@ -139,16 +139,85 @@ void PhysicsEngine::_processSpherePlayerCollision(SphereColliderComponent* spher
 
 void PhysicsEngine::_processSphereSphereCollision(SphereColliderComponent* sphere1, SphereColliderComponent* sphere2)
 {
-	auto playerEntity = sphere1->getEntity();
+	auto pos1 = sphere1->getEntity()->getTransform()->getPosition();
+	auto pos2 = sphere2->getEntity()->getTransform()->getPosition();
 
-	Vector3D finalPos;
+	// Get the lengths and radii
+	float length1 = sphere1->getLength();
+	float length2 = sphere2->getLength();
+	float radius1 = sphere1->getRadius();
+	float radius2 = sphere2->getRadius();
 
-	auto distVec = sphere1->getEntity()->getTransform()->getPosition() - sphere2->getEntity()->getTransform()->getPosition();
-	auto dist = Vector3D::length(distVec);
-	float sumRadius = sphere1->getRadius() + sphere2->getRadius();
+	// Calculate start and end points of each capsule
+	Vector3D start1 = pos1 - Vector3D(0, length1 / 2.0f, 0);
+	Vector3D end1 = pos1 + Vector3D(0, length1 / 2.0f, 0);
 
+	Vector3D start2 = pos2 - Vector3D(0, length2 / 2.0f, 0);
+	Vector3D end2 = pos2 + Vector3D(0, length2 / 2.0f, 0);
+
+	// Calculate segment vectors
+	Vector3D d1 = end1 - start1;
+	Vector3D d2 = end2 - start2;
+	Vector3D r = start1 - start2;
+
+	// Length squared of each segment
+	float d1LengthSq = (d1.x * d1.x) + (d1.y * d1.y) + (d1.z * d1.z);
+	float d2LengthSq = (d2.x * d2.x) + (d2.y * d2.y) + (d2.z * d2.z);
+
+	// Dot products
+	float d1_r = (d1.x * r.x) + (d1.y * r.y) + (d1.z * r.z);
+	float d2_r = (d2.x * r.x) + (d2.y * r.y) + (d2.z * r.z);
+	float d1_d2 = (d1.x * d2.x) + (d1.y * d2.y) + (d1.z * d2.z);
+
+	// Determinant
+	float denom = (d1LengthSq * d2LengthSq) - (d1_d2 * d1_d2);
+
+	// Clamping parameters
+	float s = 0.0f, t = 0.0f;
+
+	if (denom != 0.0f)
+	{
+		s = ((d1_d2 * d2_r) - (d2LengthSq * d1_r)) / denom;
+		s = (s < 0.0f) ? 0.0f : (s > 1.0f ? 1.0f : s);
+	}
+
+	// Recalculate t with the new s
+	float tDenom = d2LengthSq - (d1_d2 * s);
+
+	if (tDenom != 0.0f)
+	{
+		t = (d2_r + (d1_d2 * s)) / tDenom;
+		t = (t < 0.0f) ? 0.0f : (t > 1.0f ? 1.0f : t);
+	}
+
+	// Closest points on each segment
+	Vector3D closestPoint1 = Vector3D(
+		start1.x + d1.x * s,
+		start1.y + d1.y * s,
+		start1.z + d1.z * s
+	);
+
+	Vector3D closestPoint2 = Vector3D(
+		start2.x + d2.x * t,
+		start2.y + d2.y * t,
+		start2.z + d2.z * t
+	);
+
+	// Distance between closest points
+	float distVecX = closestPoint1.x - closestPoint2.x;
+	float distVecY = closestPoint1.y - closestPoint2.y;
+	float distVecZ = closestPoint1.z - closestPoint2.z;
+
+	float distSq = (distVecX * distVecX) + (distVecY * distVecY) + (distVecZ * distVecZ);
+	float dist = sqrt(distSq);
+
+	// Calculate the sum of the radii
+	float sumRadius = radius1 + radius2;
+
+	// Collision check
 	bool isColliding = dist < sumRadius;
 	bool wasColliding = m_collisionPairs.find({ sphere1, sphere2 }) != m_collisionPairs.end();
+
 
 	if (isColliding && !wasColliding)
 	{
