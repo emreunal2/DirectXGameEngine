@@ -6,6 +6,8 @@ class SphereItem : public GameItem
 public:
 	SphereItem();
 	virtual ~SphereItem();
+	f32 getMass();
+	void setMass(f32 mass);
 
 
 protected:
@@ -18,5 +20,6 @@ protected:
 	virtual void ApplyMovement(f32 deltaTime);
 	virtual void ApplyGravity(f32 deltaTime);
 	SphereColliderComponent* m_collider = nullptr;
+	f32 m_mass;
 };
 

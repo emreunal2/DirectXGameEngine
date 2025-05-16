@@ -216,16 +216,17 @@ void PhysicsEngine::_processSphereSphereCollision(SphereColliderComponent* spher
 
 	// Collision check
 	bool isColliding = dist < sumRadius;
-	bool wasColliding = m_collisionPairs.find({ sphere1, sphere2 }) != m_collisionPairs.end();
+	bool wasColliding = (m_collisionPairs.find({ sphere1, sphere2 }) != m_collisionPairs.end() || m_collisionPairs.find({ sphere2, sphere1 }) != m_collisionPairs.end());
 
 
 	if (isColliding && !wasColliding)
 	{
 		sphere1->getEntity()->onCollisionEnter(sphere1, sphere2);
-		sphere2->getEntity()->onCollisionEnter(sphere2, sphere1);
+		//sphere2->getEntity()->onCollisionEnter(sphere2, sphere1);
 		m_collisionPairs.insert({ sphere1, sphere2 });
 		//debug which objects collided
-		std::cout << "Collision Enter: " << sphere1->getEntity() << "and " << sphere2->getEntity() << std::endl;
+		//std::cout << "Collision Enter: " << sphere1->getEntity() << "and " << sphere2->getEntity() << std::endl;
+		
 	}
 	else if (!isColliding && wasColliding)
 	{
