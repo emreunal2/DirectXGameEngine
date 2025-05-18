@@ -44,8 +44,8 @@ void ScenarioFirst::generateScenario()
 	//CreateMovingSphere(2.0f, 15, 0, 0, -15, 0, 0);
 	//CreateMovingSphere(1.0f, -15, 15, 0, 15, -15, 0);
 
-	CreateMovingSphere(2.0f, 15, 15, 15, -30, 0, 0,35);
-	CreateMovingSphere(1.0f, -15, 15, 15, 0, 0, 0,3);
+	CreateMovingSphere(2.0f, 15, 15, 15, -30, 0, 0,10);
+	CreateMovingSphere(1.0f, -15, 15, 15, 0, 0, 0,30);
 
 	//CreateStaticCube(5.0f, -10, 15, 15);
 	//CreateMovingSphere(1.0f, -10, 25, 15, 0, -5, 0);

@@ -8,7 +8,8 @@ public:
 	virtual ~SphereItem();
 	f32 getMass();
 	void setMass(f32 mass);
-
+	void setElasticity(f32 elasticity);
+	f32 getElasticity();
 
 protected:
 	virtual void onCreate();
@@ -21,5 +22,6 @@ protected:
 	virtual void ApplyGravity(f32 deltaTime);
 	SphereColliderComponent* m_collider = nullptr;
 	f32 m_mass;
+	f32 m_elasticity = 1.0f;
 };
 

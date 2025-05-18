@@ -13,7 +13,7 @@ void SphereItem::onCreate()
 {
 	GameItem::onCreate();
 	//Load all the assets
-	auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/spaceship.jpg");
+	auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/grass.jpg");
 	auto mesh = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Mesh>(L"Assets/Meshes/sphere.obj");
 	auto mat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
 	//Add the texture to material
@@ -50,17 +50,28 @@ void SphereItem::onCollisionEnter(Component* body1, Component* body2)
 		float m1 = m_mass;
 		float m2 = otherSphere->getMass();
 
+		float e1 = m_elasticity;
+		float e2 = otherSphere->getElasticity();
+		float e = (e1 + e2) / 2;
 		Vector3D v1 = getDirection();
 		Vector3D v2 = otherSphere->getDirection();
 		std::cout << "Speed before collision: " << " obj1 x: " << v1.x <<" obj1 y: " << v1.y << " obj1 z: " << v1.z << " and " << " obj2 x: " << v2.x << " obj2 y: " << v2.y << " obj2 z: " << v2.z << std::endl;
-		Vector3D newVelocity1 = ((v1 * (m1 - m2)) + (v2 * (2 * m2)));
-		newVelocity1.x /= (m1 + m2);
-		newVelocity1.y /= (m1 + m2);
-		newVelocity1.z /= (m1 + m2);
-		Vector3D newVelocity2 = ((v2 * (m2 - m1)) + (v1 * (2 * m1)));
-		newVelocity2.x /= (m1 + m2);
-		newVelocity2.y /= (m1 + m2);
-		newVelocity2.z /= (m1 + m2);
+
+		float newVelocity1X = ((v1.x * (m1 - e * m2)) + (v2.x * (1 + e) * m2)) / (m1 + m2);
+		float newVelocity2X = ((v2.x * (m2 - e * m1)) + (v1.x * (1 + e) * m1)) / (m1 + m2);
+
+		float newVelocity1Y = ((v1.y * (m1 - e * m2)) + (v2.y * (1 + e) * m2)) / (m1 + m2);
+		float newVelocity2Y = ((v2.y * (m2 - e * m1)) + (v1.y * (1 + e) * m1)) / (m1 + m2);
+
+
+		float newVelocity1Z = ((v1.z * (m1 - e * m2)) + (v2.z * (1 + e) * m2)) / (m1 + m2);
+		float newVelocity2Z = ((v2.z * (m2 - e * m1)) + (v1.z * (1 + e) * m1)) / (m1 + m2);
+
+		Vector3D newVelocity1(newVelocity1X, newVelocity1Y, newVelocity1Z);
+		Vector3D newVelocity2(newVelocity2X, newVelocity2Y, newVelocity2Z);
+
+		setDirection(newVelocity1);
+		otherSphere->setDirection(newVelocity2);
 		setDirection(newVelocity1);
 		otherSphere->setDirection(newVelocity2);
 		std::cout << "Speed after collision: " << this->getDirection().x << " and " << otherSphere->getDirection().x << std::endl;
@@ -101,4 +112,12 @@ f32 SphereItem::getMass()
 void SphereItem::setMass(f32 mass)
 {
 	m_mass = mass;
+}
+f32 SphereItem::getElasticity()
+{
+	return m_elasticity;
+}
+void SphereItem::setElasticity(f32 elasticity)
+{
+	m_elasticity = elasticity;
 }
