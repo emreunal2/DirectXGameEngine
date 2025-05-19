@@ -32,8 +32,11 @@ Game::Game()
 	m_inputSystem->setLockArea(m_display->getClientSize());
 
 	m_graphicsThread = std::thread(&Game::runGraphicsThread, this);
+	std::cout << "Graphics thread started: "<< m_graphicsThread.get_id() << std::endl;
 	m_physicsThread = std::thread(&Game::runPhysicsThread, this);
+	std::cout << "Physics thread started: " << m_physicsThread.get_id() << std::endl;
 	m_networkingThread = std::thread(&Game::runNetworkingThread, this);
+	std::cout << "Networking thread started: " << m_networkingThread.get_id() << std::endl;
 }
 
 Game::~Game()
@@ -90,8 +93,10 @@ void Game::onDisplaySize(const Rect& size)
 void Game::runGraphicsThread()
 {
 	SetThreadAffinityMask(GetCurrentThread(), GRAPHICS_CORE_MASK);
-	while (m_isRunning)
+	std::cout << "Graphics thread Core: " << GetCurrentProcessorNumber() << std::endl;
+	while (m_threadRunning)
 	{
+		std::cout << "Graphics thread Core: " << GetCurrentProcessorNumber() << std::endl;
 		{
 			std::lock_guard<std::mutex> lock(m_dataMutex);
 			auto currentTime = std::chrono::system_clock::now();
@@ -112,7 +117,7 @@ void Game::runGraphicsThread()
 			m_inputSystem->update();
 			m_graphicsEngine->update();
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		std::this_thread::sleep_for(std::chrono::milliseconds(30));
 		
 	}
 }
@@ -120,7 +125,7 @@ void Game::runGraphicsThread()
 void Game::runPhysicsThread()
 {
 	SetThreadAffinityMask(GetCurrentThread(), PHYSICS_CORE_MASK);
-	while (m_isRunning)
+	while (m_threadRunning)
 	{
 
 		{
