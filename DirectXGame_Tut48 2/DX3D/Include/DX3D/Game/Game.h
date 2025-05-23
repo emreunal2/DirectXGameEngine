@@ -36,6 +36,9 @@ public:
 	InputSystem* getInputSystem();
 	ResourceManager* getResourceManager();
 	Display* getDisplay();
+	bool isGraphicsReady() const { return m_graphicsReady.load(); }
+	void pausePhysicsThread();
+	void resumePhysicsThread();
 protected:
 	virtual void onCreate() {}
 	virtual void onUpdate(f32 deltaTime) {}
@@ -60,6 +63,7 @@ private:
 	std::thread m_physicsThread;
 	std::thread m_networkingThread;
 	std::atomic<bool> m_threadRunning = true;
+	std::atomic<bool> m_graphicsReady = false;
 
 	bool m_isRunning = true;
 	std::mutex m_dataMutex;

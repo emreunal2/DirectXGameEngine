@@ -113,6 +113,10 @@ void MainSimulation::InputChecks()
 }
 void MainSimulation::RestartScenarios()
 {
+	Game::pausePhysicsThread();
 	m_mainMenu.reset();
 	m_firstScenario.reset();
+	m_secondScenario.reset();
+	Game::resumePhysicsThread();
+
 }

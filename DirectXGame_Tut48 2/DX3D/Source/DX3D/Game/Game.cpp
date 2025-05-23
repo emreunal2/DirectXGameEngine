@@ -17,6 +17,7 @@
 #include <Windows.h>
 #include <chrono>
 #include <thread>
+#include <atomic>
 
 
 
@@ -31,8 +32,8 @@ Game::Game()
 
 	m_inputSystem->setLockArea(m_display->getClientSize());
 
-	m_graphicsThread = std::thread(&Game::runGraphicsThread, this);
-	std::cout << "Graphics thread started: "<< m_graphicsThread.get_id() << std::endl;
+	//m_graphicsThread = std::thread(&Game::runGraphicsThread, this);
+	//std::cout << "Graphics thread started: "<< m_graphicsThread.get_id() << std::endl;
 	m_physicsThread = std::thread(&Game::runPhysicsThread, this);
 	std::cout << "Physics thread started: " << m_physicsThread.get_id() << std::endl;
 	m_networkingThread = std::thread(&Game::runNetworkingThread, this);
@@ -89,14 +90,14 @@ void Game::onDisplaySize(const Rect& size)
 	m_inputSystem->setLockArea(m_display->getClientSize());
 	onInternalUpdate();
 }
-
+/*
 void Game::runGraphicsThread()
 {
 	SetThreadAffinityMask(GetCurrentThread(), GRAPHICS_CORE_MASK);
 	std::cout << "Graphics thread Core: " << GetCurrentProcessorNumber() << std::endl;
+
 	while (m_threadRunning)
 	{
-		std::cout << "Graphics thread Core: " << GetCurrentProcessorNumber() << std::endl;
 		{
 			std::lock_guard<std::mutex> lock(m_dataMutex);
 			auto currentTime = std::chrono::system_clock::now();
@@ -112,15 +113,15 @@ void Game::runGraphicsThread()
 			//m_inputSystem->update();
 
 
-			onUpdate(deltaTime);
-			m_world->update(deltaTime);
-			m_inputSystem->update();
-			m_graphicsEngine->update();
+			//onUpdate(deltaTime);
+			//m_world->update(deltaTime);
+			//m_inputSystem->update();
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(30));
 		
 	}
 }
+*/
 
 void Game::runPhysicsThread()
 {
@@ -154,27 +155,43 @@ void Game::runNetworkingThread()
 void Game::onInternalUpdate()
 {
 	//computing delta time
-	//auto currentTime = std::chrono::system_clock::now();
-	//auto elapsedSeconds = std::chrono::duration<double>();
-	//if (m_previousTime.time_since_epoch().count())
-		//elapsedSeconds = currentTime - m_previousTime;
-	//m_previousTime = currentTime;
+	auto currentTime = std::chrono::system_clock::now();
+	auto elapsedSeconds = std::chrono::duration<double>();
+	if (m_previousTime.time_since_epoch().count())
+		elapsedSeconds = currentTime - m_previousTime;
+	m_previousTime = currentTime;
 
-	//auto deltaTime = (f32)elapsedSeconds.count();
-	//deltaTime *= m_timeScale;
-	//m_totalTime += deltaTime;
+	auto deltaTime = (f32)elapsedSeconds.count();
+	deltaTime *= m_timeScale;
+	m_totalTime += deltaTime;
 
-	//m_inputSystem->update();
+	m_inputSystem->update();
 
 
-	//onUpdate(deltaTime);
-	//m_world->update(deltaTime);
+	onUpdate(deltaTime);
+	m_world->update(deltaTime);
 
 
 	//m_physicsEngine->update();
-	//m_graphicsEngine->update();
+	m_graphicsEngine->update();
+
 }
 
+void Game::pausePhysicsThread()
+{
+	std::cout << "Physics thread pausing: " << m_physicsThread.get_id() << std::endl;
+	m_threadRunning = false;
+	if (m_physicsThread.joinable())
+	{
+		m_physicsThread.join();
+	}
+}
+void Game::resumePhysicsThread()
+{
+	m_threadRunning = true;
+	m_physicsThread = std::thread(&Game::runPhysicsThread, this);
+	std::cout << "Physics thread resumed: " << m_physicsThread.get_id() << std::endl;
+}
 void Game::quit()
 {
 	m_isRunning = false;
