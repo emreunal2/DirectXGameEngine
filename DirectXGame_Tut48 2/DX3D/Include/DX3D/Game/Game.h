@@ -75,7 +75,7 @@ private:
 
 	const DWORD GRAPHICS_CORE_MASK = 0x2;
 	const DWORD NETWORKING_CORE_MASK = 0x4;
-	const DWORD PHYSICS_CORE_MASK = 0xF8;
+	const DWORD PHYSICS_CORE_MASK = 0x1FFFF8;
 
 	DataBuffer m_dataBuffer;
 	friend class GraphicsEngine;
