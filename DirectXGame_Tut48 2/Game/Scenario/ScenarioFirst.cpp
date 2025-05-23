@@ -75,7 +75,33 @@ void ScenarioFirst::onCreate()
 void ScenarioFirst::onUpdate(f32 deltaTime)
 {
 	//get all objects
-
+	if (m_game->getInputSystem()->isKeyUp(Key::Q))
+	{
+		auto type = MaterialType::DEFAULT;
+		if (m_game->spawnerType == 0)
+		{
+			type = MaterialType::DEFAULT;
+		}
+		else if (m_game->spawnerType == 1)
+		{
+			type = MaterialType::GRASS;
+		}
+		else if (m_game->spawnerType == 2)
+		{
+			type = MaterialType::METAL;
+		}
+		else
+		{
+			type = MaterialType::DEFAULT;
+		}
+		CreateMovingSphere(m_game->spawnerRadius, m_game->spawnerX, m_game->spawnerY, m_game->spawnerZ,
+			m_game->spawnerDirectionX, m_game->spawnerDirectionY, m_game->spawnerDirectionZ,
+			m_game->spawnerMass, type);
+	}
+	if (m_game->getInputSystem()->isKeyUp(Key::E))
+	{
+		CreateStaticSphere(m_game->spawnerRadius, m_game->spawnerLenght, m_game->spawnerX, m_game->spawnerY, m_game->spawnerZ);
+	}
 }
 
 void ScenarioFirst::CreateMovingSphere(f32 radius, f32 posx, f32 posy, f32 posz, f32 dirx, f32 diry, f32 dirz, f32 mass, MaterialType type)

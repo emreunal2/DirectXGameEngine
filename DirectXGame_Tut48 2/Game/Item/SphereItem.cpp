@@ -134,7 +134,7 @@ void SphereItem::setMaterialType(MaterialType type)
 	if (m_materialType == MaterialType::DEFAULT)
 	{
 		setElasticity(1.0f);
-		auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/ground.jpg");
+		auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/asteroid.jpg");
 		auto mat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
 		mat->addTexture(tex);
 		m_itemMesh->removeMaterial(0);

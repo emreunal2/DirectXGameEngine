@@ -346,6 +346,33 @@ void GraphicsEngine::update()
 		m_game->getInputSystem()->simulateKeyPress(Key::_4);
 	}
 	ImGui::End();
+	ImGui::Begin("Spawner");
+	ImGui::Text("Spawner");
+	ImGui::SliderFloat("Radius", &m_game->spawnerRadius, 1.0f, 10.0f);
+	ImGui::SliderFloat("Length", &m_game->spawnerLenght, 0.0f, 10.0f);
+	ImGui::SliderFloat("Mass", &m_game->spawnerMass, 1.0f, 10.0f);
+	ImGui::SliderFloat("X", &m_game->spawnerX, -50.0f, 50.0f);
+	ImGui::SliderFloat("Y", &m_game->spawnerY, -50.0f, 50.0f);
+	ImGui::SliderFloat("Z", &m_game->spawnerZ, -50.0f, 50.0f);
+	ImGui::SliderFloat("Direction X", &m_game->spawnerDirectionX, -10.0f, 10.0f);
+	ImGui::SliderFloat("Direction Y", &m_game->spawnerDirectionY, -10.0f, 10.0f);
+	ImGui::SliderFloat("Direction Z", &m_game->spawnerDirectionZ, -10.0f, 10.0f);
+	ImGui::Text("Type");
+	ImGui::RadioButton("Default (1.0f elasticity)", &m_game->spawnerType, 0);
+	ImGui::RadioButton("Grass (0.5f elasticity)", &m_game->spawnerType, 1);
+	ImGui::RadioButton("Metal (0.0f elasticity)", &m_game->spawnerType, 2);
+
+	if (ImGui::Button("Create Moving Sphere"))
+	{
+		m_game->getInputSystem()->simulateKeyPress(Key::Q);
+	}
+	if (ImGui::Button("Create Static Sphere/Capsule"))
+	{
+		m_game->getInputSystem()->simulateKeyPress(Key::E);
+	}
+
+
+	ImGui::End();
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 	swapChain->present(true);
