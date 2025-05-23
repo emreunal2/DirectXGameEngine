@@ -44,8 +44,8 @@ void ScenarioFirst::generateScenario()
 	//CreateMovingSphere(2.0f, 15, 0, 0, -15, 0, 0);
 	//CreateMovingSphere(1.0f, -15, 15, 0, 15, -15, 0);
 
-	CreateMovingSphere(2.0f, 15, 15, 15, -30, 0, 0,10);
-	CreateMovingSphere(1.0f, -15, 15, 15, 0, 0, 0,30);
+	CreateMovingSphere(2.0f, 15, 15, 15, -30, 0, 0,10, MaterialType::DEFAULT);
+	CreateMovingSphere(1.0f, -15, 15, 15, 0, 0, 0,30, MaterialType::METAL);
 
 	//CreateStaticCube(5.0f, -10, 15, 15);
 	//CreateMovingSphere(1.0f, -10, 25, 15, 0, -5, 0);
@@ -78,7 +78,7 @@ void ScenarioFirst::onUpdate(f32 deltaTime)
 
 }
 
-void ScenarioFirst::CreateMovingSphere(f32 radius, f32 posx, f32 posy, f32 posz, f32 dirx, f32 diry, f32 dirz, f32 mass)
+void ScenarioFirst::CreateMovingSphere(f32 radius, f32 posx, f32 posy, f32 posz, f32 dirx, f32 diry, f32 dirz, f32 mass, MaterialType type)
 {
 	auto entity = m_game->getWorld()->createEntity<SphereItem>();
 	entity->getTransform()->setPosition(Vector3D(posx, posy, posz));
@@ -87,6 +87,7 @@ void ScenarioFirst::CreateMovingSphere(f32 radius, f32 posx, f32 posy, f32 posz,
 	entity->getComponent<SphereColliderComponent>()->setRadius(radius);
 	entity->getComponent<SphereColliderComponent>()->setLength(radius);
 	entity->setMass(mass);
+	entity->setMaterialType(type);
 }
 
 void ScenarioFirst::CreateStaticSphere(f32 radius, f32 lenght, f32 posx, f32 posy, f32 posz)

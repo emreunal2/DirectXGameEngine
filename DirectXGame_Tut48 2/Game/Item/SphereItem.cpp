@@ -27,6 +27,12 @@ void SphereItem::onCreate()
 	m_collider = createComponent<SphereColliderComponent>();
 	m_collider->setRadius(1.0f);
 	m_mass = 1.0f;
+	m_elasticity = 1.0f;
+	//set color
+	m_itemMesh->removeMaterial(0);
+	auto mat2 = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/GameItem.hlsl");
+	mat2->addTexture(tex);
+	m_itemMesh->addMaterial(mat2);
 
 }
 
@@ -120,4 +126,36 @@ f32 SphereItem::getElasticity()
 void SphereItem::setElasticity(f32 elasticity)
 {
 	m_elasticity = elasticity;
+}
+
+void SphereItem::setMaterialType(MaterialType type)
+{
+	m_materialType = type;
+	if (m_materialType == MaterialType::DEFAULT)
+	{
+		setElasticity(1.0f);
+		auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/ground.jpg");
+		auto mat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
+		mat->addTexture(tex);
+		m_itemMesh->removeMaterial(0);
+		m_itemMesh->addMaterial(mat);
+	}
+	else if (m_materialType == MaterialType::GRASS)
+	{
+		setElasticity(0.5f);
+		auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/grass.jpg");
+		auto mat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
+		mat->addTexture(tex);
+		m_itemMesh->removeMaterial(0);
+		m_itemMesh->addMaterial(mat);
+	}
+	else if (m_materialType == MaterialType::METAL)
+	{
+		setElasticity(0.0f);
+		auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/spaceship.jpg");
+		auto mat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
+		mat->addTexture(tex);
+		m_itemMesh->removeMaterial(0);
+		m_itemMesh->addMaterial(mat);
+	}
 }

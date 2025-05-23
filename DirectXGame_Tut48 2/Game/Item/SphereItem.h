@@ -1,6 +1,13 @@
 #pragma once
 #include <DX3D/All.h>
 #include "GameItem.h"
+
+enum class MaterialType
+{
+	DEFAULT,
+	GRASS,
+	METAL,
+};
 class SphereItem : public GameItem
 {
 public:
@@ -10,6 +17,8 @@ public:
 	void setMass(f32 mass);
 	void setElasticity(f32 elasticity);
 	f32 getElasticity();
+	void setMaterialType(MaterialType type);
+	MaterialType getMaterialType();
 
 protected:
 	virtual void onCreate();
@@ -23,5 +32,6 @@ protected:
 	SphereColliderComponent* m_collider = nullptr;
 	f32 m_mass;
 	f32 m_elasticity = 1.0f;
+	MaterialType m_materialType = MaterialType::DEFAULT;
 };
 
