@@ -61,7 +61,7 @@ void SphereItem::onCollisionEnter(Component* body1, Component* body2)
 		float e = (e1 + e2) / 2;
 		Vector3D v1 = getDirection();
 		Vector3D v2 = otherSphere->getDirection();
-		std::cout << "Speed before collision: " << " obj1 x: " << v1.x <<" obj1 y: " << v1.y << " obj1 z: " << v1.z << " and " << " obj2 x: " << v2.x << " obj2 y: " << v2.y << " obj2 z: " << v2.z << std::endl;
+		//std::cout << "Speed before collision: " << " obj1 x: " << v1.x <<" obj1 y: " << v1.y << " obj1 z: " << v1.z << " and " << " obj2 x: " << v2.x << " obj2 y: " << v2.y << " obj2 z: " << v2.z << std::endl;
 
 		float newVelocity1X = ((v1.x * (m1 - e * m2)) + (v2.x * (1 + e) * m2)) / (m1 + m2);
 		float newVelocity2X = ((v2.x * (m2 - e * m1)) + (v1.x * (1 + e) * m1)) / (m1 + m2);
@@ -80,7 +80,7 @@ void SphereItem::onCollisionEnter(Component* body1, Component* body2)
 		otherSphere->setDirection(newVelocity2);
 		setDirection(newVelocity1);
 		otherSphere->setDirection(newVelocity2);
-		std::cout << "Speed after collision: " << this->getDirection().x << " and " << otherSphere->getDirection().x << std::endl;
+		//std::cout << "Speed after collision: " << this->getDirection().x << " and " << otherSphere->getDirection().x << std::endl;
 	}
 	if (dynamic_cast<StaticSphereItem*>(body2->getEntity()))
 	{

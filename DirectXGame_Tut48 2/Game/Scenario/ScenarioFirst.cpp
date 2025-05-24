@@ -51,19 +51,7 @@ void ScenarioFirst::generateScenario()
 	//CreateMovingSphere(1.0f, -10, 25, 15, 0, -5, 0);
 
 	//create 100 movingsphere random location random velocity random mass
-	for (int i = 0; i < 100; i++)
-	{
-		float radius = static_cast<float>((std::rand() % 3) + 1);
-		float posX = static_cast<float>((std::rand() % 90) - 45);
-		float posY = static_cast<float>((std::rand() % 20) - 10);
-		float posZ = static_cast<float>((std::rand() % 90) - 45);
-
-		float dirX = static_cast<float>((std::rand() % 10) - 5);
-		float dirY = static_cast<float>((std::rand() % 10) - 5);
-		float dirZ = static_cast<float>((std::rand() % 10) - 5);
-
-		CreateMovingSphere(radius, posX, posY, posZ, dirX, dirY, dirZ, radius * radius * radius);
-	}
+	
 
 }
 

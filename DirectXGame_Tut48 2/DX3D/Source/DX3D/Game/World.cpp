@@ -46,7 +46,6 @@ void World::createEntityInternal(Entity* entity, size_t id)
 	m_entities[id].emplace(entity, std::move(entityPtr));
 	entity->m_typeId = id;
 	entity->m_world = this;
-
 	entity->onCreate();
 }
 

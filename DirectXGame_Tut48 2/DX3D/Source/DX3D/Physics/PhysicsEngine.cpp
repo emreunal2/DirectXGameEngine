@@ -233,7 +233,7 @@ void PhysicsEngine::_processSphereSphereCollision(SphereColliderComponent* spher
 		sphere1->getEntity()->onCollisionExit(sphere1, sphere2);
 		sphere2->getEntity()->onCollisionExit(sphere2, sphere1);
 		m_collisionPairs.erase({ sphere1, sphere2 });
-		std::cout << "Collision Exit: " << m_collisionPairs.size() << std::endl;
+		//std::cout << "Collision Exit: " << m_collisionPairs.size() << std::endl;
 	}
 	else if (isColliding && wasColliding)
 	{

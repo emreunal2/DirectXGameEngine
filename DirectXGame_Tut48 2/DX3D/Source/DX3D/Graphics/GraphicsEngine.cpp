@@ -295,6 +295,7 @@ void GraphicsEngine::update()
 			}
 			ImGui::EndMenu();
 		}
+
 		if (ImGui::BeginMenu("Gravity:"))
 		{
 			if (ImGui::SliderFloat("Gravity", &m_game->m_gravity, -20.0f, 20.0f))
@@ -372,6 +373,16 @@ void GraphicsEngine::update()
 	}
 
 
+	ImGui::End();
+	ImGui::Begin("Frequency ");
+	ImGui::SliderInt("Target Main Thread", &m_game->m_targetGraphicsHz, 1, 120);
+	float actualHz = m_game->m_actualGraphicsHz.load();
+	ImGui::Text("Actual Main Thread Hz: %.1f", actualHz);
+	ImGui::SliderInt("Target Physics Thread", &m_game->m_targetPhysicsHz, 1, 1000);
+	actualHz = m_game->m_actualPhysicsHz.load();
+	ImGui::Text("Actual Physics Thread Hz: %.1f", actualHz);
+	ImGui::SliderInt("Target Networking Thread", &m_game->m_targetNetworkingHz, 1, 30);
+	actualHz = m_game->m_actualNetworkingHz.load();
 	ImGui::End();
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());

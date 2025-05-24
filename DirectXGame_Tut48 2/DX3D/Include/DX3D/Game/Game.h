@@ -29,7 +29,25 @@ public:
 	float getGravity();
 	void run();
 	void quit();
+	int m_targetGraphicsHz = 60;
+	int m_targetPhysicsHz = 500;
+	int m_targetNetworkingHz = 30;
 
+	// Actual frequencies (shown on screen)
+	std::atomic<float> m_actualGraphicsHz = 0.0f;
+	std::atomic<float> m_actualPhysicsHz = 0.0f;
+	std::atomic<float> m_actualNetworkingHz = 0.0f;
+	f32 spawnerX = 0;
+	f32 spawnerY = 0;
+	f32 spawnerZ = 0;
+	f32 spawnerRadius = 1;
+	f32 spawnerElasticity = 0;
+	f32 spawnerMass = 1;
+	f32 spawnerDirectionX = 0;
+	f32 spawnerDirectionY = 0;
+	f32 spawnerDirectionZ = 0;
+	f32 spawnerLenght = 0;
+	int spawnerType = 0;
 	PhysicsEngine* getPhysicsEngine();
 	GraphicsEngine* getGraphicsEngine();
 	World* getWorld();

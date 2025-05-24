@@ -126,35 +126,86 @@ void Game::runGraphicsThread()
 void Game::runPhysicsThread()
 {
 	SetThreadAffinityMask(GetCurrentThread(), PHYSICS_CORE_MASK);
+	std::cout << "Physics thread Core: " << GetCurrentProcessorNumber() << std::endl;
+
 	while (m_threadRunning)
 	{
+		auto loopStart = std::chrono::high_resolution_clock::now();
 
 		{
 			std::lock_guard<std::mutex> lock(m_dataMutex);
-
 			m_physicsEngine->update();
-			//m_graphicsEngine->update();
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
+
+		auto loopMid = std::chrono::high_resolution_clock::now(); // after update
+		float targetFrameTime = 1.0f / m_targetPhysicsHz;
+
+		std::chrono::duration<float> workTime = loopMid - loopStart;
+		float sleepTime = targetFrameTime - workTime.count();
+
+		// Sleep if there's enough time to do it meaningfully
+		if (sleepTime > 0.002f)
+			std::this_thread::sleep_for(std::chrono::duration<float>(sleepTime - 0.001f));
+
+		// Spinlock the remainder to be more precise
+		while (std::chrono::high_resolution_clock::now() - loopStart < std::chrono::duration<float>(targetFrameTime))
+		{
+			// tight loop
+		}
+
+		auto loopEnd = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<float> totalLoopTime = loopEnd - loopStart;
+		m_actualPhysicsHz = 1.0f / totalLoopTime.count();
 	}
 }
 
 void Game::runNetworkingThread()
 {
 	SetThreadAffinityMask(GetCurrentThread(), NETWORKING_CORE_MASK);
+	std::cout << "Networking thread Core: " << GetCurrentProcessorNumber() << std::endl;
+
 	while (m_threadRunning)
 	{
+		auto loopStart = std::chrono::high_resolution_clock::now();
+
 		{
 			std::lock_guard<std::mutex> lock(m_dataMutex);
-			// Networking code would go here
+			// TODO: Add networking logic here
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
+
+		auto loopMid = std::chrono::high_resolution_clock::now();
+		float targetFrameTime = 1.0f / m_targetNetworkingHz;
+
+		std::chrono::duration<float> workTime = loopMid - loopStart;
+		float sleepTime = targetFrameTime - workTime.count();
+
+		if (sleepTime > 0.002f)
+			std::this_thread::sleep_for(std::chrono::duration<float>(sleepTime - 0.001f));
+
+		while (std::chrono::high_resolution_clock::now() - loopStart < std::chrono::duration<float>(targetFrameTime))
+		{
+			// Busy wait
+		}
+
+		auto loopEnd = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<float> totalLoopTime = loopEnd - loopStart;
+		m_actualNetworkingHz = 1.0f / totalLoopTime.count();
 	}
 }
 
 void Game::onInternalUpdate()
 {
-	//computing delta time
+	static auto lastTime = std::chrono::high_resolution_clock::now();
+	auto now = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<float> elapsed = now - lastTime;
+
+	float frameDuration = 1.0f / m_targetGraphicsHz;
+	if (elapsed.count() < frameDuration) return;
+
+	m_actualGraphicsHz = 1.0f / elapsed.count();
+	lastTime = now;
+	std::cout << "Graphics Hz: " << m_actualGraphicsHz << std::endl;
+	std::cout << "Target Graphics Hz: " << m_targetGraphicsHz << std::endl;
 	auto currentTime = std::chrono::system_clock::now();
 	auto elapsedSeconds = std::chrono::duration<double>();
 	if (m_previousTime.time_since_epoch().count())
@@ -166,15 +217,9 @@ void Game::onInternalUpdate()
 	m_totalTime += deltaTime;
 
 	m_inputSystem->update();
-
-
 	onUpdate(deltaTime);
 	m_world->update(deltaTime);
-
-
-	//m_physicsEngine->update();
 	m_graphicsEngine->update();
-
 }
 
 void Game::pausePhysicsThread()
