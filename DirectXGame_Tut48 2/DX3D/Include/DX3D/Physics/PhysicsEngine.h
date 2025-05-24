@@ -20,6 +20,7 @@ private:
 	void _processTerrainPlayerCollision(TerrainComponent* terrain, PlayerControllerComponent* player);
 	void _processSpherePlayerCollision(SphereColliderComponent* sphere, PlayerControllerComponent* player);
 	void _processSphereSphereCollision(SphereColliderComponent* sphere1, SphereColliderComponent* sphere2);
+	void _processSphereCubeCollision(SphereColliderComponent* sphere, CubeColliderComponent* cube);
 	void _processTerrainSphereCollision(TerrainComponent* terrain, SphereColliderComponent* sphere);
 
 private:

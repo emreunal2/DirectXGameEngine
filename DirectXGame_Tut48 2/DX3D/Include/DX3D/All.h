@@ -17,6 +17,7 @@
 #include <DX3D/Entity/ImageComponent.h>
 #include <DX3D/Entity/PlayerControllerComponent.h>
 #include <DX3D/Entity/SphereColliderComponent.h>
+#include <DX3D/Entity/CubeColliderComponent.h>
 
 #include <DX3D/Resource/ResourceManager.h>
 #include <DX3D/Resource/Mesh.h>

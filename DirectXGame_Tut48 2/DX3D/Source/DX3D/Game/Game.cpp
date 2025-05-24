@@ -204,8 +204,6 @@ void Game::onInternalUpdate()
 
 	m_actualGraphicsHz = 1.0f / elapsed.count();
 	lastTime = now;
-	std::cout << "Graphics Hz: " << m_actualGraphicsHz << std::endl;
-	std::cout << "Target Graphics Hz: " << m_targetGraphicsHz << std::endl;
 	auto currentTime = std::chrono::system_clock::now();
 	auto elapsedSeconds = std::chrono::duration<double>();
 	if (m_previousTime.time_since_epoch().count())

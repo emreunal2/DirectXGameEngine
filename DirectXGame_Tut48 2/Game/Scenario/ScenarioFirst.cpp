@@ -52,6 +52,10 @@ void ScenarioFirst::generateScenario()
 
 	//create 100 movingsphere random location random velocity random mass
 	
+	auto entity = m_game->getWorld()->createEntity<StaticCubeItem>();
+	entity->getTransform()->setPosition(Vector3D(0, 0, 0));
+	entity->getTransform()->setScale(Vector3D(10, 10, 10));
+	entity->getComponent<CubeColliderComponent>()->setExtents(Vector3D(5.0f, 5.0f, 5.0f));
 
 }
 

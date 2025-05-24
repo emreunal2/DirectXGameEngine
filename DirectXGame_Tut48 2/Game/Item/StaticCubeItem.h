@@ -14,6 +14,7 @@ protected:
 	virtual void onCollisionEnter(Component* body1, Component* body2);
 	//virtual void onCollisionStay(Component* body1, Component* body2);
 	//virtual void onCollisionExit(Component* body1, Component* body2);
-	SphereColliderComponent* m_collider = nullptr;
+	//SphereColliderComponent* m_collider = nullptr;
+	CubeColliderComponent* m_collider = nullptr;
 };
 

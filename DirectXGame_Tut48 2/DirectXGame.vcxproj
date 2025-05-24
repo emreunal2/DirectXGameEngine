@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DX3D\Include\DX3D\Entity\CubeColliderComponent.h" />
     <ClInclude Include="Game\Item\StaticCubeItem.h" />
     <ClInclude Include="DX3D\Include\DX3D\Physics\CollisionPair.h" />
     <ClInclude Include="DX3D\Vendor\ImGui\Include\imconfig.h" />
@@ -223,6 +224,7 @@
     <ClInclude Include="Game\Item\StaticSphereItem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DX3D\Source\DX3D\Entity\CubeColliderComponent.cpp" />
     <ClCompile Include="Game\Item\StaticCubeItem.cpp" />
     <ClCompile Include="DX3D\Vendor\ImGui\imgui.cpp" />
     <ClCompile Include="DX3D\Vendor\ImGui\imgui_draw.cpp" />

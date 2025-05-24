@@ -44,6 +44,7 @@ class TextComponent;
 class ImageComponent;
 class PlayerControllerComponent;
 class SphereColliderComponent;
+class CubeColliderComponent;
 
 class Entity;
 class World;

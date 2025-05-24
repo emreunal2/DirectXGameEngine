@@ -88,7 +88,18 @@ void SphereItem::onCollisionEnter(Component* body1, Component* body2)
 	}
 	if (dynamic_cast<StaticCubeItem*>(body2->getEntity()))
 	{
-		setDirection(Vector3D(0, 0, 0));
+		Vector3D v = getDirection();
+		Vector3D n = getTransform()->getPosition() - body2->getEntity()->getTransform()->getPosition();
+		n = Vector3D::normalize(n);
+		float e = m_elasticity;
+
+		float dot = v.x * n.x + v.y * n.y + v.z * n.z;
+
+		float newX = v.x - (1 + e) * dot * n.x;
+		float newY = v.y - (1 + e) * dot * n.y;
+		float newZ = v.z - (1 + e) * dot * n.z;
+
+		setDirection(Vector3D(newX, newY, newZ));
 	}
 }
 

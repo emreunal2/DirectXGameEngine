@@ -383,6 +383,7 @@ void GraphicsEngine::update()
 	ImGui::Text("Actual Physics Thread Hz: %.1f", actualHz);
 	ImGui::SliderInt("Target Networking Thread", &m_game->m_targetNetworkingHz, 1, 30);
 	actualHz = m_game->m_actualNetworkingHz.load();
+	ImGui::Text("Actual Networking Thread: %.1f", actualHz);
 	ImGui::End();
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());

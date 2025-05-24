@@ -22,8 +22,8 @@ void StaticCubeItem::onCreate()
 	m_itemMesh->addMaterial(mat);
 	getTransform()->setScale(Vector3D(2, 2, 2));
 	setDirection(Vector3D(0, 0, 0));
-	m_collider = createComponent<SphereColliderComponent>();
-	m_collider->setRadius(1.0f);
+	m_collider = createComponent<CubeColliderComponent>();
+	m_collider->setExtents(Vector3D(1.0f, 1.0f, 1.0f));
 }
 
 void StaticCubeItem::onUpdate(f32 deltaTime)
