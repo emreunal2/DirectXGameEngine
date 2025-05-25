@@ -11,11 +11,11 @@ class PhysicsEngine
 public:
 	PhysicsEngine(Game* game);
 	virtual ~PhysicsEngine();
-
 	void update();
 public:
 	void addComponent(Component* component);
 	void removeComponent(Component* component);
+	int getNumberOfComponents();
 private:
 	void _processTerrainPlayerCollision(TerrainComponent* terrain, PlayerControllerComponent* player);
 	void _processSpherePlayerCollision(SphereColliderComponent* sphere, PlayerControllerComponent* player);

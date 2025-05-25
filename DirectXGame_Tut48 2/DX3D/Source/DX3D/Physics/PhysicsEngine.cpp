@@ -115,7 +115,10 @@ void PhysicsEngine::removeComponent(Component* component)
 	}
 }
 
-
+int PhysicsEngine::getNumberOfComponents()
+{
+	return m_components.size();
+}
 
 void PhysicsEngine::_processSphereSphereCollision(SphereColliderComponent* sphere1, SphereColliderComponent* sphere2)
 {

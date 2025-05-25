@@ -48,6 +48,10 @@ public:
 	f32 spawnerDirectionZ = 0;
 	f32 spawnerLenght = 0;
 	int spawnerType = 0;
+	f32 spawnerCubeSizeX = 1;
+	f32 spawnerCubeSizeY = 1;
+	f32 spawnerCubeSizeZ = 1;
+	int numberOfObjects = 0;
 	PhysicsEngine* getPhysicsEngine();
 	GraphicsEngine* getGraphicsEngine();
 	World* getWorld();

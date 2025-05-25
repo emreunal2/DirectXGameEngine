@@ -321,6 +321,8 @@ void GraphicsEngine::update()
 			ImGui::ColorEdit3("Background Color", (float*)&backgroundRed);
 			ImGui::EndMenu();
 		}
+		//number of objects
+
 	}
 	ImGui::EndMainMenuBar();
 	ImGui::Begin("Scene Menu");
@@ -346,8 +348,10 @@ void GraphicsEngine::update()
 	{
 		m_game->getInputSystem()->simulateKeyPress(Key::_4);
 	}
+
 	ImGui::End();
 	ImGui::Begin("Spawner");
+	ImGui::Text("Number of Objects: %d", m_game->numberOfObjects);
 	ImGui::Text("Spawner");
 	ImGui::SliderFloat("Radius", &m_game->spawnerRadius, 1.0f, 10.0f);
 	ImGui::SliderFloat("Length", &m_game->spawnerLenght, 0.0f, 10.0f);
@@ -371,7 +375,14 @@ void GraphicsEngine::update()
 	{
 		m_game->getInputSystem()->simulateKeyPress(Key::E);
 	}
-
+	ImGui::Text("Spawner Cube Size");
+	ImGui::SliderFloat("Cube Size X", &m_game->spawnerCubeSizeX, 0.1f, 10.0f);
+	ImGui::SliderFloat("Cube Size Y", &m_game->spawnerCubeSizeY, 0.1f, 10.0f);
+	ImGui::SliderFloat("Cube Size Z", &m_game->spawnerCubeSizeZ, 0.1f, 10.0f);
+	if (ImGui::Button("Create Static Cube"))
+	{
+		m_game->getInputSystem()->simulateKeyPress(Key::R);
+	}
 
 	ImGui::End();
 	ImGui::Begin("Frequency ");

@@ -131,7 +131,7 @@ void Game::runPhysicsThread()
 	while (m_threadRunning)
 	{
 		auto loopStart = std::chrono::high_resolution_clock::now();
-
+		numberOfObjects = m_physicsEngine->getNumberOfComponents();
 		{
 			std::lock_guard<std::mutex> lock(m_dataMutex);
 			m_physicsEngine->update();

@@ -89,7 +89,7 @@ void SphereItem::onCollisionEnter(Component* body1, Component* body2)
 	if (dynamic_cast<StaticCubeItem*>(body2->getEntity()))
 	{
 		Vector3D v = getDirection();
-		Vector3D n = getTransform()->getPosition() - body2->getEntity()->getTransform()->getPosition();
+		Vector3D n = body2->getEntity()->getTransform()->getPosition() - getTransform()->getPosition();
 		n = Vector3D::normalize(n);
 		float e = m_elasticity;
 
@@ -155,7 +155,7 @@ void SphereItem::setMaterialType(MaterialType type)
 	{
 		setElasticity(0.5f);
 		auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/grass.jpg");
-		auto mat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
+		auto mat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/GameItem.hlsl");
 		mat->addTexture(tex);
 		m_itemMesh->removeMaterial(0);
 		m_itemMesh->addMaterial(mat);
