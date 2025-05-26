@@ -52,6 +52,14 @@ void MainSimulation::onFourthScenario()
 	m_fourthScenario->onCreate();
 	activeScenario = 4;
 }
+
+void MainSimulation::onGeneralDebugScenario()
+{
+	RestartScenarios();
+	m_generalDebugScenario = std::make_unique<ScenarioGeneralDebug>(this);
+	m_generalDebugScenario->onCreate();
+	activeScenario = 5;
+}
 void MainSimulation::onUpdate(f32 deltaTime)
 {
 	Game::onUpdate(deltaTime);
@@ -86,6 +94,7 @@ void MainSimulation::SceneUpdates(f32 deltaTime)
 	if (m_secondScenario) m_secondScenario->onUpdate(deltaTime);
 	if (m_thirdScenario) m_thirdScenario->onUpdate(deltaTime);
 	if (m_fourthScenario) m_fourthScenario->onUpdate(deltaTime);
+	if (m_generalDebugScenario) m_generalDebugScenario->onUpdate(deltaTime);
 }
 
 void MainSimulation::InputChecks()
@@ -109,6 +118,10 @@ void MainSimulation::InputChecks()
 	if (getInputSystem()->isKeyUp(Key::_4))
 	{
 		static_cast<MainSimulation*>(this)->onFourthScenario();
+	}
+	if (getInputSystem()->isKeyUp(Key::_5))
+	{
+		static_cast<MainSimulation*>(this)->onGeneralDebugScenario();
 	}
 }
 void MainSimulation::RestartScenarios()

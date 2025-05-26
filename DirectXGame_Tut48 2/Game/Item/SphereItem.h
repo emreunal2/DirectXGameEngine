@@ -29,9 +29,12 @@ protected:
 	//virtual void onCollisionExit(Component* body1, Component* body2);
 	virtual void ApplyMovement(f32 deltaTime);
 	virtual void ApplyGravity(f32 deltaTime);
+	virtual void ApplyRotation(f32 deltaTime);
 	SphereColliderComponent* m_collider = nullptr;
 	f32 m_mass;
 	f32 m_elasticity = 1.0f;
 	MaterialType m_materialType = MaterialType::DEFAULT;
+	Vector3D m_angularVelocity = Vector3D(0, 0, 0);
+	float m_inertia = 1.0f; // placeholder, set properly after mass & radius are known
 };
 

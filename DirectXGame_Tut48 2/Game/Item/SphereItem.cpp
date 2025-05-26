@@ -34,6 +34,9 @@ void SphereItem::onCreate()
 	mat2->addTexture(tex);
 	m_itemMesh->addMaterial(mat2);
 
+	float radius = m_collider->getRadius();
+	m_inertia = 0.4f * m_mass * radius * radius;
+
 }
 
 void SphereItem::onUpdate(f32 deltaTime)
@@ -41,6 +44,8 @@ void SphereItem::onUpdate(f32 deltaTime)
 	GameItem::onUpdate(deltaTime);
 	ApplyGravity(deltaTime);
 	ApplyMovement(deltaTime);
+	ApplyRotation(deltaTime);
+	std::cout << "Rotation Debug: " << getTransform()->getRotation().x << " " << getTransform()->getRotation().y << " " << getTransform()->getRotation().z << std::endl;
 }
 
 void SphereItem::onCollision(Component* body1, Component* body2)
@@ -80,6 +85,76 @@ void SphereItem::onCollisionEnter(Component* body1, Component* body2)
 		otherSphere->setDirection(newVelocity2);
 		setDirection(newVelocity1);
 		otherSphere->setDirection(newVelocity2);
+
+		Vector3D pThis = getTransform()->getPosition();
+		Vector3D pOther = otherSphere->getTransform()->getPosition();
+
+		// ==== Precompute shared values ====
+		Vector3D p1 = getTransform()->getPosition();
+		Vector3D p2 = otherSphere->getTransform()->getPosition();
+
+		Vector3D contact;
+		contact.x = (p1.x + p2.x) * 0.5f;
+		contact.y = (p1.y + p2.y) * 0.5f;
+		contact.z = (p1.z + p2.z) * 0.5f;
+
+		// r vectors
+		Vector3D r1, r2;
+		r1.x = contact.x - p1.x;
+		r1.y = contact.y - p1.y;
+		r1.z = contact.z - p1.z;
+
+		r2.x = contact.x - p2.x;
+		r2.y = contact.y - p2.y;
+		r2.z = contact.z - p2.z;
+
+		// impulse vectors
+		Vector3D impulse1, impulse2;
+		impulse1.x = newVelocity1.x - v1.x;
+		impulse1.y = newVelocity1.y - v1.y;
+		impulse1.z = newVelocity1.z - v1.z;
+
+		impulse2.x = newVelocity2.x - v2.x;
+		impulse2.y = newVelocity2.y - v2.y;
+		impulse2.z = newVelocity2.z - v2.z;
+
+		// torques
+		Vector3D torque1, torque2;
+		torque1.x = r1.y * impulse1.z - r1.z * impulse1.y;
+		torque1.y = r1.z * impulse1.x - r1.x * impulse1.z;
+		torque1.z = r1.x * impulse1.y - r1.y * impulse1.x;
+
+		torque2.x = r2.y * impulse2.z - r2.z * impulse2.y;
+		torque2.y = r2.z * impulse2.x - r2.x * impulse2.z;
+		torque2.z = r2.x * impulse2.y - r2.y * impulse2.x;
+
+		// inertia
+		float radius1 = m_collider->getRadius();
+		float inertia1 = 0.4f * m_mass * radius1 * radius1;
+
+		float radius2 = otherSphere->m_collider->getRadius();
+		float mass2 = otherSphere->getMass();
+		float inertia2 = 0.4f * mass2 * radius2 * radius2;
+
+		// angular accelerations
+		Vector3D angAccel1, angAccel2;
+		angAccel1.x = torque1.x / inertia1;
+		angAccel1.y = torque1.y / inertia1;
+		angAccel1.z = torque1.z / inertia1;
+
+		angAccel2.x = torque2.x / inertia2;
+		angAccel2.y = torque2.y / inertia2;
+		angAccel2.z = torque2.z / inertia2;
+
+		// ==== Now apply both angular updates ====
+		m_angularVelocity.x += angAccel1.x;
+		m_angularVelocity.y += angAccel1.y;
+		m_angularVelocity.z += angAccel1.z;
+
+		otherSphere->m_angularVelocity.x += angAccel2.x;
+		otherSphere->m_angularVelocity.y += angAccel2.y;
+		otherSphere->m_angularVelocity.z += angAccel2.z;
+
 		//std::cout << "Speed after collision: " << this->getDirection().x << " and " << otherSphere->getDirection().x << std::endl;
 	}
 	if (dynamic_cast<StaticSphereItem*>(body2->getEntity()))
@@ -122,6 +197,22 @@ void SphereItem::ApplyGravity(f32 deltaTime)
 
 }
 
+void SphereItem::ApplyRotation(f32 deltaTime)
+{
+	Vector3D rot = getTransform()->getRotation();
+	rot = rot + m_angularVelocity * deltaTime;
+
+	rot.x = fmodf(rot.x, 6.2831f);
+	rot.y = fmodf(rot.y, 6.2831f);
+	rot.z = fmodf(rot.z, 6.2831f);
+
+	getTransform()->setRotation(rot);
+
+	// Damping to simulate friction
+	float damping = 0.98f;
+	m_angularVelocity = m_angularVelocity * damping;
+}
+
 f32 SphereItem::getMass()
 {
 	return m_mass;
@@ -129,6 +220,8 @@ f32 SphereItem::getMass()
 void SphereItem::setMass(f32 mass)
 {
 	m_mass = mass;
+	float radius = m_collider->getRadius();
+	m_inertia = 0.4 * m_mass * radius * radius;
 }
 f32 SphereItem::getElasticity()
 {
@@ -145,7 +238,7 @@ void SphereItem::setMaterialType(MaterialType type)
 	if (m_materialType == MaterialType::DEFAULT)
 	{
 		setElasticity(1.0f);
-		auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/asteroid.jpg");
+		auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/spaceship.jpg");
 		auto mat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
 		mat->addTexture(tex);
 		m_itemMesh->removeMaterial(0);
@@ -163,7 +256,7 @@ void SphereItem::setMaterialType(MaterialType type)
 	else if (m_materialType == MaterialType::METAL)
 	{
 		setElasticity(0.0f);
-		auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/spaceship.jpg");
+		auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/asteroid.jpg");
 		auto mat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
 		mat->addTexture(tex);
 		m_itemMesh->removeMaterial(0);

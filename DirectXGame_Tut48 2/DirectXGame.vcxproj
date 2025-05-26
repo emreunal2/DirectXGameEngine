@@ -222,6 +222,7 @@
     <ClInclude Include="Game\Scenario\ScenarioFourth.h" />
     <ClInclude Include="Game\UI\ImGUIManager.h" />
     <ClInclude Include="Game\Item\StaticSphereItem.h" />
+    <ClInclude Include="Game\Scenario\ScenarioGeneralDebug.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX3D\Source\DX3D\Entity\CubeColliderComponent.cpp" />
@@ -294,6 +295,7 @@
     <ClCompile Include="Game\Scenario\ScenarioFourth.cpp" />
     <ClCompile Include="Game\UI\ImGUIManager.cpp" />
     <ClCompile Include="Game\Item\StaticSphereItem.cpp" />
+    <ClCompile Include="Game\Scenario\ScenarioGeneralDebug.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

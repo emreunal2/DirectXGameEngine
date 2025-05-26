@@ -33,7 +33,6 @@ public:
 	int m_targetPhysicsHz = 500;
 	int m_targetNetworkingHz = 30;
 
-	// Actual frequencies (shown on screen)
 	std::atomic<float> m_actualGraphicsHz = 0.0f;
 	std::atomic<float> m_actualPhysicsHz = 0.0f;
 	std::atomic<float> m_actualNetworkingHz = 0.0f;
@@ -70,7 +69,6 @@ private:
 	void onDisplaySize(const Rect& size);
 	void onInternalUpdate();
 
-	void runGraphicsThread();
 	void runPhysicsThread();
 	void runNetworkingThread();
 private:
