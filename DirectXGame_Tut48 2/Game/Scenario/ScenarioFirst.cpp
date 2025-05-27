@@ -24,20 +24,27 @@ void ScenarioFirst::generateScenario()
 	//CreateMovingSphere(1.0f, -10, 25, 15, 0, -5, 0);
 
 	//create 100 movingsphere random location random velocity random mass
-	for (int i = 0; i < 900; i++)
+	for (int i = 0; i < 20; ++i)
 	{
 		float radius = static_cast<float>((std::rand() % 3) + 1);
 		float posX = static_cast<float>((std::rand() % 90) - 45);
-		float posY = static_cast<float>((std::rand() % 20) + 10);
+		float posY = static_cast<float>((std::rand() % 30) - 15);
 		float posZ = static_cast<float>((std::rand() % 90) - 45);
-		float dirX = static_cast<float>((std::rand() % 10) - 5);
-		float dirY = static_cast<float>((std::rand() % 10) - 5);
-		float dirZ = static_cast<float>((std::rand() % 10) - 5);
-		float mass = static_cast<float>((std::rand() % 10) + 1);
-		CreateMovingSphere(radius, posX, posY, posZ, dirX, dirY, dirZ, mass, MaterialType::DEFAULT);
+		float length = radius;
+
+		CreateStaticSphere(radius, length, posX, posY, posZ);
 	}
-	
-	CreateStaticCube(10.0f, 5.0f, 1.0f, 0, 0, 0);
+
+	for (int i = 0; i < 5; ++i)
+	{
+		float radius = static_cast<float>((std::rand() % 2) + 1);
+		float length = radius + static_cast<float>((std::rand() % 2) + 2);
+		float posX = static_cast<float>((std::rand() % 90) - 45);
+		float posY = static_cast<float>((std::rand() % 30) - 15);
+		float posZ = static_cast<float>((std::rand() % 90) - 45);
+
+		CreateStaticSphere(radius, length, posX, posY, posZ);
+	}
 
 }
 
@@ -157,6 +164,24 @@ void ScenarioFirst::onUpdate(f32 deltaTime)
 	{
 		CreateStaticCube(m_game->spawnerCubeSizeX, m_game->spawnerCubeSizeY, m_game->spawnerCubeSizeZ,
 			m_game->spawnerX, m_game->spawnerY, m_game->spawnerZ);
+	}
+	//spawner
+	m_spawnTimer += deltaTime;
+	if (m_spawnedCount < m_maxSpheres && m_spawnTimer >= m_spawnInterval)
+	{
+		m_spawnTimer = 0.0f;
+
+		float radius = static_cast<float>((std::rand() % 3) + 1);
+		float posX = static_cast<float>((std::rand() % 90) - 45);
+		float posY = static_cast<float>((std::rand() % 10) + 25); // spawn from higher up
+		float posZ = static_cast<float>((std::rand() % 90) - 45);
+		float dirX = static_cast<float>((std::rand() % 10) - 5);
+		float dirY = static_cast<float>((std::rand() % 5) - 8); // mostly downward
+		float dirZ = static_cast<float>((std::rand() % 10) - 5);
+		float mass = static_cast<float>((std::rand() % 10) + 1);
+
+		CreateMovingSphere(radius, posX, posY, posZ, dirX, dirY, dirZ, mass, MaterialType::DEFAULT);
+		m_spawnedCount++;
 	}
 }
 
