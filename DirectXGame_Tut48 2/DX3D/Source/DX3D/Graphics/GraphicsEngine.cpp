@@ -333,6 +333,9 @@ void GraphicsEngine::update()
 			if (ImGui::MenuItem("Elasticity Scenario")) {
 				m_game->getInputSystem()->simulateKeyPress(Key::_7);
 			}
+			if (ImGui::MenuItem("Mass Scenario")) {
+				m_game->getInputSystem()->simulateKeyPress(Key::_8);
+			}
 			ImGui::EndMenu();
 		}
 		//number of objects

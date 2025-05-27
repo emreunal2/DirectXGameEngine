@@ -45,7 +45,7 @@ void SphereItem::onUpdate(f32 deltaTime)
 	ApplyGravity(deltaTime);
 	ApplyMovement(deltaTime);
 	ApplyRotation(deltaTime);
-	std::cout << "Rotation Debug: " << getTransform()->getRotation().x << " " << getTransform()->getRotation().y << " " << getTransform()->getRotation().z << std::endl;
+	
 }
 
 void SphereItem::onCollision(Component* body1, Component* body2)

@@ -10,15 +10,30 @@ ScenarioMass::ScenarioMass(Game* game)
 }
 ScenarioMass::~ScenarioMass()
 {
+	this->m_game->getWorld()->clear();
 }
 
 void ScenarioMass::generateScenario()
 {
+	//left one is so high
+	CreateMovingSphere(2.0f, -15, 20, 0, 5, 0, 0, 15, MaterialType::DEFAULT);
+	CreateMovingSphere(2.0f, 15, 20, 0, -5, 0, 0, 1, MaterialType::DEFAULT);
+	//left one a bit high mass material type default
+	CreateMovingSphere(2.0f, -15, 10, 0, 5, 0, 0, 5, MaterialType::DEFAULT);
+	CreateMovingSphere(2.0f, 15, 10, 0, -5, 0, 0, 1, MaterialType::DEFAULT);
+	//left one high mass material type inelastic
 
+	// equal
+	CreateMovingSphere(2.0f, -15, 0, 0, 5, 0, 0, 5, MaterialType::DEFAULT);
+	CreateMovingSphere(2.0f, 15, 0, 0, -5, 0, 0, 5, MaterialType::DEFAULT);
+
+	CreateMovingSphere(2.0f, -15, -10, 0, 5, 0, 0, 5, MaterialType::METAL);
+	CreateMovingSphere(2.0f, 15, -10, 0, -5, 0, 0, 1, MaterialType::METAL);
 }
 
 void ScenarioMass::onRestart()
 {
+	this->m_game->getWorld()->clear();
 }
 
 void ScenarioMass::onCreate()
