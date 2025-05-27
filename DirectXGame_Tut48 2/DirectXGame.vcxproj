@@ -78,7 +78,7 @@
     <LibraryPath>..\Libs\DirectXTex\bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>DX3D/Vendor/DirectXTex/include;DX3D/Vendor/tinyobjloader/include;DX3D/Include;DX3D/Source;DX3D/Vendor/DirectXTK/include;$(IncludePath)</IncludePath>
+    <IncludePath>DX3D/Vendor/ImGui/Include;DX3D/Vendor/DirectXTex/include;DX3D/Vendor/tinyobjloader/include;DX3D/Include;DX3D/Source;DX3D/Vendor/DirectXTK/include;$(IncludePath)</IncludePath>
     <LibraryPath>DX3D/Vendor/DirectXTex/bin;DX3D/Vendor/DirectXTK/bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

@@ -22,7 +22,7 @@ void ScenarioMass::generateScenario()
 	CreateMovingSphere(2.0f, -15, 10, 0, 5, 0, 0, 5, MaterialType::DEFAULT);
 	CreateMovingSphere(2.0f, 15, 10, 0, -5, 0, 0, 1, MaterialType::DEFAULT);
 	//left one high mass material type inelastic
-
+	// 
 	// equal
 	CreateMovingSphere(2.0f, -15, 0, 0, 5, 0, 0, 5, MaterialType::DEFAULT);
 	CreateMovingSphere(2.0f, 15, 0, 0, -5, 0, 0, 5, MaterialType::DEFAULT);

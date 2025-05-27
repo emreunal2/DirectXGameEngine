@@ -165,15 +165,15 @@ void MainSimulation::InputChecks()
 void MainSimulation::RestartScenarios()
 {
 	Game::pausePhysicsThread();
-	m_mainMenu.reset();
-	m_firstScenario.reset();
-	m_secondScenario.reset();
-	m_thirdScenario.reset();
-	m_fourthScenario.reset();
-	m_generalDebugScenario.reset();
-	m_angularScenario.reset();
-	m_elasticityScenario.reset();
-	m_massScenario.reset();
+	if(m_mainMenu) m_mainMenu.reset();
+	if(m_firstScenario) m_firstScenario.reset();
+	if(m_secondScenario)m_secondScenario.reset();
+	if(m_thirdScenario)m_thirdScenario.reset();
+	if(m_fourthScenario)m_fourthScenario.reset();
+	if(m_generalDebugScenario)m_generalDebugScenario.reset();
+	if(m_angularScenario)m_angularScenario.reset();
+	if(m_elasticityScenario)m_elasticityScenario.reset();
+	if(m_massScenario)m_massScenario.reset();
 	Game::resumePhysicsThread();
 }
 

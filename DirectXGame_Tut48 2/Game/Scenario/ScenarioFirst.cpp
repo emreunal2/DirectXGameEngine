@@ -15,34 +15,7 @@ ScenarioFirst::~ScenarioFirst()
 
 void ScenarioFirst::generateScenario()
 {
-	/*
-	for (int i = 0; i < 15; i++)
-	{
-		float radius = static_cast<float>((std::rand() % 3) + 1);
-		float length = radius + rand() % 2;
-		float posX = static_cast<float>((std::rand() % 90) - 45);
-		float posY = static_cast<float>((std::rand() % 20) - 10);
-		float posZ = static_cast<float>((std::rand() % 90) - 45);
-		CreateStaticSphere(radius, length, posX, posY, posZ);
-	}
-
-	// Add moving spheres one by one from random points above the scene
-	for (int i = 0; i < 100; i++)
-	{
-		float startX = static_cast<float>((std::rand() % 90) - 45);
-		float startY = static_cast<float>((std::rand() % 30) + 10);
-		float startZ = static_cast<float>((std::rand() % 90) - 45);
-
-		float dirX = static_cast<float>((std::rand() % 10) - 5);
-		float dirY = static_cast<float>((std::rand() % 10) - 5);
-		float dirZ = static_cast<float>((std::rand() % 10) - 5);
-
-		CreateMovingSphere(1.5f, startX, startY, startZ, dirX, dirY, dirZ);
-	}*/
-	//CreateStaticSphere(3.0f,6.0f,0,0,0);
-	//CreateMovingSphere(1.0f, 0, 15, 0, 0, -20, 0);
-	//CreateMovingSphere(2.0f, 15, 0, 0, -15, 0, 0);
-	//CreateMovingSphere(1.0f, -15, 15, 0, 15, -15, 0);
+	
 
 	CreateMovingSphere(2.0f, 15, 15, 15, -30, 0, 0,10, MaterialType::DEFAULT);
 	CreateMovingSphere(1.0f, -15, 15, 15, 0, 0, 0,30, MaterialType::METAL);
@@ -51,7 +24,7 @@ void ScenarioFirst::generateScenario()
 	//CreateMovingSphere(1.0f, -10, 25, 15, 0, -5, 0);
 
 	//create 100 movingsphere random location random velocity random mass
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 900; i++)
 	{
 		float radius = static_cast<float>((std::rand() % 3) + 1);
 		float posX = static_cast<float>((std::rand() % 90) - 45);
