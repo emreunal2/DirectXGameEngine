@@ -259,7 +259,6 @@ void PhysicsEngine::_processSphereCubeCollision(SphereColliderComponent* sphere,
 		sphereEntity->getTransform()->setPosition(newPos);
 
 		// Invert direction (elastic bounce, crude for now)
-		//sphere->setDirection(sphere->getDirection() - 2 * Vector3D::dot(sphere->getDirection(), normal) * normal);
 
 		sphereEntity->onCollisionEnter(sphere, cube);
 		m_collisionPairs.insert({ sphere, cube });

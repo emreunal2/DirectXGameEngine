@@ -60,6 +60,22 @@ void MainSimulation::onGeneralDebugScenario()
 	m_generalDebugScenario->onCreate();
 	activeScenario = 5;
 }
+void MainSimulation::onAngularScenario()
+{
+	RestartScenarios();
+	m_angularScenario = std::make_unique<ScenarioAngular>(this);
+	m_angularScenario->onCreate();
+	activeScenario = 6;
+}
+
+void MainSimulation::onElasticityScenario()
+{
+	RestartScenarios();
+	m_elasticityScenario = std::make_unique<ScenarioElasticity>(this);
+	m_elasticityScenario->onCreate();
+	activeScenario = 7;
+}
+
 void MainSimulation::onUpdate(f32 deltaTime)
 {
 	Game::onUpdate(deltaTime);
@@ -88,13 +104,16 @@ void MainSimulation::onLevelRestart()
 
 void MainSimulation::SceneUpdates(f32 deltaTime)
 {
-	if (m_activeScenario) m_activeScenario->onUpdate(deltaTime);
 	if (m_mainMenu) m_mainMenu->onUpdate(deltaTime);
-	if (m_firstScenario) m_firstScenario->onUpdate(deltaTime);
-	if (m_secondScenario) m_secondScenario->onUpdate(deltaTime);
-	if (m_thirdScenario) m_thirdScenario->onUpdate(deltaTime);
-	if (m_fourthScenario) m_fourthScenario->onUpdate(deltaTime);
-	if (m_generalDebugScenario) m_generalDebugScenario->onUpdate(deltaTime);
+	else if (m_firstScenario) m_firstScenario->onUpdate(deltaTime);
+	else if (m_secondScenario) m_secondScenario->onUpdate(deltaTime);
+	else if (m_thirdScenario) m_thirdScenario->onUpdate(deltaTime);
+	else if (m_fourthScenario) m_fourthScenario->onUpdate(deltaTime);
+	else if (m_generalDebugScenario) m_generalDebugScenario->onUpdate(deltaTime);
+	else if (m_angularScenario) m_angularScenario->onUpdate(deltaTime);
+	else if (m_elasticityScenario) m_elasticityScenario->onUpdate(deltaTime);
+	else if (m_activeScenario) m_activeScenario->onUpdate(deltaTime);
+
 }
 
 void MainSimulation::InputChecks()
@@ -123,6 +142,14 @@ void MainSimulation::InputChecks()
 	{
 		static_cast<MainSimulation*>(this)->onGeneralDebugScenario();
 	}
+	if (getInputSystem()->isKeyUp(Key::_6))
+	{
+		static_cast<MainSimulation*>(this)->onAngularScenario();
+	}
+	if (getInputSystem()->isKeyUp(Key::_7))
+	{
+		static_cast<MainSimulation*>(this)->onElasticityScenario();
+	}
 }
 void MainSimulation::RestartScenarios()
 {
@@ -130,6 +157,11 @@ void MainSimulation::RestartScenarios()
 	m_mainMenu.reset();
 	m_firstScenario.reset();
 	m_secondScenario.reset();
+	m_thirdScenario.reset();
+	m_fourthScenario.reset();
+	m_generalDebugScenario.reset();
+	m_angularScenario.reset();
+	m_elasticityScenario.reset();
 	Game::resumePhysicsThread();
 
 }

@@ -275,6 +275,7 @@ void GraphicsEngine::update()
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
+	//MainMenu
 	if (ImGui::BeginMainMenuBar())
 	{
 		if (ImGui::BeginMenu("Time Scale:"))
@@ -321,10 +322,25 @@ void GraphicsEngine::update()
 			ImGui::ColorEdit3("Background Color", (float*)&backgroundRed);
 			ImGui::EndMenu();
 		}
+		if (ImGui::BeginMenu("Advanced Scenes"))
+		{
+			if (ImGui::MenuItem("General Debug")) {
+				m_game->getInputSystem()->simulateKeyPress(Key::_5);
+			}
+			if (ImGui::MenuItem("Angular Scenario")) {
+				m_game->getInputSystem()->simulateKeyPress(Key::_6);
+			}
+			if (ImGui::MenuItem("Elasticity Scenario")) {
+				m_game->getInputSystem()->simulateKeyPress(Key::_7);
+			}
+			ImGui::EndMenu();
+		}
 		//number of objects
 
 	}
 	ImGui::EndMainMenuBar();
+
+	//scene menu
 	ImGui::Begin("Scene Menu");
 	ImGui::Text("Scene Menu");
 
@@ -350,6 +366,8 @@ void GraphicsEngine::update()
 	}
 
 	ImGui::End();
+
+	//Spawner
 	ImGui::Begin("Spawner");
 	ImGui::Text("Number of Objects: %d", m_game->numberOfObjects);
 	ImGui::Text("Spawner");
@@ -385,6 +403,7 @@ void GraphicsEngine::update()
 	}
 
 	ImGui::End();
+	// Frequency
 	ImGui::Begin("Frequency ");
 	ImGui::SliderInt("Target Main Thread", &m_game->m_targetGraphicsHz, 1, 120);
 	float actualHz = m_game->m_actualGraphicsHz.load();
