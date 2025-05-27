@@ -75,7 +75,13 @@ void MainSimulation::onElasticityScenario()
 	m_elasticityScenario->onCreate();
 	activeScenario = 7;
 }
-
+void MainSimulation::onMassScenario()
+{
+	RestartScenarios();
+	m_massScenario = std::make_unique<ScenarioMass>(this);
+	m_massScenario->onCreate();
+	activeScenario = 8;
+}
 void MainSimulation::onUpdate(f32 deltaTime)
 {
 	Game::onUpdate(deltaTime);
@@ -113,6 +119,7 @@ void MainSimulation::SceneUpdates(f32 deltaTime)
 	else if (m_angularScenario) m_angularScenario->onUpdate(deltaTime);
 	else if (m_elasticityScenario) m_elasticityScenario->onUpdate(deltaTime);
 	else if (m_activeScenario) m_activeScenario->onUpdate(deltaTime);
+	else if (m_massScenario) m_massScenario->onUpdate(deltaTime);
 
 }
 
@@ -150,6 +157,10 @@ void MainSimulation::InputChecks()
 	{
 		static_cast<MainSimulation*>(this)->onElasticityScenario();
 	}
+	if (getInputSystem()->isKeyUp(Key::_8))
+	{
+		static_cast<MainSimulation*>(this)->onMassScenario();
+	}
 }
 void MainSimulation::RestartScenarios()
 {
@@ -162,6 +173,8 @@ void MainSimulation::RestartScenarios()
 	m_generalDebugScenario.reset();
 	m_angularScenario.reset();
 	m_elasticityScenario.reset();
+	m_massScenario.reset();
 	Game::resumePhysicsThread();
-
 }
+
+

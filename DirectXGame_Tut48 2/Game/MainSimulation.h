@@ -11,6 +11,7 @@
 #include "Scenario/ScenarioGeneralDebug.h"
 #include "Scenario/ScenarioAngular.h"
 #include "Scenario/ScenarioElasticity.h"
+#include "Scenario/ScenarioMass.h"
 #include "UI/MainMenu/MainMenu.h"
 #include "Level/Level.h"
 #include "UI/ImGUIManager.h"
@@ -30,6 +31,7 @@ public:
 	void onGeneralDebugScenario();
 	void onAngularScenario();
 	void onElasticityScenario();
+	void onMassScenario();
 	void RestartScenarios();
 protected:
 	virtual void onCreate();
@@ -46,6 +48,7 @@ private:
 	std::unique_ptr<ScenarioElasticity> m_elasticityScenario = nullptr;
 	std::unique_ptr<ScenarioGeneralDebug> m_generalDebugScenario = nullptr;
 	std::unique_ptr<ScenarioAngular> m_angularScenario = nullptr;
+	std::unique_ptr<ScenarioMass> m_massScenario = nullptr;
 
 	std::unique_ptr<ImGUIManager> m_imguiManager = nullptr;
 	int activeScenario = NULL;
