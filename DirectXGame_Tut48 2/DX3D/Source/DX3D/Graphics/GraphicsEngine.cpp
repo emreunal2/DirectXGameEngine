@@ -336,6 +336,9 @@ void GraphicsEngine::update()
 			if (ImGui::MenuItem("Mass Scenario")) {
 				m_game->getInputSystem()->simulateKeyPress(Key::_8);
 			}
+			if (ImGui::MenuItem("Cube Scenario")) {
+				m_game->getInputSystem()->simulateKeyPress(Key::_9);
+			}
 			ImGui::EndMenu();
 		}
 		//number of objects

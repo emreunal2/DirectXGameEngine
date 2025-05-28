@@ -82,6 +82,13 @@ void MainSimulation::onMassScenario()
 	m_massScenario->onCreate();
 	activeScenario = 8;
 }
+void MainSimulation::onCubeScenario()
+{
+	RestartScenarios();
+	m_cubeScenario = std::make_unique<ScenarioCube>(this);
+	m_cubeScenario->onCreate();
+	activeScenario = 9;
+}
 void MainSimulation::onUpdate(f32 deltaTime)
 {
 	Game::onUpdate(deltaTime);
@@ -120,6 +127,15 @@ void MainSimulation::SceneUpdates(f32 deltaTime)
 	else if (m_elasticityScenario) m_elasticityScenario->onUpdate(deltaTime);
 	else if (m_activeScenario) m_activeScenario->onUpdate(deltaTime);
 	else if (m_massScenario) m_massScenario->onUpdate(deltaTime);
+	else if (m_cubeScenario) m_cubeScenario->onUpdate(deltaTime);
+	else
+	{
+		// Default case, if no scenario is active
+		if (m_activeScenario)
+		{
+			m_activeScenario->onUpdate(deltaTime);
+		}
+	}
 
 }
 
@@ -161,6 +177,10 @@ void MainSimulation::InputChecks()
 	{
 		static_cast<MainSimulation*>(this)->onMassScenario();
 	}
+	if (getInputSystem()->isKeyUp(Key::_9))
+	{
+		static_cast<MainSimulation*>(this)->onCubeScenario();
+	}
 }
 void MainSimulation::RestartScenarios()
 {
@@ -174,6 +194,7 @@ void MainSimulation::RestartScenarios()
 	if(m_angularScenario)m_angularScenario.reset();
 	if(m_elasticityScenario)m_elasticityScenario.reset();
 	if(m_massScenario)m_massScenario.reset();
+	if (m_cubeScenario)m_cubeScenario.reset();
 	this->resumePhysicsThread();
 }
 

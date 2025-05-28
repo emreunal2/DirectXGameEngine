@@ -159,10 +159,10 @@ void ScenarioFirst::onUpdate(f32 deltaTime)
 
 		float radius = static_cast<float>((std::rand() % 3) + 1);
 		float posX = static_cast<float>((std::rand() % 90) - 45);
-		float posY = static_cast<float>((std::rand() % 10) + 25); // spawn from higher up
+		float posY = static_cast<float>((std::rand() % 10) + 25);
 		float posZ = static_cast<float>((std::rand() % 90) - 45);
 		float dirX = static_cast<float>((std::rand() % 10) - 5);
-		float dirY = static_cast<float>((std::rand() % 5) - 5); // mostly downward
+		float dirY = static_cast<float>((std::rand() % 10) - 5); 
 		float dirZ = static_cast<float>((std::rand() % 10) - 5);
 		float mass = static_cast<float>((std::rand() % 10) + 1);
 
