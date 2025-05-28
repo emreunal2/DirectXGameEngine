@@ -20,28 +20,14 @@ void ScenarioFirst::generateScenario()
 	CreateMovingSphere(2.0f, 15, 15, 15, -30, 0, 0,10, MaterialType::DEFAULT);
 	CreateMovingSphere(1.0f, -15, 15, 15, 0, 0, 0,30, MaterialType::METAL);
 
-	//CreateStaticCube(5.0f, -10, 15, 15);
-	//CreateMovingSphere(1.0f, -10, 25, 15, 0, -5, 0);
-
-	//create 100 movingsphere random location random velocity random mass
-	for (int i = 0; i < 20; ++i)
+	
+	for (int i = 0; i < 10; ++i)
 	{
 		float radius = static_cast<float>((std::rand() % 3) + 1);
 		float posX = static_cast<float>((std::rand() % 90) - 45);
 		float posY = static_cast<float>((std::rand() % 30) - 15);
 		float posZ = static_cast<float>((std::rand() % 90) - 45);
 		float length = radius;
-
-		CreateStaticSphere(radius, length, posX, posY, posZ);
-	}
-
-	for (int i = 0; i < 5; ++i)
-	{
-		float radius = static_cast<float>((std::rand() % 2) + 1);
-		float length = radius + static_cast<float>((std::rand() % 2) + 2);
-		float posX = static_cast<float>((std::rand() % 90) - 45);
-		float posY = static_cast<float>((std::rand() % 30) - 15);
-		float posZ = static_cast<float>((std::rand() % 90) - 45);
 
 		CreateStaticSphere(radius, length, posX, posY, posZ);
 	}
@@ -176,7 +162,7 @@ void ScenarioFirst::onUpdate(f32 deltaTime)
 		float posY = static_cast<float>((std::rand() % 10) + 25); // spawn from higher up
 		float posZ = static_cast<float>((std::rand() % 90) - 45);
 		float dirX = static_cast<float>((std::rand() % 10) - 5);
-		float dirY = static_cast<float>((std::rand() % 5) - 8); // mostly downward
+		float dirY = static_cast<float>((std::rand() % 5) - 5); // mostly downward
 		float dirZ = static_cast<float>((std::rand() % 10) - 5);
 		float mass = static_cast<float>((std::rand() % 10) + 1);
 

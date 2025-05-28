@@ -164,7 +164,7 @@ void MainSimulation::InputChecks()
 }
 void MainSimulation::RestartScenarios()
 {
-	Game::pausePhysicsThread();
+	this->pausePhysicsThread();
 	if(m_mainMenu) m_mainMenu.reset();
 	if(m_firstScenario) m_firstScenario.reset();
 	if(m_secondScenario)m_secondScenario.reset();
@@ -174,7 +174,7 @@ void MainSimulation::RestartScenarios()
 	if(m_angularScenario)m_angularScenario.reset();
 	if(m_elasticityScenario)m_elasticityScenario.reset();
 	if(m_massScenario)m_massScenario.reset();
-	Game::resumePhysicsThread();
+	this->resumePhysicsThread();
 }
 
 
