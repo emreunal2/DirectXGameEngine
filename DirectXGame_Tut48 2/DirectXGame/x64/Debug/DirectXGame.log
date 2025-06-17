@@ -1,2 +1,9 @@
-﻿  GraphicsEngine.cpp
-  DirectXGame.vcxproj -> C:\Users\932343\OneDrive - hull.ac.uk\GitHub\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXGame.exe
+﻿  Spaceship.cpp
+DirectXTKD.lib(SpriteBatch.obj) : warning LNK4099: PDB 'DirectXTK.pdb' was not found with 'DirectXTKD.lib(SpriteBatch.obj)' or at 'C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXTK.pdb'; linking object as if no debug info
+DirectXTKD.lib(SpriteFont.obj) : warning LNK4099: PDB 'DirectXTK.pdb' was not found with 'DirectXTKD.lib(SpriteFont.obj)' or at 'C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXTK.pdb'; linking object as if no debug info
+DirectXTKD.lib(BufferHelpers.obj) : warning LNK4099: PDB 'DirectXTK.pdb' was not found with 'DirectXTKD.lib(BufferHelpers.obj)' or at 'C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXTK.pdb'; linking object as if no debug info
+DirectXTKD.lib(CommonStates.obj) : warning LNK4099: PDB 'DirectXTK.pdb' was not found with 'DirectXTKD.lib(CommonStates.obj)' or at 'C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXTK.pdb'; linking object as if no debug info
+DirectXTKD.lib(VertexTypes.obj) : warning LNK4099: PDB 'DirectXTK.pdb' was not found with 'DirectXTKD.lib(VertexTypes.obj)' or at 'C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXTK.pdb'; linking object as if no debug info
+DirectXTKD.lib(pch.obj) : warning LNK4099: PDB 'DirectXTK.pdb' was not found with 'DirectXTKD.lib(pch.obj)' or at 'C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXTK.pdb'; linking object as if no debug info
+DirectXTKD.lib(BinaryReader.obj) : warning LNK4099: PDB 'DirectXTK.pdb' was not found with 'DirectXTKD.lib(BinaryReader.obj)' or at 'C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXTK.pdb'; linking object as if no debug info
+  DirectXGame.vcxproj -> C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXGame.exe

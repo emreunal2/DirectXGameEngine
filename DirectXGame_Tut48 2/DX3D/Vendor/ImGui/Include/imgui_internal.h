@@ -6,7 +6,7 @@
 /*
 
 Index of this file:
-
+// parasoft-begin-suppress ALL "suppress all violations"
 // [SECTION] Header mess
 // [SECTION] Forward declarations
 // [SECTION] Context pointer
@@ -3622,3 +3622,4 @@ extern const char*  ImGuiTestEngine_FindItemDebugLabel(ImGuiContext* ctx, ImGuiI
 #endif
 
 #endif // #ifndef IMGUI_DISABLE
+// parasoft-end-suppress ALL "suppress all violations"

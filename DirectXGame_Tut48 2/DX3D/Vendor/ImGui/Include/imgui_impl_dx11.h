@@ -1,6 +1,6 @@
 // dear imgui: Renderer Backend for DirectX11
 // This needs to be used along with a Platform Backend (e.g. Win32)
-
+// parasoft-begin-suppress ALL "suppress all violations"
 // Implemented features:
 //  [X] Renderer: User texture binding. Use 'ID3D11ShaderResourceView*' as ImTextureID. Read the FAQ about ImTextureID!
 //  [X] Renderer: Large meshes support (64k+ vertices) even with 16-bit indices (ImGuiBackendFlags_RendererHasVtxOffset).
@@ -45,3 +45,4 @@ struct ImGui_ImplDX11_RenderState
 };
 
 #endif // #ifndef IMGUI_DISABLE
+// parasoft-end-suppress ALL "suppress all violations"

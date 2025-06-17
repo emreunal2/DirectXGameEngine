@@ -279,6 +279,7 @@
 //
 //  Incomplete text-in-3d-api example, which draws quads properly aligned to be lossless.
 //  See "tests/truetype_demo_win32.c" for a complete version.
+// parasoft-begin-suppress ALL "suppress all violations"
 #if 0
 #define STB_TRUETYPE_IMPLEMENTATION  // force following include to generate implementation
 #include "stb_truetype.h"
@@ -5083,3 +5084,4 @@ ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ------------------------------------------------------------------------------
 */
+// parasoft-end-suppress ALL "suppress all violations"

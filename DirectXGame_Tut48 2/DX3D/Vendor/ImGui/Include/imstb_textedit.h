@@ -294,7 +294,7 @@
 // per-textfield; it includes cursor position, selection state,
 // and undo state.
 //
-
+// parasoft-begin-suppress ALL "suppress all violations"
 #ifndef IMSTB_TEXTEDIT_UNDOSTATECOUNT
 #define IMSTB_TEXTEDIT_UNDOSTATECOUNT   99
 #endif
@@ -1467,3 +1467,4 @@ ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ------------------------------------------------------------------------------
 */
+// parasoft-end-suppress ALL "suppress all violations"

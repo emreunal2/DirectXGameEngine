@@ -1,10 +1,8 @@
-
-
 #include "MainMenu.h"
 #include "../../MainGame.h"
 #include <sstream>
 #include "../../Item/BoxItem.h"
-
+#include "../../Item/Platform.h"
 MainMenu::MainMenu(Game* game) : m_game(game)
 {
 	auto font = game->getResourceManager()->createResourceFromFile<Font>(L"Assets/Fonts/Bahnschrift.font");
@@ -16,6 +14,9 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 	auto ground = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/ground.jpg");
 	auto skyMat = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/SkyBox.hlsl");
 	auto mat = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
+	auto gameMat = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/GameItem.hlsl");
+	auto ToonShading = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/ToonShading.hlsl");
+
 
 	{
 		m_description = m_game->getWorld()->createEntity<Entity>();
@@ -82,15 +83,13 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 	}*/
 
 	{
-		m_sphereEntity = m_game->getWorld()->createEntity<Entity>();
+		m_sphereEntity = m_game->getWorld()->createEntity<Platform>();
 		auto meshComponent = m_sphereEntity->createComponent<MeshComponent>();
-		meshComponent->setMesh(sphere);
-		mat->addTexture(heightMap);
-		meshComponent->addMaterial(mat);
 		auto transform = m_sphereEntity->getTransform();
 		transform->setScale(Vector3D(25, 25, 25));
 		transform->setPosition(Vector3D(75, 75, 100));
 	}
+
 	//sea
 	{
 		auto entity = m_game->getWorld()->createEntity<Entity>();
