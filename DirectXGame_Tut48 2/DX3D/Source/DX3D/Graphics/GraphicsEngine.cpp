@@ -271,7 +271,7 @@ void GraphicsEngine::update()
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
-	ImGui::Begin("Hello, world!");
+	ImGui::Begin("Game Controls");
 	ImGui::Text("Time Scale: %.2f", m_game->m_timeScale);
 	if (ImGui::Button("TimeScale Down")) 
 	{
@@ -281,6 +281,15 @@ void GraphicsEngine::update()
 	{
 		m_game->setTimeScale(m_game->m_timeScale + 0.1f);
 	}
+	ImGui::Text("A / D Move");
+	ImGui::Text("W / S Look");
+	ImGui::Text("R: Restart Game");
+	ImGui::Text("ESC Exit Game");
+	ImGui::Text("Space: Jump");
+	ImGui::Text("-,=: Camera Zoom");
+	ImGui::Text("<, >: Change Time Scale");
+	ImGui::Text("Torchlight Mode");
+	ImGui::Text("Enter: Change into game scene");
 
 	ImGui::End();
 	ImGui::Render();

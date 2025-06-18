@@ -8,6 +8,7 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 	auto font = game->getResourceManager()->createResourceFromFile<Font>(L"Assets/Fonts/Bahnschrift.font");
 	auto sphere = m_game->getResourceManager()->createResourceFromFile<Mesh>(L"Assets/Meshes/sphere.obj");
 	auto sky = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/sky.jpg");
+	auto normalMap = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/NormalMap.jpg");
 	auto heightMap = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/height_map.png");
 	auto waveHeightMap = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/waveHeightMap.png");
 	auto grass = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/grass.jpg");
@@ -17,59 +18,6 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 	auto gameMat = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/GameItem.hlsl");
 	auto ToonShading = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/ToonShading.hlsl");
 
-
-	{
-		m_description = m_game->getWorld()->createEntity<Entity>();
-		auto text = m_description->createComponent<TextComponent>();
-		text->setFont(font);
-		text->setText(L"R: Restart game, ESC: Exit game");
-		m_description->getTransform()->setPosition(Vector3D(250, 0, 0));
-	}
-
-	{
-		m_description = m_game->getWorld()->createEntity<Entity>();
-		auto text = m_description->createComponent<TextComponent>();
-		text->setFont(font);
-		text->setText(L"W/A/S/D: Movement, LookUp Direction");
-		m_description->getTransform()->setPosition(Vector3D(250, 50, 0));
-	}
-	{
-		m_description = m_game->getWorld()->createEntity<Entity>();
-		auto text = m_description->createComponent<TextComponent>();
-		text->setFont(font);
-		text->setText(L"Space: Jump");
-		m_description->getTransform()->setPosition(Vector3D(250, 100, 0));
-	}
-	{
-		m_description = m_game->getWorld()->createEntity<Entity>();
-		auto text = m_description->createComponent<TextComponent>();
-		text->setFont(font);
-		text->setText(L"-, =: Camera Zoom");
-		m_description->getTransform()->setPosition(Vector3D(250, 150, 0));
-	}
-	{
-		m_description = m_game->getWorld()->createEntity<Entity>();
-		auto text = m_description->createComponent<TextComponent>();
-		text->setFont(font);
-		text->setText(L"<,>: Time Scale");
-		m_description->getTransform()->setPosition(Vector3D(250, 200, 0));
-	}
-
-	{
-		m_description = m_game->getWorld()->createEntity<Entity>();
-		auto text = m_description->createComponent<TextComponent>();
-		text->setFont(font);
-		text->setText(L"T: Change Lighting");
-		m_description->getTransform()->setPosition(Vector3D(250, 250, 0));
-	}
-
-	{
-		m_description = m_game->getWorld()->createEntity<Entity>();
-		auto text = m_description->createComponent<TextComponent>();
-		text->setFont(font);
-		text->setText(L"Enter: Start the Game!!");
-		m_description->getTransform()->setPosition(Vector3D(250, 500, 0));
-	}
 
 	/* {
 		auto entity = m_game->getWorld()->createEntity<Entity>();
@@ -84,12 +32,19 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 
 	{
 		m_sphereEntity = m_game->getWorld()->createEntity<Platform>();
-		auto meshComponent = m_sphereEntity->createComponent<MeshComponent>();
 		auto transform = m_sphereEntity->getTransform();
 		transform->setScale(Vector3D(25, 25, 25));
 		transform->setPosition(Vector3D(75, 75, 100));
 	}
-
+	{
+		auto entity = m_game->getWorld()->createEntity<Entity>();
+		auto meshComponent = entity->createComponent<MeshComponent>();
+		meshComponent->setMesh(sphere);
+		ToonShading->addTexture(normalMap);
+		meshComponent->addMaterial(ToonShading);
+		entity->getTransform()->setPosition(Vector3D(150, 75, 100));
+		entity->getTransform()->setScale(Vector3D(25, 25, 25));
+	}
 	//sea
 	{
 		auto entity = m_game->getWorld()->createEntity<Entity>();
