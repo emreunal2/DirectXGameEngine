@@ -16,5 +16,6 @@ private:
 	Entity* m_description = nullptr;
 	Entity* m_sphereEntity = nullptr;
 	f32 m_angle = 0;
+	Entity* m_lightEntity = nullptr;
 };
 

@@ -24,15 +24,19 @@ void Spaceship::onCreate()
 {
 	//Load all the assets
 	auto tex =   getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/spaceship.jpg");
+	auto tex2 = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/asteroid.jpg");
 	auto mesh = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Mesh>(L"Assets/Meshes/spaceship.obj");
-	auto mat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
+	auto mat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/ToonShading.hlsl");
+	auto mat2 = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/ToonShading.hlsl");
 	//Add the texture to material
 	mat->addTexture(tex);
-
+	//mat2->addTexture(tex2);
 	m_spaceshipMesh = this->createComponent<MeshComponent>();
 	//Set the mesh and material into the entity
 	m_spaceshipMesh->setMesh(mesh);
 	m_spaceshipMesh->addMaterial(mat);
+	//m_spaceshipMesh->addMaterial(mat2);
+	//m_spaceshipMesh->removeMaterial(0);
 	
 	//Create the camera that follows the spaceship
 	m_cameraEntity = getWorld()->createEntity<Entity>();

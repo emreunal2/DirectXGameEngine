@@ -109,10 +109,10 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 
 	//light
 	{
-		auto m_entity = m_game->getWorld()->createEntity<Entity>();
-		auto lightComponent = m_entity->createComponent<LightComponent>();
+		m_lightEntity = m_game->getWorld()->createEntity<Entity>();
+		auto lightComponent = m_lightEntity->createComponent<LightComponent>();
 		lightComponent->setColor(Vector4D(1.0f, 1.0f, 1.0f, 1));
-		m_entity->getTransform()->setRotation(Vector3D(0.707f, -3.14f, 0));
+		m_lightEntity->getTransform()->setRotation(Vector3D(0.0f, 0.0f, 0.0f)); // start from neutral
 	}
 
 	//camera
@@ -137,11 +137,22 @@ MainMenu::~MainMenu()
 void MainMenu::onUpdate(f32 deltaTime)
 {
 	m_angle += 3.14f * deltaTime;
-	m_sphereEntity->getTransform()->setRotation(Vector3D(0, m_angle * 0.4f, 0));
+	//m_sphereEntity->getTransform()->setRotation(Vector3D(0, m_angle * 0.4f, 0));
 	if (m_game->getInputSystem()->isKeyUp(Key::Enter))
 	{
 		static_cast<MainGame*>(m_game)->onNewGame();
 	}
+	static float angle = 0.0f;
+	angle += deltaTime * 0.5f; // slow rotation
+
+	// Circle light direction in XZ plane
+	float dirX = cos(angle);
+	float dirZ = sin(angle);
+
+	// Keep it diagonally downward to still affect vertical surfaces
+	Vector3D lightDir = Vector3D(dirX, -1.0f, dirZ);
+
+	m_lightEntity->getTransform()->setRotation(lightDir);
 }
 
 
