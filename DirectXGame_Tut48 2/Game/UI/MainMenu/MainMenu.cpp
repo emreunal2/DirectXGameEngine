@@ -7,6 +7,7 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 {
 	auto font = game->getResourceManager()->createResourceFromFile<Font>(L"Assets/Fonts/Bahnschrift.font");
 	auto sphere = m_game->getResourceManager()->createResourceFromFile<Mesh>(L"Assets/Meshes/sphere.obj");
+	auto spaceship = m_game->getResourceManager()->createResourceFromFile<Mesh>(L"Assets/Meshes/house.obj");
 	auto sky = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/sky.jpg");
 	auto normalMap = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/NormalMap.jpg");
 	auto heightMap = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/height_map.png");
@@ -17,6 +18,8 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 	auto mat = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
 	auto gameMat = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/GameItem.hlsl");
 	auto ToonShading = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/ToonShading.hlsl");
+	auto bumpShading = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Bump.hlsl");
+	auto displacementShading = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Displacement.hlsl");
 
 
 	/* {
@@ -29,22 +32,46 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 		auto transform = entity->getTransform();
 		transform->setScale(Vector3D(1, 1, 1));
 	}*/
-
-	{
-		m_sphereEntity = m_game->getWorld()->createEntity<Platform>();
-		auto transform = m_sphereEntity->getTransform();
-		transform->setScale(Vector3D(25, 25, 25));
-		transform->setPosition(Vector3D(75, 75, 100));
-	}
+	//Base
 	{
 		auto entity = m_game->getWorld()->createEntity<Entity>();
 		auto meshComponent = entity->createComponent<MeshComponent>();
-		meshComponent->setMesh(sphere);
-		ToonShading->addTexture(normalMap);
-		meshComponent->addMaterial(ToonShading);
-		entity->getTransform()->setPosition(Vector3D(150, 75, 100));
+		meshComponent->setMesh(spaceship);
+		mat->addTexture(normalMap);
+		meshComponent->addMaterial(mat);
+		entity->getTransform()->setPosition(Vector3D(50, 75, 100));
 		entity->getTransform()->setScale(Vector3D(25, 25, 25));
 	}
+	//Toon
+	{
+		auto entity = m_game->getWorld()->createEntity<Entity>();
+		auto meshComponent = entity->createComponent<MeshComponent>();
+		meshComponent->setMesh(spaceship);
+		ToonShading->addTexture(normalMap);
+		meshComponent->addMaterial(ToonShading);
+		entity->getTransform()->setPosition(Vector3D(125, 75, 100));
+		entity->getTransform()->setScale(Vector3D(25, 25, 25));
+	}
+	//Bump
+	{
+		auto entity1 = m_game->getWorld()->createEntity<Entity>();
+		auto meshComponent1 = entity1->createComponent<MeshComponent>();
+		meshComponent1->setMesh(spaceship);
+		bumpShading->addTexture(normalMap);
+		meshComponent1->addMaterial(bumpShading);
+		entity1->getTransform()->setPosition(Vector3D(-25, 75, 100));
+		entity1->getTransform()->setScale(Vector3D(25, 25, 25));
+	}
+	{
+		auto entity1 = m_game->getWorld()->createEntity<Entity>();
+		auto meshComponent1 = entity1->createComponent<MeshComponent>();
+		meshComponent1->setMesh(spaceship);
+		displacementShading->addTexture(normalMap);
+		meshComponent1->addMaterial(displacementShading);
+		entity1->getTransform()->setPosition(Vector3D(-100, 75, 100));
+		entity1->getTransform()->setScale(Vector3D(25, 25, 25));
+	}
+
 	//sea
 	{
 		auto entity = m_game->getWorld()->createEntity<Entity>();
