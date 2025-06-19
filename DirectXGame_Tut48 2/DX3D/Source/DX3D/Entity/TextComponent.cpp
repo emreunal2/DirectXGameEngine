@@ -17,7 +17,12 @@ TextComponent::TextComponent()
 
 TextComponent::~TextComponent()
 {
-	m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	try {
+		m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	}
+	catch (...) {
+		// Handle any exceptions that may occur during cleanup
+	}
 }
 
 void TextComponent::setFont(const FontPtr& font)

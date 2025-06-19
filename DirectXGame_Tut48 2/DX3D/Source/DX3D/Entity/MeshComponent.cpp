@@ -16,7 +16,12 @@ MeshComponent::MeshComponent()
 
 MeshComponent::~MeshComponent()
 {
-	m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	try {
+		m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	}
+	catch (...) {
+		// Handle any exceptions that may occur during cleanup
+	}
 }
 
 void MeshComponent::setMesh(const MeshPtr& mesh)

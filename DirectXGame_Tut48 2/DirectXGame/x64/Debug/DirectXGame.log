@@ -1,2 +1,8 @@
-﻿  MainMenu.cpp
+﻿  MeshComponent.cpp
+  PlayerControllerComponent.cpp
+  SphereColliderComponent.cpp
+  TerrainComponent.cpp
+  TextComponent.cpp
+  WaterComponent.cpp
+  WinScreen.cpp
   DirectXGame.vcxproj -> C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXGame.exe

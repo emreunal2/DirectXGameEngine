@@ -42,10 +42,15 @@ HUD::HUD(Game* game): m_game(game)
 
 HUD::~HUD()
 {
-	m_timeText->release();
-	m_levelText->release();
-	m_scoreText->release();
-	m_totScoreText->release();
+	try {
+		m_timeText->release();
+		m_levelText->release();
+		m_scoreText->release();
+		m_totScoreText->release();
+	}
+	catch(...) {
+		// Handle exceptions if necessary
+	}
 }
 
 void HUD::setInfo(i32 level, i32 score, i32 maximumScore, i32 totalScore, i32 time)

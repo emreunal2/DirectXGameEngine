@@ -12,11 +12,16 @@ Level::Level(Game* game) : m_game(game)
 
 Level::~Level()
 {
-	m_winScreen.reset();
-	m_gameOverScreen.reset();
-	m_hud.reset();
+	try {
+		m_winScreen.reset();
+		m_gameOverScreen.reset();
+		m_hud.reset();
 
-	this->m_game->getWorld()->clear();
+		this->m_game->getWorld()->clear();
+	}
+	catch(...) {
+		// Handle any exceptions that may occur during cleanup
+	}
 }
 
 Entity* Level::getPlayer()

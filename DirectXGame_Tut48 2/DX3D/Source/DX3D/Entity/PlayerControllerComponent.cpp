@@ -13,7 +13,12 @@ PlayerControllerComponent::PlayerControllerComponent()
 
 PlayerControllerComponent::~PlayerControllerComponent()
 {
-	m_entity->getWorld()->getGame()->getPhysicsEngine()->removeComponent(this);
+	try {
+		m_entity->getWorld()->getGame()->getPhysicsEngine()->removeComponent(this);
+	}
+	catch (...) {
+		// Handle any exceptions that may occur during cleanup
+	}
 }
 
 void PlayerControllerComponent::setHeight(f32 height)

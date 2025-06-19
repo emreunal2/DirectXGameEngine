@@ -30,8 +30,12 @@ GameOverScreen::GameOverScreen(Game* game) : m_game(game)
 
 GameOverScreen::~GameOverScreen()
 {
-	m_background->release();
-	m_screen->release();
+	try {
+		m_background->release();
+		m_screen->release();
+	}
+	catch (...) {
+	}
 }
 
 void GameOverScreen::onUpdate(f32 deltaTime)

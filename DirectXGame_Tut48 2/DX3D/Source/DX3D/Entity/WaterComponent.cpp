@@ -16,7 +16,13 @@ WaterComponent::WaterComponent()
 
 WaterComponent::~WaterComponent()
 {
-	m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	try {
+		m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	}
+	catch (...)
+	{
+		// Handle any exceptions that may occur during cleanup
+	}
 }
 
 void WaterComponent::setWaveHeightMap(const TexturePtr& heightMap)

@@ -13,7 +13,14 @@ FogComponent::FogComponent()
 
 FogComponent::~FogComponent()
 {
-	m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	try
+	{
+		m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	}
+	catch (...)
+	{
+		// Handle any exceptions that may occur during cleanup
+	}
 }
 
 void FogComponent::setData(const Vector4D& color, f32 start, f32 end)

@@ -113,17 +113,18 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 
 MainMenu::~MainMenu()
 {
-	this->m_game->getWorld()->clear();
+	try {
+		this->m_game->getWorld()->clear();
+	}
+	catch(...) {
+		// Handle any exceptions that might occur during cleanup
+	}
 }
 
 void MainMenu::onUpdate(f32 deltaTime)
 {
 	m_angle += 3.14f * deltaTime;
 	//m_sphereEntity->getTransform()->setRotation(Vector3D(0, m_angle * 0.4f, 0));
-	if (m_game->getInputSystem()->isKeyUp(Key::Enter))
-	{
-		static_cast<MainGame*>(m_game)->onNewGame();
-	}
 	static float angle = 0.0f;
 	angle += deltaTime * 0.5f; // slow rotation
 
@@ -135,6 +136,10 @@ void MainMenu::onUpdate(f32 deltaTime)
 	Vector3D lightDir = Vector3D(dirX, -1.0f, dirZ);
 
 	m_lightEntity->getTransform()->setRotation(lightDir);
+	if (m_game->getInputSystem()->isKeyUp(Key::Enter))
+	{
+		static_cast<MainGame*>(m_game)->onNewGame();
+	}
 }
 
 

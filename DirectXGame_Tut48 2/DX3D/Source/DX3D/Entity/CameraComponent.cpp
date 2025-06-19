@@ -14,7 +14,14 @@ CameraComponent::CameraComponent()
 
 CameraComponent::~CameraComponent()
 {
-	m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	try
+	{
+		m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	}
+	catch (...)
+	{
+		// Log error, or silently suppress (not ideal, but safe for destructors)
+	}
 }
 
 void CameraComponent::getViewMatrix(Matrix4x4& view)

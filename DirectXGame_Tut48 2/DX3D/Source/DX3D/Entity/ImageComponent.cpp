@@ -14,7 +14,11 @@ ImageComponent::ImageComponent()
 
 ImageComponent::~ImageComponent()
 {
-	m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	try {
+		m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	}
+	catch (...) {
+	}
 }
 
 void ImageComponent::setImage(const TexturePtr& image)

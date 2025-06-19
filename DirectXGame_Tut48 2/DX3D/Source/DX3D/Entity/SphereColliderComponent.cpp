@@ -13,7 +13,11 @@ SphereColliderComponent::SphereColliderComponent()
 
 SphereColliderComponent::~SphereColliderComponent()
 {
-	m_entity->getWorld()->getGame()->getPhysicsEngine()->removeComponent(this);
+	try {
+		m_entity->getWorld()->getGame()->getPhysicsEngine()->removeComponent(this);
+	}
+	catch (...) {
+	}
 }
 
 void SphereColliderComponent::setRadius(f32 radius)

@@ -23,8 +23,13 @@ TerrainComponent::TerrainComponent()
 
 TerrainComponent::~TerrainComponent()
 {
-	m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
-	m_entity->getWorld()->getGame()->getPhysicsEngine()->removeComponent(this);
+	try {
+		m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+		m_entity->getWorld()->getGame()->getPhysicsEngine()->removeComponent(this);
+	}
+	catch(...) {
+		// Handle any exceptions that may occur during cleanup
+	}
 }
 
 void TerrainComponent::setHeightMap(const TexturePtr& heightMap)

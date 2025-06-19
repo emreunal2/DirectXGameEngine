@@ -33,8 +33,13 @@ WinScreen::WinScreen(Game* game) : m_game(game)
 
 WinScreen::~WinScreen()
 {
-	m_background->release();
-	m_screen->release();
+	try {
+		m_background->release();
+		m_screen->release();
+	}
+	catch(...) {
+		// Handle any exceptions that may occur during release
+	}
 }
 
 void WinScreen::onUpdate(f32 deltaTime)
