@@ -8,7 +8,7 @@ public:
 	Vector3D():x(0),y(0),z(0)
 	{
 	}
-	Vector3D(f32 x,f32 y, f32 z) :x(x), y(y), z(z)
+	Vector3D(f32 n_x,f32 n_y, f32 n_z) :x(n_x), y(n_y), z(n_z)
 	{
 	}
 	Vector3D(const Vector3D& vector) :x(vector.x), y(vector.y), z(vector.z)
