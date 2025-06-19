@@ -7,7 +7,7 @@
 class MainMenu
 {
 public:
-	MainMenu(Game* game);
+	explicit MainMenu(Game* game);
 	~MainMenu();
 
 	void onUpdate(f32 deltaTime);
@@ -16,6 +16,7 @@ private:
 	Entity* m_description = nullptr;
 	Entity* m_sphereEntity = nullptr;
 	f32 m_angle = 0;
+	Entity* m_sphere = nullptr;
 	Entity* m_lightEntity = nullptr;
 };
 

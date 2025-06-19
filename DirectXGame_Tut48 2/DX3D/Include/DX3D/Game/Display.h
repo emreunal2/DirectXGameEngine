@@ -9,7 +9,7 @@
 class Display: public Window
 {
 public:
-	Display(Game* game);
+	explicit Display(Game* game);
 	~Display();
 
 	void setFullScreen(const Rect& size, bool fullscreen);

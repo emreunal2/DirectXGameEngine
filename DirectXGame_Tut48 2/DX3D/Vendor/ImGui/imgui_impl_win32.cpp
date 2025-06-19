@@ -1,5 +1,6 @@
 // dear imgui: Platform Backend for Windows (standard windows API for 32-bits AND 64-bits applications)
 // This needs to be used along with a Renderer (e.g. DirectX11, OpenGL3, Vulkan..)
+// parasoft-begin-suppress ALL "suppress all violations"
 
 // Implemented features:
 //  [X] Platform: Clipboard support (for Win32 this is actually part of core dear imgui)
@@ -939,5 +940,5 @@ void ImGui_ImplWin32_EnableAlphaCompositing(void* hwnd)
 #if defined(__clang__)
 #pragma clang diagnostic pop
 #endif
-
+// parasoft-end-suppress ALL "suppress all violations"
 #endif // #ifndef IMGUI_DISABLE

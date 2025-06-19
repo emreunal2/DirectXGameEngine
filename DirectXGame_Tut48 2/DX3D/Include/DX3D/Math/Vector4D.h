@@ -9,7 +9,7 @@ public:
 	Vector4D() :x(0), y(0), z(0),m_w(0)
 	{
 	}
-	Vector4D(f32 x, f32 y, f32 z,f32 w) :x(x), y(y), z(z), m_w(w)
+	Vector4D(f32 n_x, f32 n_y, f32 n_z,f32 n_w) :x(n_x), y(n_y), z(n_z), m_w(n_w)
 	{
 	}
 	Vector4D(const Vector4D& vector) :x(vector.x), y(vector.y), z(vector.z), m_w(vector.m_w)

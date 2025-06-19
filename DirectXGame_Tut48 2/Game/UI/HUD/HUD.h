@@ -7,7 +7,7 @@
 class HUD
 {
 public:
-	HUD(Game* game);
+	explicit HUD(Game* game);
 	~HUD();
 
 	void setInfo(i32 level,i32 score, i32 maximumScore, i32 totalScore, i32 time);

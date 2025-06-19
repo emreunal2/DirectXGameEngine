@@ -1,3 +1,4 @@
+// parasoft-begin-suppress ALL "suppress all violations"
 // dear imgui, v1.91.9 WIP
 // (widgets code)
 
@@ -10418,6 +10419,7 @@ void ImGui::TabItemLabelAndCloseButton(ImDrawList* draw_list, const ImRect& bb, 
     if (out_just_closed)
         *out_just_closed = close_button_pressed;
 }
+// parasoft-end-suppress ALL "suppress all violations"
 
 
 #endif // #ifndef IMGUI_DISABLE

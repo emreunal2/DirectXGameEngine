@@ -1,5 +1,6 @@
 // dear imgui, v1.91.9 WIP
 // (drawing and font code)
+// parasoft-begin-suppress ALL "suppress all violations"
 
 /*
 
@@ -4822,5 +4823,5 @@ static const char* GetDefaultCompressedFontDataTTF(int* out_size)
     return (const char*)proggy_clean_ttf_compressed_data;
 }
 #endif // #ifndef IMGUI_DISABLE_DEFAULT_FONT
-
+// parasoft-end-suppress ALL "suppress all violations"
 #endif // #ifndef IMGUI_DISABLE

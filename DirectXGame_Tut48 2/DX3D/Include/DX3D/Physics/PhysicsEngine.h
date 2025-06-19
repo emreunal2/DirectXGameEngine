@@ -8,7 +8,7 @@
 class PhysicsEngine
 {
 public:
-	PhysicsEngine(Game* game);
+	explicit PhysicsEngine(Game* game);
 	virtual ~PhysicsEngine();
 
 	void update();

@@ -8,7 +8,7 @@
 class World
 {
 public:
-	World(Game* game);
+	explicit World(Game* game);
 	~World();
 
 	template <typename T>

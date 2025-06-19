@@ -7,7 +7,7 @@
 class GameOverScreen
 {
 public:
-	GameOverScreen(Game* game);
+	explicit GameOverScreen(Game* game);
 	~GameOverScreen();
 
 	void onUpdate(f32 deltaTime);

@@ -9,7 +9,7 @@
 class ResourceManager
 {
 public:
-	ResourceManager(Game* game);
+	explicit ResourceManager(Game* game);
 	~ResourceManager();
 
 	template<typename T>

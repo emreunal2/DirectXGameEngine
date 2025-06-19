@@ -1,5 +1,6 @@
 // dear imgui, v1.91.9 WIP
 // (main code and documentation)
+// parasoft-begin-suppress ALL "suppress all violations"
 
 // Help:
 // - See links below.
@@ -17007,4 +17008,5 @@ void ImGui::DebugHookIdInfo(ImGuiID, ImGuiDataType, const void*, const void*) {}
 
 //-----------------------------------------------------------------------------
 
+// parasoft-end-suppress ALL "suppress all violations"
 #endif // #ifndef IMGUI_DISABLE

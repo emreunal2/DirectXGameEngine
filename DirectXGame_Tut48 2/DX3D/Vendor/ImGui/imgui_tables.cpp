@@ -1,5 +1,6 @@
 // dear imgui, v1.91.9 WIP
 // (tables and columns code)
+// parasoft-begin-suppress ALL "suppress all violations"
 
 /*
 
@@ -4519,5 +4520,5 @@ void ImGui::Columns(int columns_count, const char* id, bool borders)
 }
 
 //-------------------------------------------------------------------------
-
+// parasoft-end-suppress ALL "suppress all violations"
 #endif // #ifndef IMGUI_DISABLE

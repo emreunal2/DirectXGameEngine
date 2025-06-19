@@ -7,7 +7,7 @@
 class WinScreen
 {
 public:
-	WinScreen(Game* game);
+	explicit WinScreen(Game* game);
 	~WinScreen();
 
 	void onUpdate(f32 deltaTime);

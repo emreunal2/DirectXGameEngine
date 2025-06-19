@@ -9,7 +9,7 @@ class GraphicsEngine
 {
 public:
 	//Initialize the GraphicsEngine and DirectX 11 Device
-	GraphicsEngine(Game* game);
+	explicit GraphicsEngine(Game* game);
 	//Release all the resources loaded
 	~GraphicsEngine();
 

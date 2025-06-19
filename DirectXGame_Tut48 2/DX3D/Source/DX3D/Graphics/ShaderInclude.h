@@ -10,7 +10,7 @@
 class ShaderInclude: public ID3DInclude
 {
 public:
-	ShaderInclude(const std::filesystem::path& shaderPath): m_shaderPath(shaderPath)
+	explicit ShaderInclude(const std::filesystem::path& shaderPath): m_shaderPath(shaderPath)
 	{
 
 	}

@@ -14,7 +14,7 @@ enum class LightingMode
 class Level
 {
 public:
-	Level(Game* game);
+	explicit Level(Game* game);
 	~Level();
 
 	Entity* getPlayer();
