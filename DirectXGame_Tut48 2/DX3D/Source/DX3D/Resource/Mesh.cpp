@@ -4,7 +4,6 @@
 
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
-#include <DX3D/Graphics/GraphicsEngine.h>
 #include <DX3D/Math/VertexMesh.h>
 #include <DX3D/Resource/ResourceManager.h>
 #include <DX3D/Game/Game.h>
