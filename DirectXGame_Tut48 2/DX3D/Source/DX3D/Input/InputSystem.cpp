@@ -39,7 +39,7 @@ void InputSystem::lockCursor(bool lock)
 void InputSystem::setLockArea(const Rect& area)
 {
 	m_lockArea = area;
-	m_lockAreaCenter = Vector2D(floor(area.left + (float)area.width / 2.0f), floor(area.top + (float)area.height / 2.0f));
+	m_lockAreaCenter = Vector2D(floor(area.getLeft() + (float)area.getWidth() / 2.0f), floor(area.getTop() + (float)area.getHeight() / 2.0f));
 }
 
 void InputSystem::update()

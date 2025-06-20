@@ -43,11 +43,11 @@ void GameOverScreen::onUpdate(f32 deltaTime)
 	auto clientSize = m_game->getDisplay()->getClientSize();
 
 	auto image = m_background->getComponent<ImageComponent>();
-	image->setSize({ 0,0,clientSize.width,clientSize.height });
+	image->setSize({ 0,0,clientSize.getWidth(),clientSize.getHeight() });
 
 	m_screen->getTransform()->setPosition(Vector3D(
-		(f32)(clientSize.width / 2.0f) - (649.0f / 2.0f),
-		(f32)(clientSize.height / 2.0f) - (706.0f / 2.0f),
+		(f32)(clientSize.getWidth() / 2.0f) - (649.0f / 2.0f),
+		(f32)(clientSize.getHeight() / 2.0f) - (706.0f / 2.0f),
 		0
 	));
 

@@ -77,12 +77,12 @@ f32 TerrainComponent::getHeightFromWorldPoint(const Vector3D& worldPoint)
 	auto getPixelFromTexCoord = [&](const Vector2D& texcoord)
 	{
 		auto mapSize = m_heightMap->getTexture()->getSize();
-		if (texcoord.x < 0 || texcoord.x>mapSize.width) return 0.0f;
-		if (texcoord.y < 0 || texcoord.y>mapSize.height) return 0.0f;
+		if (texcoord.x < 0 || texcoord.x>mapSize.getWidth()) return 0.0f;
+		if (texcoord.y < 0 || texcoord.y>mapSize.getHeight()) return 0.0f;
 
 		auto pixels = m_heightMap->getTexture()->getPixels();
 		auto bytesPerPixel = m_heightMap->getTexture()->getBitsPerPixel() / 8;
-		auto index = (ui32)(((mapSize.width * bytesPerPixel) * texcoord.y) + texcoord.x * bytesPerPixel);
+		auto index = (ui32)(((mapSize.getWidth() * bytesPerPixel) * texcoord.y) + texcoord.x * bytesPerPixel);
 		auto height = (f32)pixels[index];
 		height /= 255.0f;
 		return height;
@@ -95,7 +95,7 @@ f32 TerrainComponent::getHeightFromWorldPoint(const Vector3D& worldPoint)
 	auto worldPos = m_entity->getTransform()->getPosition();
 
 
-	auto scale = Vector3D(scaleSize.x / mapSize.width, 0, scaleSize.z / mapSize.height);
+	auto scale = Vector3D(scaleSize.x / mapSize.getWidth(), 0, scaleSize.z / mapSize.getHeight());
 	auto tempPoint = worldPoint;
 	tempPoint = Vector3D(
 		(tempPoint.x - worldPos.x) / scale.x,

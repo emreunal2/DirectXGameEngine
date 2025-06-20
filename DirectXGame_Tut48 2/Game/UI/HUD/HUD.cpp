@@ -80,16 +80,16 @@ void HUD::onUpdate(f32 deltaTime)
 
 	m_scoreText->getTransform()->setPosition(Vector3D(
 		(f32) 150.0f,
-		(f32) clientSize.height - 180.0f,
+		(f32) clientSize.getHeight() - 180.0f,
 		0
 	));
 	m_totScoreText->getTransform()->setPosition(Vector3D(
 		(f32)150.0f,
-		(f32)clientSize.height - 70.0f,
+		(f32)clientSize.getHeight() - 70.0f,
 		0
 	));
 	m_timeText->getTransform()->setPosition(Vector3D(
-		(f32)(clientSize.width) - 200.0f,
+		(f32)(clientSize.getWidth()) - 200.0f,
 		(f32)60,
 		0
 	));

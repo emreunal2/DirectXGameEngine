@@ -80,7 +80,7 @@ Window::Window()
 		
 	if (!classId) DX3DError("Window not created successfully");
 
-	RECT rc = { 0,0,m_size.width,m_size.height };
+	RECT rc = { 0,0,m_size.getWidth(),m_size.getHeight()};
 	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, false);
 
 	//Creation of the window

@@ -47,8 +47,8 @@ Texture2D::Texture2D(const wchar_t* full_path, RenderSystem* system): m_system(s
 Texture2D::Texture2D(const Rect& size, Texture2D::Type type, RenderSystem* system) : m_system(system)
 {
 	D3D11_TEXTURE2D_DESC tex_desc = {};
-	tex_desc.Width = size.width;
-	tex_desc.Height = size.height;
+	tex_desc.Width = size.getWidth();
+	tex_desc.Height = size.getHeight();
 
 	if (type == Texture2D::Type::Normal)
 		tex_desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;

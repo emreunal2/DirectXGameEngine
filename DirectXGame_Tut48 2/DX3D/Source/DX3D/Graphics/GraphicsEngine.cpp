@@ -117,7 +117,7 @@ void GraphicsEngine::update()
 
 	context->clearRenderTargetColor(swapChain, fogColor.x, fogColor.y, fogColor.z, 1);
 	auto winSize = m_game->m_display->getClientSize();
-	context->setViewportSize(winSize.width, winSize.height);
+	context->setViewportSize(winSize.getWidth(), winSize.getHeight());
 
 
 
@@ -180,7 +180,7 @@ void GraphicsEngine::update()
 		auto transform = t->getEntity()->getTransform();
 		transform->getWorldMatrix(constData.world);
 		constData.terrain.size = t->getSize();
-		constData.terrain.heightMapSize = (f32)t->getHeightMap()->getTexture()->getSize().width;
+		constData.terrain.heightMapSize = (f32)t->getHeightMap()->getTexture()->getSize().getWidth();
 
 		context->setVertexBuffer(t->m_meshVb);
 		context->setIndexBuffer(t->m_meshIb);
@@ -209,7 +209,7 @@ void GraphicsEngine::update()
 		auto transform = w->getEntity()->getTransform();
 		transform->getWorldMatrix(constData.world);
 		constData.water.size = w->getSize();
-		constData.water.heightMapSize = (f32)w->getWaveHeightMap()->getTexture()->getSize().width;
+		constData.water.heightMapSize = (f32)w->getWaveHeightMap()->getTexture()->getSize().getWidth();
 
 		context->setVertexBuffer(w->m_meshVb);
 		context->setIndexBuffer(w->m_meshIb);
@@ -255,7 +255,7 @@ void GraphicsEngine::update()
 
 			auto texture = i->getImage()->getTexture();
 			auto size = i->getSize();
-			m_render_system->drawImage(texture, { (i32)pos.x,(i32)pos.y,size.width,size.height });
+			m_render_system->drawImage(texture, { (i32)pos.x,(i32)pos.y,size.getWidth(),size.getHeight() });
 		}
 	}
 	

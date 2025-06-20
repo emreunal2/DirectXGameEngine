@@ -30,11 +30,17 @@ public:
 	void setCullMode(const CullMode& mode);
 	void clearState();
 	void drawImage(const Texture2DPtr& texture, const Rect& size);
-	Microsoft::WRL::ComPtr<ID3D11Device> m_d3d_device;
-	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_imm_context;
+	// Returns the device
+	Microsoft::WRL::ComPtr<ID3D11Device> getDevice() const { return m_d3d_device; }
+
+	// Returns the immediate context
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> getImmediateContext() const { return m_imm_context; }
+
 private:
 	void compilePrivateShaders();
 	void initRasterizerStates();
+	Microsoft::WRL::ComPtr<ID3D11Device> m_d3d_device;
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_imm_context;
 private:
 	DeviceContextPtr m_imm_device_context;
 private:

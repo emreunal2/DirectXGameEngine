@@ -1,41 +1,24 @@
-﻿  CameraComponent.cpp
-  Entity.cpp
-  FogComponent.cpp
-  ImageComponent.cpp
-  LightComponent.cpp
-  MeshComponent.cpp
-  PlayerControllerComponent.cpp
-  SphereColliderComponent.cpp
-  TerrainComponent.cpp
-  TextComponent.cpp
-  WaterComponent.cpp
-  Display.cpp
-  Game.cpp
-  Win32Game.cpp
-  World.cpp
-  DeviceContext.cpp
+﻿  LookDirectionCircle.cpp
+  Platform.cpp
+  GameOverScreen.cpp
+  AsteroidItem.cpp
   GraphicsEngine.cpp
-  RenderSystem.cpp
-  VertexBuffer.cpp
-  VertexShader.cpp
-  Material.cpp
+  InputSystem.cpp
   Mesh.cpp
   ResourceManager.cpp
-  Window.cpp
-  AsteroidItem.cpp
-  BoxItem.cpp
+  Game.cpp
   GameItem.cpp
-  InfoItem.cpp
-  LookDirectionCircle.cpp
-  Platform.cpp
-  Spaceship.cpp
-  Level.cpp
-  MainGame.cpp
-  HUD.cpp
-  MainMenu.cpp
-  GameOverScreen.cpp
-  WinScreen.cpp
   main.cpp
+  MainGame.cpp
+  TerrainComponent.cpp
+  WaterComponent.cpp
+  Spaceship.cpp
+  BoxItem.cpp
+  InfoItem.cpp
+  HUD.cpp
+  WinScreen.cpp
+  MainMenu.cpp
+  Level.cpp
 C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\Game\Level\Level.cpp(141,55): warning C4244: 'argument': conversion from 'int' to 'f32', possible loss of data
 DirectXTKD.lib(SpriteBatch.obj) : warning LNK4099: PDB 'DirectXTK.pdb' was not found with 'DirectXTKD.lib(SpriteBatch.obj)' or at 'C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXTK.pdb'; linking object as if no debug info
 DirectXTKD.lib(SpriteFont.obj) : warning LNK4099: PDB 'DirectXTK.pdb' was not found with 'DirectXTKD.lib(SpriteFont.obj)' or at 'C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXTK.pdb'; linking object as if no debug info

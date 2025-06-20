@@ -32,7 +32,7 @@ public:
 	{
 	}
 
-public:
+private:
 	Vector3D m_position;
 	Vector2D m_texcoord;
 	Vector3D m_normal;

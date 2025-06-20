@@ -20,6 +20,18 @@ public:
 	~Rect()
 	{
 	}
-public:
+
+	i32 getWidth() const { return width; }
+	void setWidth(i32 w) { width = w; }
+
+	i32 getHeight() const { return height; }
+	void setHeight(i32 h) { height = h; }
+
+	i32 getLeft() const { return left; }
+	void setLeft(i32 l) { left = l; }
+
+	i32 getTop() const { return top; }
+	void setTop(i32 t) { top = t; }
+private:
 	i32 width, height, left, top;
 };

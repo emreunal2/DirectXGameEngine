@@ -132,7 +132,7 @@ void RenderSystem::clearState()
 void RenderSystem::drawImage(const Texture2DPtr& texture, const Rect& size)
 {
 	m_imageBatch->Begin(DirectX::DX11::SpriteSortMode::SpriteSortMode_Deferred, m_alphaBlendState.Get());
-	RECT rc = { size.left,size.top,size.left + size.width,size.top + size.height };
+	RECT rc = { size.getLeft(),size.getTop(),size.getLeft() + size.getWidth(),size.getTop() + size.getHeight()};
 	m_imageBatch->Draw(texture->m_shader_res_view.Get(), rc);
 	m_imageBatch->End();
 }

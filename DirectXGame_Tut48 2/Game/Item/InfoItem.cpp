@@ -27,8 +27,8 @@ void InfoItem::onCreate()
 	auto clientSize = getWorld()->getGame()->getDisplay()->getClientSize();
 	
 	getTransform()->setPosition(Vector3D(
-		(f32)(clientSize.width / 2.0f) + 20.0f,
-		(f32)(clientSize.height / 2.0f) - 20.0f,
+		(f32)(clientSize.getWidth() / 2.0f) + 20.0f,
+		(f32)(clientSize.getHeight() / 2.0f) - 20.0f,
 		0
 	));
 }
@@ -43,8 +43,8 @@ void InfoItem::onUpdate(f32 deltaTime)
 	auto clientSize = getWorld()->getGame()->getDisplay()->getClientSize();
 
 	getTransform()->setPosition(Vector3D(
-		(f32)(clientSize.width / 2.0f) - 20.0f ,
-		(f32)(clientSize.height / 2.0f) - 60.0f - m_pos,
+		(f32)(clientSize.getWidth() / 2.0f) - 20.0f ,
+		(f32)(clientSize.getHeight() / 2.0f) - 60.0f - m_pos,
 		0
 	));
 

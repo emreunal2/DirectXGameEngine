@@ -178,6 +178,6 @@ public:
 	{
 	}
 
-public:
+private:
 	f32 m_mat[4][4] = {};
 };
