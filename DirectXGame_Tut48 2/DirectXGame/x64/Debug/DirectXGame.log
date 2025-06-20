@@ -1,32 +1,23 @@
-﻿  Display.cpp
-  Game.cpp
+﻿  LookDirectionCircle.cpp
+  Platform.cpp
+  GameOverScreen.cpp
+  AsteroidItem.cpp
+  Display.cpp
   Win32Game.cpp
   GraphicsEngine.cpp
+  Mesh.cpp
   Window.cpp
-  AsteroidItem.cpp
-  BoxItem.cpp
+  Game.cpp
   GameItem.cpp
-  InfoItem.cpp
-  LookDirectionCircle.cpp
-  Platform.cpp
-  Spaceship.cpp
-  Level.cpp
-  MainGame.cpp
-  HUD.cpp
-  MainMenu.cpp
-  GameOverScreen.cpp
-  WinScreen.cpp
-C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\Game\Level\Level.cpp(141,55): warning C4244: 'argument': conversion from 'int' to 'f32', possible loss of data
   main.cpp
-C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Source\DX3D\Game\Display.cpp(15,96): error C2248: 'Window::m_hwnd': cannot access private member declared in class 'Window'
-      C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Include\DX3D\Window\Window.h(28,8):
-      see declaration of 'Window::m_hwnd'
-      C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Include\DX3D\Window\Window.h(9,7):
-      see declaration of 'Window'
-  
-C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Source\DX3D\Game\Display.cpp(20,23): error C2248: 'Window::m_hwnd': cannot access private member declared in class 'Window'
-      C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Include\DX3D\Window\Window.h(28,8):
-      see declaration of 'Window::m_hwnd'
-      C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Include\DX3D\Window\Window.h(9,7):
-      see declaration of 'Window'
-  
+  MainGame.cpp
+  LightComponent.cpp
+  Spaceship.cpp
+  BoxItem.cpp
+  InfoItem.cpp
+  HUD.cpp
+  WinScreen.cpp
+  MainMenu.cpp
+  Level.cpp
+C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\Game\Level\Level.cpp(141,55): warning C4244: 'argument': conversion from 'int' to 'f32', possible loss of data
+  DirectXGame.vcxproj -> C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXGame.exe

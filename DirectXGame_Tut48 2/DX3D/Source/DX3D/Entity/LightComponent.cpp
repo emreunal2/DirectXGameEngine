@@ -12,7 +12,12 @@ LightComponent::LightComponent()
 
 LightComponent::~LightComponent()
 {
-	m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	try {
+		m_entity->getWorld()->getGame()->getGraphicsEngine()->removeComponent(this);
+	}
+	catch (...) {
+		//tests
+	}
 }
 
 void LightComponent::setColor(const Vector4D& color)
