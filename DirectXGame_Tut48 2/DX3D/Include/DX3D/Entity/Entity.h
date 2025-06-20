@@ -49,12 +49,13 @@ private:
 	void createComponentInternal(Component* component, size_t id);
 	Component* getComponentInternal(size_t id);
 	void removeComponent(size_t id);
-protected:
 	size_t m_typeId = 0;
 	World* m_world = nullptr;
 
 	TransformComponent* m_transform = nullptr;
 	std::map<size_t, std::unique_ptr<Component>> m_components;
+protected:
+
 	friend class World;
 	friend class Component;
 	friend class PhysicsEngine;

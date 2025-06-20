@@ -18,7 +18,7 @@ protected:
 	virtual void onCreate();
 	virtual void onUpdate(f32 deltaTime);
 	virtual void onCollision(Component* body1, Component* body2);
-protected:
+private:
 	f32 m_angle = 0;
 	f32 m_speed = 142.0f;
 	f32 m_elapsedSecondsLastUpdate = 0.0f;
