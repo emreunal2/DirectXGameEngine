@@ -10,6 +10,8 @@ class VertexBuffer
 public:
 	VertexBuffer(void* list_vertices, ui32 size_vertex, ui32 size_list,
 		RenderSystem * system);
+	VertexBuffer(const VertexBuffer&) = delete;
+	VertexBuffer& operator=(const VertexBuffer&) = delete;
 	ui32 getSizeVertexList();
 private:
 	ui32 m_size_vertex;

@@ -10,7 +10,8 @@ public:
 	Entity();
 	virtual ~Entity();
 	void release();
-
+	Entity(const Entity&) = delete;
+	Entity& operator=(const Entity&) = delete;
 	World* getWorld();
 	InputSystem* getInputSystem();
 	TransformComponent* getTransform();

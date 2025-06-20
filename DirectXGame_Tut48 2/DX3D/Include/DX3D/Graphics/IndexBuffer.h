@@ -9,6 +9,8 @@ class IndexBuffer
 {
 public:
 	IndexBuffer(void* list_indices, ui32 size_list,RenderSystem * system);
+	IndexBuffer(const ImageComponent&) = delete;
+	IndexBuffer& operator=(const IndexBuffer&) = delete;
 	ui32 getSizeIndexList();
 private:
 	ui32 m_size_list;

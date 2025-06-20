@@ -10,6 +10,8 @@ class Display: public Window
 {
 public:
 	explicit Display(Game* game);
+	Display(const Display&) = delete;
+	Display& operator=(const Display&) = delete;
 	~Display();
 
 	void setFullScreen(const Rect& size, bool fullscreen);

@@ -10,6 +10,8 @@ class ConstantBuffer
 public:
 	ConstantBuffer(void* buffer, ui32 size_buffer,RenderSystem * system);
 	void update(const DeviceContextPtr& context, void* buffer);
+	ConstantBuffer(const ConstantBuffer&) = delete;
+	ConstantBuffer& operator=(const ConstantBuffer&) = delete;
 private:
 	Microsoft::WRL::ComPtr<ID3D11Buffer> m_buffer;
 	RenderSystem * m_system = nullptr;

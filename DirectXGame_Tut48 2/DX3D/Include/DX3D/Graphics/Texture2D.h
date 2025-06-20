@@ -23,6 +23,8 @@ public:
 public:
 	Texture2D(const wchar_t* full_path, RenderSystem* system);
 	Texture2D(const Rect& size, Texture2D::Type type, RenderSystem* system);
+	Texture2D(const Texture2D&) = delete;
+	Texture2D& operator=(const Texture2D&) = delete;
 	Rect getSize();
 	unsigned char* getPixels();
 	ui32 getBitsPerPixel();

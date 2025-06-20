@@ -10,7 +10,8 @@ class TextComponent: public Component
 public:
 	TextComponent();
 	virtual ~TextComponent();
-
+	TextComponent(const TextComponent&) = delete;
+	TextComponent& operator=(const TextComponent&) = delete;
 	void setFont(const FontPtr& font);
 	const FontPtr& getFont();
 

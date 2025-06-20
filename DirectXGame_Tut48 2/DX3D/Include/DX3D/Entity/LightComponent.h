@@ -9,7 +9,8 @@ class LightComponent: public Component
 public:
 	LightComponent();
 	virtual ~LightComponent();
-
+	LightComponent(const LightComponent&) = delete;
+	LightComponent& operator=(const LightComponent&) = delete;
 	void setColor(const Vector4D& color);
 	Vector4D getColor();
 protected:

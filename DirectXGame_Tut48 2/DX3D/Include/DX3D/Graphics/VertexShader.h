@@ -10,6 +10,8 @@ class VertexShader
 {
 public:
 	VertexShader(const wchar_t* full_path, const char* entryPoint, RenderSystem * system);
+	VertexShader(const VertexShader&) = delete;
+	VertexShader& operator=(const VertexShader&) = delete;
 private:
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_vs;
 	RenderSystem * m_system = nullptr;

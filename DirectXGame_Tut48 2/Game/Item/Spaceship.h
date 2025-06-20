@@ -8,7 +8,8 @@ class Spaceship : public Entity
 public:
 	Spaceship();
 	~Spaceship();
-
+	Spaceship(const Spaceship&) = delete;
+	Spaceship& operator=(const Spaceship&) = delete;
 	f32 getScore();
 
 	virtual void onCreate();

@@ -10,7 +10,8 @@ class MeshComponent: public Component
 public:
 	MeshComponent();
 	virtual ~MeshComponent();
-
+	MeshComponent(const MeshComponent&) = delete;
+	MeshComponent& operator=(const MeshComponent&) = delete;
 	void setMesh(const MeshPtr& mesh);
 	const MeshPtr& getMesh();
 

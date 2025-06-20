@@ -12,6 +12,8 @@ class CameraComponent: public Component
 public:
 	CameraComponent();
 	virtual ~CameraComponent();
+	CameraComponent(const CameraComponent&) = delete;
+	CameraComponent& operator=(const CameraComponent&) = delete;
 
 	void getViewMatrix(Matrix4x4& view);
 	void getProjectionMatrix(Matrix4x4& proj);

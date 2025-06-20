@@ -10,7 +10,8 @@ class DeviceContext
 {
 public:
 	DeviceContext(ID3D11DeviceContext* device_context, RenderSystem * system);
-
+	DeviceContext(const DeviceContext&) = delete;
+	DeviceContext& operator=(const DeviceContext&) = delete;
 	void clearRenderTargetColor(const SwapChainPtr& swap_chain,f32 red, f32 green, f32 blue, f32 alpha);
 	void clearDepthStencil(const SwapChainPtr& swap_chain);
 	void setVertexBuffer(const VertexBufferPtr& vertex_buffer);

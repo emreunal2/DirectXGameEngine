@@ -10,7 +10,8 @@ class PlayerControllerComponent: public Component
 public:
 	PlayerControllerComponent();
 	virtual ~PlayerControllerComponent();
-
+	PlayerControllerComponent(const PlayerControllerComponent&) = delete;
+	PlayerControllerComponent& operator=(const PlayerControllerComponent&) = delete;
 	void setHeight(f32 height);
 	f32 getHeight();
 

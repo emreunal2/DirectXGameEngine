@@ -13,7 +13,8 @@ public:
 	//Release all the resources loaded
 	~GraphicsEngine();
 
-
+	GraphicsEngine(const GraphicsEngine&) = delete;
+	GraphicsEngine& operator=(const GraphicsEngine&) = delete;
 	void update();
 public:
 	RenderSystem * getRenderSystem();

@@ -10,7 +10,8 @@ class PhysicsEngine
 public:
 	explicit PhysicsEngine(Game* game);
 	virtual ~PhysicsEngine();
-
+	PhysicsEngine(const PhysicsEngine&) = delete;
+	PhysicsEngine& operator=(const PhysicsEngine&) = delete;
 	void update();
 public:
 	void addComponent(Component* component);

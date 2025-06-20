@@ -11,7 +11,8 @@ class Window
 public:
 	Window();
 	virtual ~Window();
-
+	Window(const Window&) = delete;
+	Window& operator=(const Window&) = delete;
 	Rect getClientSize();
 	Rect getScreenSize();
 

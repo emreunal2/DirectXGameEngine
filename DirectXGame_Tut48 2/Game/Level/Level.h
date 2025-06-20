@@ -16,7 +16,8 @@ class Level
 public:
 	explicit Level(Game* game);
 	~Level();
-
+	Level(const Level&) = delete;
+	Level& operator=(const Level&) = delete;
 	Entity* getPlayer();
 	void generateLevel();
 

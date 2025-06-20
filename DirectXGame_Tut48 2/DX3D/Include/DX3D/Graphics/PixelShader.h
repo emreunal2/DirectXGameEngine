@@ -9,6 +9,8 @@ class PixelShader
 {
 public:
 	PixelShader(const wchar_t* full_path, const char* entryPoint,RenderSystem * system);
+	PixelShader(const PixelShader&) = delete;
+	PixelShader& operator=(const PixelShader&) = delete;
 private:
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_ps;
 	RenderSystem * m_system = nullptr;

@@ -12,7 +12,8 @@ class TerrainComponent: public Component
 public:
 	TerrainComponent();
 	virtual ~TerrainComponent();
-
+	TerrainComponent(const TerrainComponent&) = delete;
+	TerrainComponent& operator=(const TerrainComponent&) = delete;
 	void setHeightMap(const TexturePtr& heightMap);
 	const TexturePtr& getHeightMap();
 

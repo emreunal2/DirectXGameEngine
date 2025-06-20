@@ -10,7 +10,8 @@ class SwapChain
 public:
 	//Initialize SwapChain for a window
 	SwapChain(HWND hwnd,ui32 width,ui32 height,RenderSystem * system);
-	
+	SwapChain(const SwapChain&) = delete;
+	SwapChain& operator=(const SwapChain&) = delete;
 	void setFullScreen(bool fullscreen, ui32 width, ui32 height);
 	void resize(ui32 width, ui32 height);
 	bool present(bool vsync);

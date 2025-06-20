@@ -8,6 +8,8 @@ class InfoItem : public Entity
 public:
 	InfoItem();
 	virtual ~InfoItem();
+	InfoItem(const InfoItem&) = delete;
+	InfoItem& operator=(const InfoItem&) = delete;
 
 	void setText(const wchar_t* text);
 

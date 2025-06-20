@@ -10,6 +10,8 @@ public:
 	Component();
 	virtual ~Component();
 
+	Component(const Component&) = delete;
+	Component& operator=(const Component&) = delete;
 	void release();
 
 	Entity* getEntity();

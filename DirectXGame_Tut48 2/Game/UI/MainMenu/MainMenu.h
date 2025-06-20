@@ -9,7 +9,8 @@ class MainMenu
 public:
 	explicit MainMenu(Game* game);
 	~MainMenu();
-
+	MainMenu(const MainMenu&) = delete;
+	MainMenu& operator=(const MainMenu&) = delete;
 	void onUpdate(f32 deltaTime);
 private:
 	Game* m_game = nullptr;

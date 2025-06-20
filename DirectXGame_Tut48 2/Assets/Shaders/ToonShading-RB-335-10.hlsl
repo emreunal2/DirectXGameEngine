@@ -29,7 +29,7 @@ float4 psmain(VPS_INOUT input) : SV_TARGET
 	float3 normal = normalize(input.normal);
 
 	// === Ambient ===
-	float3 ambient = 6 * (color.rgb * float3(0.09, 0.09, 0.09));
+	float3 ambient = 4 * (color.rgb * float3(0.09, 0.09, 0.09));
 
 	// === Diffuse - Quantized ===
 	float NdotL = max(dot(normal, light_direction), 0.0);

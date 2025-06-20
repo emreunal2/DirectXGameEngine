@@ -10,7 +10,8 @@ class World
 public:
 	explicit World(Game* game);
 	~World();
-
+	World(const World&) = delete;
+	World& operator=(const World&) = delete;
 	template <typename T>
 	T* createEntity()
 	{

@@ -9,7 +9,8 @@ class GameItem : public Entity
 public:
 	GameItem();
 	virtual ~GameItem();
-
+	GameItem(const GameItem&) = delete;
+	GameItem& operator=(const GameItem&) = delete;
 	void setPosition(const Vector3D& position);
 	void setDirection(const Vector3D& direction);
 

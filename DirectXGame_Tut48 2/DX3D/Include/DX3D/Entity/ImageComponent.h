@@ -9,7 +9,8 @@ class ImageComponent: public Component
 public:
 	ImageComponent();
 	virtual ~ImageComponent();
-
+	ImageComponent(const ImageComponent&) = delete;
+	ImageComponent& operator=(const ImageComponent&) = delete;
 	void setImage(const TexturePtr& image);
 	const TexturePtr& getImage();
 

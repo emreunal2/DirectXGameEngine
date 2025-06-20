@@ -65,6 +65,8 @@ void Level::generateLevel()
 	auto grass = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/grass.jpg");
 	auto ground = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/ground.jpg");
 	auto skyMat = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/SkyBox.hlsl");
+	auto house = m_game->getResourceManager()->createResourceFromFile<Mesh>(L"Assets/Meshes/house.obj");
+	auto mat = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
 
 	m_hud = std::make_unique<HUD>(this->m_game);
 
@@ -112,6 +114,21 @@ void Level::generateLevel()
 
 	m_player = m_game->getWorld()->createEntity<Spaceship>();
 
+	
+	//create 10 sphere
+	{
+		mat->addTexture(ground);
+		for (unsigned int i = 0; i < 20; i++)
+		{
+			auto entity = m_game->getWorld()->createEntity<Entity>();
+			auto meshComponent = entity->createComponent<MeshComponent>();
+			meshComponent->setMesh(house);
+			meshComponent->addMaterial(mat);
+			entity->getTransform()->setPosition(Vector3D(rand() % 100 + (-50.0f), (i * (20.0f)) - 5.0f, -100));
+			entity->getTransform()->setScale(Vector3D(5, 5, 5));
+
+		}
+	}
 
 	m_elapsedSecondsMatch = (f32)1;
 	m_maximumScore = floor(((rand() % 50 + (10 * m_levels)) + 20 + (10 * m_levels)) / 10.0f);

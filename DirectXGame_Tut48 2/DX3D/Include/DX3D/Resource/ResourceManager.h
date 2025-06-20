@@ -11,7 +11,8 @@ class ResourceManager
 public:
 	explicit ResourceManager(Game* game);
 	~ResourceManager();
-
+	ResourceManager(const ResourceManager&) = delete;
+	ResourceManager& operator=(const ResourceManager&) = delete;
 	template<typename T>
 	std::shared_ptr<T> createResourceFromFile(const wchar_t* file_path)
 	{

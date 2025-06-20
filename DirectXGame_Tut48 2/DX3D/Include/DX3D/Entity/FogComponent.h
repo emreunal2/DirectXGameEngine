@@ -11,6 +11,8 @@ class FogComponent: public Component
 {
 public:
 	FogComponent();
+	FogComponent(const FogComponent&) = delete;
+	FogComponent& operator=(const FogComponent&) = delete;
 	virtual ~FogComponent();
 
 	void setData(const Vector4D& color, f32 start, f32 end);

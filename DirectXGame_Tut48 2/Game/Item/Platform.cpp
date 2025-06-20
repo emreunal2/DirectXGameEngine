@@ -8,6 +8,8 @@ Platform::~Platform()
 {
 }
 
+
+
 void Platform::onCreate()
 {
 	auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/NormalMap.jpg");

@@ -11,7 +11,8 @@ class WaterComponent : public Component
 public:
 	WaterComponent();
 	virtual ~WaterComponent();
-
+	WaterComponent(const WaterComponent&) = delete;
+	WaterComponent& operator=(const WaterComponent&) = delete;
 	void setWaveHeightMap(const TexturePtr& heightMap);
 	const TexturePtr& getWaveHeightMap();
 
