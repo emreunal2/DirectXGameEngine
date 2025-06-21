@@ -49,46 +49,51 @@ Vector3D WaterComponent::getSize()
 
 void WaterComponent::generateMesh()
 {
-	const ui32 w = 1024;
-	const ui32 h = 1024;
+	const ui32 waterWidth = 1024;
+	const ui32 waterHeight = 1024;
 
-	const ui32 ww = w - 1;
-	const ui32 hh = h - 1;
+	const ui32 maxX = waterWidth - 1;
+	const ui32 maxY = waterHeight - 1;
 
+	VertexMesh* waterVertices = new VertexMesh[waterWidth * waterHeight];
+	ui32* waterIndices = new ui32[maxX * maxY * 6];
 
-	VertexMesh* terrainMeshVertices = new VertexMesh[w * h];
-	ui32* terrainMeshIndices = new ui32[ww * hh * 6];
-
-	auto i = 0;
-	for (ui32 x = 0; x < w; x++)
+	ui32 index = 0;
+	for (ui32 x = 0; x < waterWidth; ++x)
 	{
-		for (ui32 y = 0; y < h; y++)
+		for (ui32 y = 0; y < waterHeight; ++y)
 		{
-			terrainMeshVertices[y * w + x] = {
-				Vector3D((f32)x / (f32)ww,0,(f32)y / (f32)hh),
-				Vector2D((f32)x / (f32)ww,(f32)y / (f32)hh),
+			const f32 fx = (f32)x / (f32)maxX;
+			const f32 fy = (f32)y / (f32)maxY;
+
+			waterVertices[y * waterWidth + x] = {
+				Vector3D(fx, 0.0f, fy),
+				Vector2D(fx, fy),
 				Vector3D(),
 				Vector3D(),
 				Vector3D()
 			};
 
-			if (x < ww && y < hh)
+			if (x < maxX && y < maxY)
 			{
-				terrainMeshIndices[i] = (y + 1) * w + (x);
-				terrainMeshIndices[i + 1] = (y)*w + (x);
-				terrainMeshIndices[i + 2] = (y)*w + (x + 1);
+				const ui32 base = y * waterWidth + x;
 
-				terrainMeshIndices[i + 3] = (y)*w + (x + 1);
-				terrainMeshIndices[i + 4] = (y + 1) * w + (x + 1);
-				terrainMeshIndices[i + 5] = (y + 1) * w + (x);
-				i += 6;
+				waterIndices[index + 0] = (y + 1) * waterWidth + x;
+				waterIndices[index + 1] = base;
+				waterIndices[index + 2] = base + 1;
+
+				waterIndices[index + 3] = base + 1;
+				waterIndices[index + 4] = (y + 1) * waterWidth + (x + 1);
+				waterIndices[index + 5] = (y + 1) * waterWidth + x;
+
+				index += 6;
 			}
 		}
 	}
 
 	auto renderSystem = m_entity->getWorld()->getGame()->getGraphicsEngine()->getRenderSystem();
-	m_meshVb = renderSystem->createVertexBuffer(terrainMeshVertices, sizeof(VertexMesh), w * h);
-	m_meshIb = renderSystem->createIndexBuffer(terrainMeshIndices, ww * hh * 6);
+	m_meshVb = renderSystem->createVertexBuffer(waterVertices, sizeof(VertexMesh), waterWidth * waterHeight);
+	m_meshIb = renderSystem->createIndexBuffer(waterIndices, maxX * maxY * 6);
 
 	m_vertexShader = renderSystem->createVertexShader(L"Assets/Shaders/Water.hlsl", "vsmain");
 	m_pixelShader = renderSystem->createPixelShader(L"Assets/Shaders/Water.hlsl", "psmain");
