@@ -98,7 +98,7 @@ public:
 				if (j != i)
 				{
 					a = j;
-					if (j > i) a = a - 1;
+					if (j > i) a -= 1;
 					vec[a].x = (this->m_mat[j][0]);
 					vec[a].y = (this->m_mat[j][1]);
 					vec[a].z = (this->m_mat[j][2]);

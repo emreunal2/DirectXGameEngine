@@ -1,3 +1,4 @@
+// parasoft-begin-suppress ALL "suppress all violations"
 // [DEAR IMGUI]
 // This is a slightly modified version of stb_textedit.h 1.14.
 // Those changes would need to be pushed into nothings/stb:
@@ -294,7 +295,6 @@
 // per-textfield; it includes cursor position, selection state,
 // and undo state.
 //
-// parasoft-begin-suppress ALL "suppress all violations"
 #ifndef IMSTB_TEXTEDIT_UNDOSTATECOUNT
 #define IMSTB_TEXTEDIT_UNDOSTATECOUNT   99
 #endif

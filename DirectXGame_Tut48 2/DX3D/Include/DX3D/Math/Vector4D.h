@@ -19,7 +19,7 @@ public:
 	{
 	}
 
-	void cross(Vector4D &v1, Vector4D &v2, Vector4D &v3)
+	void cross(const Vector4D &v1, const Vector4D &v2, const Vector4D &v3)
 	{
 		this->x = v1.y * (v2.z * v3.m_w - v3.z * v2.m_w) - v1.z * (v2.y * v3.m_w - v3.y * v2.m_w) + v1.m_w * (v2.y * v3.z - v2.z *v3.y);
 		this->y = -(v1.x * (v2.z * v3.m_w - v3.z * v2.m_w) - v1.z * (v2.x * v3.m_w - v3.x * v2.m_w) + v1.m_w * (v2.x * v3.z - v3.x * v2.z));
