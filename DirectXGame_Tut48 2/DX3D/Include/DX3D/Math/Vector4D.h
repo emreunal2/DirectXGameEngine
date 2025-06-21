@@ -15,7 +15,7 @@ public:
 	Vector4D(const Vector4D& vector) :x(vector.x), y(vector.y), z(vector.z), m_w(vector.m_w)
 	{
 	}
-	Vector4D(const Vector3D& vector) :x(vector.x), y(vector.y), z(vector.z), m_w(1.0)
+	explicit Vector4D(const Vector3D& vector) :x(vector.x), y(vector.y), z(vector.z), m_w(1.0)
 	{
 	}
 

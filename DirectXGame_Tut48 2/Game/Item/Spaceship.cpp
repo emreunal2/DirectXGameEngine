@@ -56,7 +56,7 @@ void Spaceship::onUpdate(f32 deltaTime)
 
 	auto input = getInputSystem();
 
-	f32 m_forward = 0.0f;
+	f32 mm_forward = 0.0f;
 	f32 rightward = 0.0f;
 
 	f32 speed = 1.0f;
@@ -116,7 +116,7 @@ void Spaceship::onUpdate(f32 deltaTime)
 	auto xdir = w.getXDirection();
 	auto ydir = w.getYDirection();
 
-	auto pos = getTransform()->getPosition() + zdir * m_forward * deltaTime * 100.0f * speed + xdir * rightward * deltaTime * 100.0f * speed;
+	auto pos = getTransform()->getPosition() + zdir * mm_forward * deltaTime * 100.0f * speed + xdir * rightward * deltaTime * 100.0f * speed;
 	if (m_jump)
 	{
 		pos = pos + ydir * 50.0f * lookup;
@@ -140,7 +140,7 @@ void Spaceship::onUpdate(f32 deltaTime)
 
 	m_cameraEntity->getTransform()->setPosition(camPos);
 
-	m_player->move(zdir* m_forward, deltaTime);	
+	m_player->move(zdir* mm_forward, deltaTime);	
 	
 	m_elapsedSecondsProjectile += deltaTime;
 	

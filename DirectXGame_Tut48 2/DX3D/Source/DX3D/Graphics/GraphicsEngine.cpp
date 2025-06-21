@@ -126,7 +126,7 @@ void GraphicsEngine::update()
 	for (auto c : m_cameras)
 	{
 		auto t = c->getEntity()->getTransform();
-		constData.camera.position = t->getPosition();
+		constData.camera.position = Vector4D(t->getPosition());
 		c->setScreenArea(winSize);
 		c->getViewMatrix(constData.camera.view);
 		c->getProjectionMatrix(constData.camera.proj);
@@ -138,7 +138,7 @@ void GraphicsEngine::update()
 		auto t = l->getEntity()->getTransform();
 		Matrix4x4 w;
 		t->getWorldMatrix(w);
-		constData.light.direction = w.getZDirection();
+		constData.light.direction = Vector4D(w.getZDirection());
 		constData.light.color = l->getColor();
 	}
 
@@ -179,7 +179,7 @@ void GraphicsEngine::update()
 	{
 		auto transform = t->getEntity()->getTransform();
 		transform->getWorldMatrix(constData.world);
-		constData.terrain.size = t->getSize();
+		constData.terrain.size = Vector4D(t->getSize());
 		constData.terrain.heightMapSize = (f32)t->getHeightMap()->getTexture()->getSize().getWidth();
 
 		context->setVertexBuffer(t->m_meshVb);
@@ -208,7 +208,7 @@ void GraphicsEngine::update()
 	{
 		auto transform = w->getEntity()->getTransform();
 		transform->getWorldMatrix(constData.world);
-		constData.water.size = w->getSize();
+		constData.water.size = Vector4D(w->getSize());
 		constData.water.heightMapSize = (f32)w->getWaveHeightMap()->getTexture()->getSize().getWidth();
 
 		context->setVertexBuffer(w->m_meshVb);

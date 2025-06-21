@@ -60,7 +60,7 @@ private:
 	Entity* m_background = nullptr;
 
 	LightingMode m_lightingMode = LightingMode::Daylight;
-	LightComponent* m_directionalLight;
-	LightComponent* m_spotLight;
+	LightComponent* m_directionalLight = nullptr;
+	LightComponent* m_spotLight = nullptr;
 };
 
