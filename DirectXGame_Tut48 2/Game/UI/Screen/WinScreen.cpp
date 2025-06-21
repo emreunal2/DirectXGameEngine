@@ -10,7 +10,6 @@ WinScreen::WinScreen(Game* game) : m_game(game)
 
 	auto screen = game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/UI/win_screen.png");
 	auto background = game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/UI/screen_background.png");
-
 	{
 		m_background = game->getWorld()->createEntity<Entity>();
 		auto image = m_background->createComponent<ImageComponent>();
@@ -45,7 +44,7 @@ WinScreen::~WinScreen()
 void WinScreen::onUpdate(f32 deltaTime)
 {
 	auto clientSize = m_game->getDisplay()->getClientSize();
-
+	auto activeDeltaTime = deltaTime;
 	auto image = m_background->getComponent<ImageComponent>();
 	image->setSize({ 0,0,clientSize.getWidth(),clientSize.getHeight() });
 

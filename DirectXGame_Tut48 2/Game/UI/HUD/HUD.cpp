@@ -53,7 +53,7 @@ HUD::~HUD()
 	}
 }
 
-void HUD::setInfo(i32 level, i32 score, i32 maximumScore, i32 totalScore, i32 time)
+void HUD::setInfo(i32 level, i32 score, i32 totalScore, i32 time)
 {
 	m_infoTextStr.str(std::wstring());
 	m_infoTextStr << (i32)level;

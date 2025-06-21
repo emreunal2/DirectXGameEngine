@@ -28,7 +28,7 @@ protected:
 	virtual void onQuit() {}
 
 private:
-	void onDisplaySize(const Rect& size);
+	void onDisplaySize();
 	void onInternalUpdate();
 private:
 	std::unique_ptr<InputSystem> m_inputSystem;

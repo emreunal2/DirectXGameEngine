@@ -23,9 +23,6 @@ void AsteroidItem::setDirection(const Vector3D& direction)
 	m_direction = Vector3D::normalize(direction);
 }
 
-void AsteroidItem::setSpeed(f32 speed)
-{
-}
 
 void AsteroidItem::onCreate()
 {

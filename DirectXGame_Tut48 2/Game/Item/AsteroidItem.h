@@ -12,7 +12,6 @@ public:
 
 	void setPosition(const Vector3D& position);
 	void setDirection(const Vector3D& direction);
-	void setSpeed(f32 speed);
 
 protected:
 	virtual void onCreate();

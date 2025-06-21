@@ -34,5 +34,5 @@ void Display::setFullScreen(const Rect& size, bool fullscreen)
 void Display::onSize(const Rect& size)
 {
 	m_swapChain->resize(size.getWidth(), size.getHeight());
-	m_game->onDisplaySize(size);
+	m_game->onDisplaySize();
 }

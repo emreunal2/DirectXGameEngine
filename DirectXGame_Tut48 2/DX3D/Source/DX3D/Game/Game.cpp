@@ -61,7 +61,7 @@ Display* Game::getDisplay()
 	return m_display.get();
 }
 
-void Game::onDisplaySize(const Rect& size)
+void Game::onDisplaySize()
 {
 	m_inputSystem->setLockArea(m_display->getClientSize());
 	onInternalUpdate();

@@ -41,7 +41,7 @@ GameOverScreen::~GameOverScreen()
 void GameOverScreen::onUpdate(f32 deltaTime)
 {
 	auto clientSize = m_game->getDisplay()->getClientSize();
-
+	auto lastDeltaTime = deltaTime;
 	auto image = m_background->getComponent<ImageComponent>();
 	image->setSize({ 0,0,clientSize.getWidth(),clientSize.getHeight() });
 

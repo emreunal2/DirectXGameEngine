@@ -11,7 +11,7 @@ public:
 	~HUD();
 	HUD(const HUD&) = delete;
 	HUD& operator=(const HUD&) = delete;
-	void setInfo(i32 level,i32 score, i32 maximumScore, i32 totalScore, i32 time);
+	void setInfo(i32 level,i32 score, i32 totalScore, i32 time);
 	virtual void onUpdate(f32 deltaTime);
 private:
 	Game* m_game = nullptr;

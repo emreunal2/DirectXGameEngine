@@ -247,7 +247,7 @@ void Level::onUpdate(f32 deltaTime)
 	}
 	else if (m_sceneType == 0)
 	{
-		m_hud->setInfo(m_levels, (i32) static_cast<Spaceship*>(m_player)->getScore(), (i32)m_maximumScore, (i32)m_totalScore, (i32)m_elapsedSecondsMatch);
+		m_hud->setInfo(m_levels, (i32) static_cast<Spaceship*>(m_player)->getScore(), (i32)m_totalScore, (i32)m_elapsedSecondsMatch);
 	}
 
 	m_hud->onUpdate(deltaTime);
@@ -304,7 +304,6 @@ void Level::onUpdate(f32 deltaTime)
 
 			entity->setPosition(pos);
 			entity->setDirection(dir);
-			entity->setSpeed((f32)((rand() % 100) + (300.0f + (50.0f * (f32)m_levels))));
 		}
 	}
 }
