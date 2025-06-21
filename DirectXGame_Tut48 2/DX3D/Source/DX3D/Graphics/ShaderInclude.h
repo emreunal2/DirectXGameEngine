@@ -14,7 +14,7 @@ public:
 	{
 
 	}
-	~ShaderInclude()
+	virtual ~ShaderInclude()
 	{
 
 	}
