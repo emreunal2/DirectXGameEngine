@@ -65,7 +65,10 @@ public:
 
 	f32 getDeterminant()
 	{
-		Vector4D minor, v1, v2, v3;
+		Vector4D minor;
+		Vector4D v1;
+		Vector4D v2;
+		Vector4D v3;
 		f32 det;
 
 		v1 = Vector4D(this->m_mat[0][0], this->m_mat[1][0], this->m_mat[2][0], this->m_mat[3][0]);
@@ -81,14 +84,14 @@ public:
 
 	void inverse()
 	{
-		i32 a, i, j;
+		i32 a, j;
 		Matrix4x4 out;
 		Vector4D v, vec[3];
-		f32 det = 0.0f;
+		f32 det;
 
 		det = this->getDeterminant();
 		if (!det) return;
-		for (i = 0; i<4; i++)
+		for (i32 i = 0; i<4; i++)
 		{
 			for (j = 0; j<4; j++)
 			{
