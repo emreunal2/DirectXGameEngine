@@ -5,7 +5,7 @@
 
 HUD::HUD(Game* game): m_game(game)
 {
-	auto font = m_game->getResourceManager()->createResourceFromFile<Font>(L"Assets/Fonts/Bahnschrift.font");
+	auto font = m_game->getResourceManager()->createResourceFromFile<Font>(L"Assets/Fonts/Bahnschrift4.font");
 
 	{
 		m_timeText = m_game->getWorld()->createEntity<Entity>();

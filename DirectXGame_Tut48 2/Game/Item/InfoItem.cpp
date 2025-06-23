@@ -20,7 +20,7 @@ void InfoItem::setText(const wchar_t* text)
 void InfoItem::onCreate()
 {
 	Entity::onCreate();
-	auto font = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Font>(L"Assets/Fonts/Bahnschrift.font");
+	auto font = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Font>(L"Assets/Fonts/Bahnschrift2.font");
 	m_text = createComponent<TextComponent>();
 	m_text->setFont(font);
 

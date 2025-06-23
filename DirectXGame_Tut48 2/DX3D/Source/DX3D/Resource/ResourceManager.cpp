@@ -25,7 +25,7 @@ Game* ResourceManager::getGame()
 ResourcePtr ResourceManager::createResourceFromFileConcrete(const wchar_t * file_path)
 {
 	std::filesystem::path resourcePath = file_path;
-	auto ext = resourcePath.extension();
+
 
 
 	auto it = m_map_resources.find(file_path);
@@ -40,7 +40,7 @@ ResourcePtr ResourceManager::createResourceFromFileConcrete(const wchar_t * file
 	if (!std::filesystem::exists(resourcePath)) return ResourcePtr();
 
 	ResourcePtr resPtr;
-
+	auto ext = resourcePath.extension();
 	if (!ext.compare(L".obj"))
 		resPtr = std::make_shared<Mesh>(resourcePath.c_str(), this);
 	else if (!ext.compare(L".jpg") || !ext.compare(L".png") || !ext.compare(L".bmp"))

@@ -5,7 +5,7 @@
 #include "../../Item/Platform.h"
 MainMenu::MainMenu(Game* game) : m_game(game)
 {
-	auto font = game->getResourceManager()->createResourceFromFile<Font>(L"Assets/Fonts/Bahnschrift.font");
+	auto font = game->getResourceManager()->createResourceFromFile<Font>(L"Assets/Fonts/Bahnschrift5.font");
 	auto sphere = m_game->getResourceManager()->createResourceFromFile<Mesh>(L"Assets/Meshes/sphere.obj");
 	auto spaceship = m_game->getResourceManager()->createResourceFromFile<Mesh>(L"Assets/Meshes/house.obj");
 	auto sky = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/sky.jpg");

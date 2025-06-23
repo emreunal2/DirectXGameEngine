@@ -45,11 +45,10 @@ public:
 	}
 	static Vector3D normalize(const Vector3D& vec)
 	{
-		Vector3D res;
 		auto len = Vector3D::length(vec);
 		if (!len)
 			return Vector3D();
-		
+		Vector3D res;
 		res.x = vec.x / len;
 		res.y = vec.y / len;
 		res.z = vec.z / len;

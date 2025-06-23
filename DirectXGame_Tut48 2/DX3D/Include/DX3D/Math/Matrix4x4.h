@@ -82,12 +82,12 @@ public:
 	void inverse()
 	{
 		i32 a, j;
-		Matrix4x4 out;
-		Vector4D v, vec[3];
 		f32 det;
 
 		det = this->getDeterminant();
 		if (!det) return;
+		Matrix4x4 out;
+		Vector4D v, vec[3];
 		for (i32 i = 0; i<4; i++)
 		{
 			for (j = 0; j<4; j++)
