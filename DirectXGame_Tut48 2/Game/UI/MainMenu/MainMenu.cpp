@@ -11,16 +11,10 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 	auto sky = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/sky.jpg");
 	auto normalMap = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/NormalMap.jpg");
 	auto heightMap = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/height_map.png");
-	auto waveHeightMap = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/waveHeightMap.png");
 	auto grass = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/grass.jpg");
 	auto ground = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/ground.jpg");
 	auto skyMat = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/SkyBox.hlsl");
-	auto mat = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
 	auto gameMat = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/GameItem.hlsl");
-	auto ToonShading = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/ToonShading.hlsl");
-	auto bumpShading = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Bump.hlsl");
-	auto displacementShading = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Displacement.hlsl");
-
 
 	/* {
 		auto entity = m_game->getWorld()->createEntity<Entity>();
@@ -34,6 +28,7 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 	}*/
 	//Base
 	{
+		auto mat = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
 		auto entity = m_game->getWorld()->createEntity<Entity>();
 		auto meshComponent = entity->createComponent<MeshComponent>();
 		meshComponent->setMesh(spaceship);
@@ -44,6 +39,7 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 	}
 	//Toon
 	{
+		auto ToonShading = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/ToonShading.hlsl");
 		auto entity = m_game->getWorld()->createEntity<Entity>();
 		auto meshComponent = entity->createComponent<MeshComponent>();
 		meshComponent->setMesh(spaceship);
@@ -54,6 +50,7 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 	}
 	//Bump
 	{
+		auto bumpShading = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Bump.hlsl");
 		auto entity1 = m_game->getWorld()->createEntity<Entity>();
 		auto meshComponent1 = entity1->createComponent<MeshComponent>();
 		meshComponent1->setMesh(spaceship);
@@ -62,7 +59,9 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 		entity1->getTransform()->setPosition(Vector3D(-25, 75, 100));
 		entity1->getTransform()->setScale(Vector3D(25, 25, 25));
 	}
+	// Displacement
 	{
+		auto displacementShading = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Displacement.hlsl");
 		auto entity1 = m_game->getWorld()->createEntity<Entity>();
 		auto meshComponent1 = entity1->createComponent<MeshComponent>();
 		meshComponent1->setMesh(spaceship);
@@ -74,6 +73,7 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 
 	//sea
 	{
+		auto waveHeightMap = m_game->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/waveHeightMap.png");
 		auto entity = m_game->getWorld()->createEntity<Entity>();
 		auto waterComponent = entity->createComponent<WaterComponent>();
 		waterComponent->setWaveHeightMap(waveHeightMap);

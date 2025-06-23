@@ -116,7 +116,7 @@ void PhysicsEngine::_processSpherePlayerCollision(SphereColliderComponent* spher
 
 void PhysicsEngine::_processSphereSphereCollision(SphereColliderComponent* sphere1, SphereColliderComponent* sphere2)
 {
-	auto playerEntity = sphere1->getEntity();
+	
 
 	Vector3D finalPos;
 
@@ -125,6 +125,7 @@ void PhysicsEngine::_processSphereSphereCollision(SphereColliderComponent* spher
 
 	if (dist < sphere1->getRadius() + sphere2->getRadius())
 	{
+		auto playerEntity = sphere1->getEntity();
 		playerEntity->onCollision(sphere1, sphere2);
 		sphere2->getEntity()->onCollision(sphere2, sphere1);
 	}
