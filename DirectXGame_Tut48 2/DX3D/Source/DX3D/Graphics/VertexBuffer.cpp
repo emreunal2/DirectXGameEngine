@@ -22,7 +22,7 @@ VertexBuffer::VertexBuffer(const void* list_vertices,ui32 size_vertex,ui32 size_
 
 	if (FAILED(m_system->m_d3d_device->CreateBuffer(&buff_desc, &init_data, &m_buffer)))
 	{
-		DX3DError("VertexBuffer not created successfully");
+		throw std::runtime_error("VertexBuffer not created successfully");
 	}
 	
 	D3D11_INPUT_ELEMENT_DESC layout[]=
@@ -39,7 +39,7 @@ VertexBuffer::VertexBuffer(const void* list_vertices,ui32 size_vertex,ui32 size_
 
 	if (FAILED(m_system->m_d3d_device->CreateInputLayout(layout, size_layout, m_system->m_meshLayoutByteCode, m_system->m_meshLayoutSize, &m_layout)))
 	{
-		DX3DError("InputLayout not created successfully");
+		throw std::runtime_error("InputLayout not created successfully");
 	}
 
 }

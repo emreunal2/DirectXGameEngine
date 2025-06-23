@@ -19,7 +19,7 @@ ConstantBuffer::ConstantBuffer(const void * buffer, ui32 size_buffer,RenderSyste
 
 	if (FAILED(m_system->m_d3d_device->CreateBuffer(&buff_desc, &init_data, &m_buffer)))
 	{
-		DX3DError("ConstantBuffer not created successfully");
+		throw std::runtime_error("ConstantBuffer not created successfully");
 	}
 }
 

@@ -28,7 +28,7 @@ SwapChain::SwapChain(HWND hwnd, ui32 width, ui32 height,RenderSystem * system) :
 	
 	if (FAILED(hr))
 	{
-		DX3DError("SwapChain not created Asuccessfully");
+		throw std::runtime_error("SwapChain not created Asuccessfully");
 	}
 
 	reloadBuffers(width, height);

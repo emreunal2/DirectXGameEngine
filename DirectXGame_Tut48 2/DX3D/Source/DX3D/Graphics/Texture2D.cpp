@@ -13,7 +13,7 @@ Texture2D::Texture2D(const wchar_t* full_path, RenderSystem* system): m_system(s
 	{
 		res = DirectX::CreateTexture(m_system->m_d3d_device.Get(), m_imageData.GetImages(),
 			m_imageData.GetImageCount(), m_imageData.GetMetadata(), &m_texture);
-		if (FAILED(res)) DX3DError("Taaaaaaexture not created successfully");
+		if (FAILED(res))  throw std::runtime_error("Taaaaaaexture not created successfully");
 
 		D3D11_SHADER_RESOURCE_VIEW_DESC desc = {};
 		desc.Format = m_imageData.GetMetadata().format;
@@ -30,15 +30,15 @@ Texture2D::Texture2D(const wchar_t* full_path, RenderSystem* system): m_system(s
 		sampler_desc.MaxLOD = (FLOAT)m_imageData.GetMetadata().mipLevels;
 
 		res = m_system->m_d3d_device->CreateSamplerState(&sampler_desc,&m_sampler_state);
-		if (FAILED(res)) DX3DError("TextAure not created successfully");
+		if (FAILED(res))  throw std::runtime_error("TextAure not created successfully");
 
 		res = m_system->m_d3d_device->CreateShaderResourceView(m_texture.Get(), &desc,
 			&m_shader_res_view);
-		if (FAILED(res)) DX3DError("TAexture not created successfully");
+		if (FAILED(res))  throw std::runtime_error("TAexture not created successfully");
 	}
 	else
 	{
-		DX3DError("Texture not Acreated successfully");
+		throw std::runtime_error("Texture not Acreated successfully");
 	}
 
 	m_size = Rect(0, 0, (i32)m_imageData.GetMetadata().width, (i32)m_imageData.GetMetadata().height);
@@ -76,23 +76,23 @@ Texture2D::Texture2D(const Rect& size, Texture2D::Type type, RenderSystem* syste
 
 	auto hr = m_system->m_d3d_device->CreateTexture2D(&tex_desc, nullptr, (ID3D11Texture2D**)m_texture.GetAddressOf());
 	if (FAILED(hr))
-		DX3DError("Texture not created succeAAssfully");
+		throw std::runtime_error("Texture not created succeAAssfully");
 
 	if (type == Texture2D::Type::RenderTarget)
 	{
 		hr = m_system->m_d3d_device->CreateShaderResourceView(this->m_texture.Get(), NULL, &this->m_shader_res_view);
 		if (FAILED(hr))
-			DX3DError("Texture not created succADAessfully");
+			throw std::runtime_error("Texture not created succADAessfully");
 
 		hr = m_system->m_d3d_device->CreateRenderTargetView(this->m_texture.Get(), NULL, &this->m_render_target_view);
 		if (FAILED(hr))
-			DX3DError("Texture not creaADSAted successfully");
+			throw std::runtime_error("Texture not creaADSAted successfully");
 	}
 	else if (type == Texture2D::Type::DepthStencil)
 	{
 		hr = m_system->m_d3d_device->CreateDepthStencilView(this->m_texture.Get(), NULL, &this->m_depth_stencil_view);
 		if (FAILED(hr))
-			DX3DError("Texture not created successfuFSAdlly");
+			throw std::runtime_error("Texture not created successfuFSAdlly");
 	}
 
 	m_size = size;

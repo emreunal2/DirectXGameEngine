@@ -78,7 +78,7 @@ Window::Window()
 
 	auto classId = RegisterClassEx(&wc); // If the registration of class will fail, the function will return false
 		
-	if (!classId) DX3DError("Window not created successfully");
+	if (!classId)  throw std::runtime_error("Window not created successfully");
 
 	RECT rc = { 0,0,m_size.getWidth(),m_size.getHeight()};
 	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, false);

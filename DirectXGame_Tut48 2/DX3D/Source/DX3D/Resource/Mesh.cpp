@@ -28,9 +28,9 @@ Mesh::Mesh(const wchar_t* full_path,ResourceManager* manager): Resource(full_pat
 
 	bool res = tinyobj::LoadObj(&attribs, &shapes, &materials, &warn, &err, inputfile.c_str(), mtldir.c_str());
 
-	if (!err.empty()) DX3DError("Mesh not created successfully");
+	if (!err.empty())  throw std::runtime_error("Mesh not created successfully");
 
-	if (!res) DX3DError("Mesh not created successfully");
+	if (!res)  throw std::runtime_error("Mesh not created successfully");
 
 
 	std::vector<VertexMesh> list_vertices;

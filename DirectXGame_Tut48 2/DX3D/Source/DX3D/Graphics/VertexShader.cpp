@@ -17,11 +17,17 @@ VertexShader::VertexShader(const wchar_t* full_path, const char* entryPoint ,Ren
 		entryPoint, "vs_5_0", 0, 0, &blob, &errorBlob);
 
 	if (errorBlob)
-		DX3DWarning("Vertex Shader " << full_path << " compiled with errors: \n" << (char*)errorBlob->GetBufferPointer());
+	{
+
+	}
 	if (!blob)
-		DX3DError("Vertex Shader " << full_path << " not created successfully.");
+	{
+
+	}
 	if (FAILED(m_system->m_d3d_device->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, &m_vs)))
-		DX3DError("Vertex Shader " << full_path << " not created successfully.");
+	{
+
+	}
 }
 
 

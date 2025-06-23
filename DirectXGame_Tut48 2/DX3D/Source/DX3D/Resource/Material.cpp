@@ -15,10 +15,10 @@ Material::Material(const wchar_t* path, ResourceManager* manager): Resource(path
 	auto rsys = manager->getGame()->getGraphicsEngine()->getRenderSystem();
 	
 	m_vertex_shader = rsys->createVertexShader(path,"vsmain");
-	if (!m_vertex_shader) DX3DError("Material not created successfully");
+	if (!m_vertex_shader)  throw std::runtime_error("Material not created successfully");
 
 	m_pixel_shader = rsys->createPixelShader(path, "psmain");
-	if (!m_pixel_shader) DX3DError("Material not created successfully");
+	if (!m_pixel_shader)  throw std::runtime_error("Material not created successfully");
 
 }
 

@@ -20,7 +20,7 @@ IndexBuffer::IndexBuffer(const void* list_indices, ui32 size_list,RenderSystem *
 
 	if (FAILED(m_system->m_d3d_device->CreateBuffer(&buff_desc, &init_data, &m_buffer)))
 	{
-		DX3DError("IndexBuffer not created successfully");
+		throw std::runtime_error("IndexBuffer not created successfully");
 	}
 }
 

@@ -43,7 +43,7 @@ RenderSystem::RenderSystem()
 	}
 	if (FAILED(res))
 	{
-		DX3DError("RenderSystem not created successfully");
+		throw std::runtime_error("RenderSystem not created successfully");
 	}
 
 	m_imm_device_context = std::make_shared<DeviceContext>(m_imm_context.Get(),this);

@@ -17,10 +17,16 @@ PixelShader::PixelShader(const wchar_t* full_path, const char* entryPoint,Render
 		entryPoint, "ps_5_0", 0, 0, &blob, &errorBlob);
 
 	if (errorBlob)
-		DX3DWarning("Pixel Shader " << full_path << " compiled with errors: \n" << (char*)errorBlob->GetBufferPointer());
+	{
+
+	}
 	if (!blob)
-		DX3DError("Pixel Shader " << full_path << " not created successfully.");
+	{
+
+	}
 	if (FAILED(m_system->m_d3d_device->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, &m_ps)))
-		DX3DError("Pixel Shader " << full_path << " not created successfully.");
+	{
+
+	}
 }
 
