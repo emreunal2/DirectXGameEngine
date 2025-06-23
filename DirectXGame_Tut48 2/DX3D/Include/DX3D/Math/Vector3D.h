@@ -24,20 +24,6 @@ public:
 		return v;
 	}
 
-	Vector3D operator *(f32 num) const
-	{
-		return Vector3D(x*num, y*num, z*num);
-	}
-
-	Vector3D operator +(const Vector3D& vec) const
-	{
-		return Vector3D(x+vec.x, y+vec.y, z+vec.z);
-	}
-
-	Vector3D operator -(const Vector3D& vec) const
-	{
-		return Vector3D(x - vec.x, y - vec.y, z - vec.z);
-	}
 	static f32 length(const Vector3D& vec)
 	{
 		auto len = sqrt((vec.x * vec.x) + (vec.y * vec.y) + (vec.z * vec.z));
@@ -72,3 +58,18 @@ public:
 public:
 	f32 x, y, z;
 };
+
+inline Vector3D operator*(const Vector3D& vec, f32 num)
+{
+	return Vector3D(vec.x * num, vec.y * num, vec.z * num);
+}
+
+inline Vector3D operator+(const Vector3D& a, const Vector3D& b)
+{
+	return Vector3D(a.x + b.x, a.y + b.y, a.z + b.z);
+}
+
+inline Vector3D operator-(const Vector3D& a, const Vector3D& b)
+{
+	return Vector3D(a.x - b.x, a.y - b.y, a.z - b.z);
+}
