@@ -183,10 +183,11 @@ void Level::onUpdate(f32 deltaTime)
 		m_sceneType = 1;
 		m_game->setTimeScale(0.0f);
 
-		if (((i32)static_cast<Spaceship*>(m_player)->getScore()) >= (i32)m_maximumScore)
+		auto* spaceship = dynamic_cast<Spaceship*>(m_player);
+		if (spaceship && static_cast<i32>(spaceship->getScore()) >= static_cast<i32>(m_maximumScore))
 		{
 			m_levels++;
-			m_totalScore += static_cast<Spaceship*>(m_player)->getScore();
+			m_totalScore += spaceship->getScore();
 			m_winScreen = std::make_unique<WinScreen>(this->m_game);
 		}
 		else
@@ -230,9 +231,12 @@ void Level::onUpdate(f32 deltaTime)
 
 	if (m_sceneType == 1)
 	{
-		if (((i32)static_cast<Spaceship*>(m_player)->getScore()) >= (i32)m_maximumScore)
+		if (auto* spaceship = dynamic_cast<Spaceship*>(m_player))
 		{
-			m_winScreen->onUpdate(deltaTime);
+			if ((i32)spaceship->getScore() >= (i32)m_maximumScore)
+			{
+				m_winScreen->onUpdate(deltaTime);
+			}
 		}
 		else
 		{
@@ -241,14 +245,20 @@ void Level::onUpdate(f32 deltaTime)
 	}
 	else if (m_sceneType == 0)
 	{
-		m_hud->setInfo(m_levels, (i32) static_cast<Spaceship*>(m_player)->getScore(), (i32)m_totalScore, (i32)m_elapsedSecondsMatch);
+		if (auto* spaceship = dynamic_cast<Spaceship*>(m_player))
+		{
+			m_hud->setInfo(m_levels, (i32)spaceship->getScore(), (i32)m_totalScore, (i32)m_elapsedSecondsMatch);
+		}
 	}
 
 	m_hud->onUpdate(deltaTime);
 
 	if (m_game->getInputSystem()->isKeyUp(Key::Escape))
 	{
-		static_cast<MainGame*>(m_game)->onReturnToMainMenu();
+		if (auto* game = dynamic_cast<MainGame*>(m_game))
+		{
+			game->onReturnToMainMenu();
+		}
 
 	}
 	if (m_game->getInputSystem()->isKeyUp(Key::R))

@@ -138,7 +138,10 @@ void MainMenu::onUpdate(f32 deltaTime)
 	m_lightEntity->getTransform()->setRotation(lightDir);
 	if (m_game->getInputSystem()->isKeyUp(Key::Enter))
 	{
-		static_cast<MainGame*>(m_game)->onNewGame();
+		if (auto mainGame = dynamic_cast<MainGame*>(m_game))
+		{
+			mainGame->onNewGame();
+		}
 	}
 }
 
