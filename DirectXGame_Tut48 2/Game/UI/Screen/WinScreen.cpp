@@ -22,7 +22,7 @@ WinScreen::~WinScreen()
 
 void WinScreen::onUpdate(f32 deltaTime)
 {
-
+	auto dummy = deltaTime;
 }
 
 

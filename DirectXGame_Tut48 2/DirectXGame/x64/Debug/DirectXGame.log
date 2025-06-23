@@ -1,7 +1,5 @@
 ﻿  CameraComponent.cpp
   Entity.cpp
-  FogComponent.cpp
-  LightComponent.cpp
   TerrainComponent.cpp
   TransformComponent.cpp
   GraphicsEngine.cpp
