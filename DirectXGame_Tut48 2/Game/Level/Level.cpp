@@ -302,8 +302,8 @@ void Level::onUpdate(f32 deltaTime)
 				(f32)(dirr.z) + (f32)((rand() % 600) - 300));
 			auto dir = Vector3D::normalize(m_player->getTransform()->getPosition() - pos);
 
-			entity->setPosition(pos);
-			entity->setDirection(dir);
+			entity->setAPosition(pos);
+			entity->setADirection(dir);
 		}
 	}
 }

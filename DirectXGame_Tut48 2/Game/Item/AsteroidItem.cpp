@@ -12,13 +12,13 @@ AsteroidItem::~AsteroidItem()
 {
 }
 
-void AsteroidItem::setPosition(const Vector3D& position)
+void AsteroidItem::setAPosition(const Vector3D& position)
 {
 	m_pos = position;
 	getTransform()->setPosition(position);
 }
 
-void AsteroidItem::setDirection(const Vector3D& direction)
+void AsteroidItem::setADirection(const Vector3D& direction)
 {
 	m_direction = Vector3D::normalize(direction);
 }

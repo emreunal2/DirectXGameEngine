@@ -10,8 +10,8 @@ public:
 	AsteroidItem();
 	virtual ~AsteroidItem();
 
-	void setPosition(const Vector3D& position);
-	void setDirection(const Vector3D& direction);
+	void setAPosition(const Vector3D& position);
+	void setADirection(const Vector3D& direction);
 
 protected:
 	virtual void onCreate();
