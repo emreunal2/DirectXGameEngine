@@ -156,7 +156,7 @@ Mesh::Mesh(const wchar_t* full_path,ResourceManager* manager): Resource(full_pat
 
 Mesh::Mesh(VertexMesh * vertex_list_data, ui32 vertex_list_size, 
 	ui32 * index_list_data, ui32 index_list_size, 
-	MaterialSlot * material_slot_list, ui32 material_slot_list_size, ResourceManager* manager) : Resource(L"", manager)
+	const MaterialSlot * material_slot_list, ui32 material_slot_list_size, ResourceManager* manager) : Resource(L"", manager)
 {
 	auto rsys = m_manager->getGame()->getGraphicsEngine()->getRenderSystem();
 

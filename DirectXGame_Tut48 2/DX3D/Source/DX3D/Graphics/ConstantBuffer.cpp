@@ -5,7 +5,7 @@
 #include <DX3D/Graphics/DeviceContext.h>
 #include <exception>
 
-ConstantBuffer::ConstantBuffer(void * buffer, ui32 size_buffer,RenderSystem * system) : m_system(system)
+ConstantBuffer::ConstantBuffer(const void * buffer, ui32 size_buffer,RenderSystem * system) : m_system(system)
 {
 	D3D11_BUFFER_DESC buff_desc = {};
 	buff_desc.Usage = D3D11_USAGE_DEFAULT;
@@ -24,7 +24,7 @@ ConstantBuffer::ConstantBuffer(void * buffer, ui32 size_buffer,RenderSystem * sy
 }
 
 
-void ConstantBuffer::update(const DeviceContextPtr& context, void * buffer)
+void ConstantBuffer::update(const DeviceContextPtr& context, const void * buffer)
 {
 	context->m_device_context->UpdateSubresource(this->m_buffer.Get(), NULL, NULL, buffer, NULL, NULL);
 }

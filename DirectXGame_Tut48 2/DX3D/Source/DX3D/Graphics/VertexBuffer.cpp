@@ -4,7 +4,7 @@
 #include <DX3D/Graphics/RenderSystem.h>
 #include <exception>
 
-VertexBuffer::VertexBuffer(void* list_vertices,ui32 size_vertex,ui32 size_list,
+VertexBuffer::VertexBuffer(const void* list_vertices,ui32 size_vertex,ui32 size_list,
 	RenderSystem * system) : m_system(system) ,m_layout(0),m_buffer(0)
 {
 	D3D11_BUFFER_DESC buff_desc = {};

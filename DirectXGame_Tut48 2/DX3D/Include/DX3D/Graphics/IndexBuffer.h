@@ -8,7 +8,7 @@
 class IndexBuffer
 {
 public:
-	IndexBuffer(void* list_indices, ui32 size_list,RenderSystem * system);
+	IndexBuffer(const void* list_indices, ui32 size_list,RenderSystem * system);
 	explicit  IndexBuffer(const IndexBuffer&) = delete;
 	IndexBuffer& operator=(const IndexBuffer&) = delete;
 	ui32 getSizeIndexList();

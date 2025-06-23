@@ -34,7 +34,7 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 		meshComponent->setMesh(spaceship);
 		mat->addTexture(normalMap);
 		meshComponent->addMaterial(mat);
-		entity->getTransform()->setPosition(Vector3D(50, 75, 100));
+		entity->getTransform()->setPosition(Vector3D(125, 75, 100));
 		entity->getTransform()->setScale(Vector3D(25, 25, 25));
 	}
 	//Toon
@@ -45,7 +45,7 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 		meshComponent->setMesh(spaceship);
 		ToonShading->addTexture(normalMap);
 		meshComponent->addMaterial(ToonShading);
-		entity->getTransform()->setPosition(Vector3D(125, 75, 100));
+		entity->getTransform()->setPosition(Vector3D(50, 75, 100));
 		entity->getTransform()->setScale(Vector3D(25, 25, 25));
 	}
 	//Bump
