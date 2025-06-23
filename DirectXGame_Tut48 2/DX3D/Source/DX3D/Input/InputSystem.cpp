@@ -48,10 +48,14 @@ void InputSystem::update()
 	::GetCursorPos(&current_mouse_pos);
 
 
-	if (current_mouse_pos.x != m_old_mouse_pos.x || current_mouse_pos.y != m_old_mouse_pos.y)
+	constexpr float epsilon = 0.0001f;
+	if (std::abs(current_mouse_pos.x - m_old_mouse_pos.x) > epsilon ||
+		std::abs(current_mouse_pos.y - m_old_mouse_pos.y) > epsilon)
 	{
-		m_deltaMousePos = Vector2D((float)current_mouse_pos.x - (float)m_old_mouse_pos.x,
-			(float)current_mouse_pos.y - (float)m_old_mouse_pos.y);
+		m_deltaMousePos = Vector2D(
+			static_cast<float>(current_mouse_pos.x - m_old_mouse_pos.x),
+			static_cast<float>(current_mouse_pos.y - m_old_mouse_pos.y)
+		);
 	}
 	else
 	{
