@@ -9,22 +9,22 @@
 
 PixelShader::PixelShader(const wchar_t* full_path, const char* entryPoint,RenderSystem * system) : m_system(system)
 {
-	Microsoft::WRL::ComPtr<ID3DBlob>  blob1;
+	Microsoft::WRL::ComPtr<ID3DBlob>  glob1;
 	Microsoft::WRL::ComPtr<ID3DBlob>  errorBlob;
 	ShaderInclude shaderInclude(full_path);
 
 	D3DCompileFromFile(full_path, nullptr, &shaderInclude,
-		entryPoint, "ps_5_0", 0, 0, &blob1, &errorBlob);
+		entryPoint, "ps_5_0", 0, 0, &glob1, &errorBlob);
 
 	if (errorBlob)
 	{
 
 	}
-	if (!blob1)
+	if (!glob1)
 	{
 
 	}
-	if (FAILED(m_system->m_d3d_device->CreatePixelShader(blob1->GetBufferPointer(), blob1->GetBufferSize(), nullptr, &m_ps)))
+	if (FAILED(m_system->m_d3d_device->CreatePixelShader(glob1->GetBufferPointer(), glob1->GetBufferSize(), nullptr, &m_ps)))
 	{
 
 	}

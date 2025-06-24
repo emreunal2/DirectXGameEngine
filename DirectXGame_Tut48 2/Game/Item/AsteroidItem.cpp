@@ -29,16 +29,16 @@ void AsteroidItem::onCreate()
 	Entity::onCreate();
 
 	//Load all the assets
-	auto tex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/asteroid.jpg");
-	auto mesh = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Mesh>(L"Assets/Meshes/asteroid.obj");
-	auto mat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
+	auto astroTex = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Texture>(L"Assets/Textures/asteroid.jpg");
+	auto astroMesh = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Mesh>(L"Assets/Meshes/asteroid.obj");
+	auto astroMat = getWorld()->getGame()->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/Base.hlsl");
 	//Add the texture to material
-	mat->addTexture(tex);
+	astroMat->addTexture(astroTex);
 
 	m_itemMesh = this->createComponent<MeshComponent>();
 	//Set the mesh and material into the entity
-	m_itemMesh->setMesh(mesh);
-	m_itemMesh->addMaterial(mat);	
+	m_itemMesh->setMesh(astroMesh);
+	m_itemMesh->addMaterial(astroMat);	
 
 	m_collider = createComponent<SphereColliderComponent>();
 	m_collider->setRadius(10.0f);
