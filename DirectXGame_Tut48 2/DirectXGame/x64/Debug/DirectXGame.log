@@ -1,2 +1,10 @@
-﻿  Window.cpp
+﻿  TerrainComponent.cpp
+C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Source\DX3D\Entity\TerrainComponent.cpp(118,49): warning C4244: 'argument': conversion from 'ui32' to 'f32', possible loss of data
+C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Source\DX3D\Entity\TerrainComponent.cpp(118,46): warning C4244: 'argument': conversion from 'ui32' to 'f32', possible loss of data
+C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Source\DX3D\Entity\TerrainComponent.cpp(119,53): warning C4244: 'argument': conversion from 'ui32' to 'f32', possible loss of data
+C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Source\DX3D\Entity\TerrainComponent.cpp(119,48): warning C4244: 'argument': conversion from 'ui32' to 'f32', possible loss of data
+C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Source\DX3D\Entity\TerrainComponent.cpp(120,51): warning C4244: 'argument': conversion from 'ui32' to 'f32', possible loss of data
+C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Source\DX3D\Entity\TerrainComponent.cpp(120,46): warning C4244: 'argument': conversion from 'ui32' to 'f32', possible loss of data
+C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Source\DX3D\Entity\TerrainComponent.cpp(121,55): warning C4244: 'argument': conversion from 'ui32' to 'f32', possible loss of data
+C:\Users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\DX3D\Source\DX3D\Entity\TerrainComponent.cpp(121,48): warning C4244: 'argument': conversion from 'ui32' to 'f32', possible loss of data
   DirectXGame.vcxproj -> C:\users\932343\OneDrive - hull.ac.uk\Desktop\DirectXGameEngine\DirectXGame_Tut48 2\x64\Debug\DirectXGame.exe

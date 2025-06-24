@@ -20,12 +20,8 @@ Game* ResourceManager::getGame()
 	return m_game;
 }
 
-ResourcePtr ResourceManager::createResourceFromFileConcrete(const wchar_t * file_path)
+ResourcePtr ResourceManager::createResourceFromFileConcrete(const wchar_t* file_path)
 {
-	std::filesystem::path resourcePath = file_path;
-
-
-
 	auto it = m_map_resources.find(file_path);
 
 	if (it != m_map_resources.end())
@@ -34,6 +30,8 @@ ResourcePtr ResourceManager::createResourceFromFileConcrete(const wchar_t * file
 		if (mat) return std::make_shared<Material>(mat, this);
 		return it->second;
 	}
+
+	std::filesystem::path resourcePath = file_path;
 
 	if (!std::filesystem::exists(resourcePath)) return ResourcePtr();
 

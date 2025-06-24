@@ -72,54 +72,58 @@ Vector3D TerrainComponent::getSize()
 
 f32 TerrainComponent::getHeightFromWorldPoint(const Vector3D& worldPoint)
 {
-	auto getPixelFromTexCoord = [&](const Vector2D& texcoord)
-	{
-		auto mapSize = m_heightMap->getTexture()->getSize();
-		if (texcoord.x < 0 || texcoord.x>mapSize.getWidth()) return 0.0f;
-		if (texcoord.y < 0 || texcoord.y>mapSize.getHeight()) return 0.0f;
-
-		auto pixels = m_heightMap->getTexture()->getPixels();
-		auto bytesPerPixel = m_heightMap->getTexture()->getBitsPerPixel() / 8;
-		auto index = (ui32)(((mapSize.getWidth() * bytesPerPixel) * texcoord.y) + texcoord.x * bytesPerPixel);
-		auto height = (f32)pixels[index];
-		height /= 255.0f;
-		return height;
-	};
-
-
-
 	auto mapSize = m_heightMap->getTexture()->getSize();
 	auto scaleSize = m_size;
 	auto worldPos = m_entity->getTransform()->getPosition();
 
-
-	auto scale = Vector3D(scaleSize.getx() / mapSize.getWidth(), 0, scaleSize.getz() / mapSize.getHeight());
-	auto tempPoint = worldPoint;
-	tempPoint = Vector3D(
-		(tempPoint.getx() - worldPos.getx()) / scale.getx(),
+	auto scale = Vector3D(
+		scaleSize.getx() / mapSize.getWidth(),
 		0,
-		(tempPoint.getz() - worldPos.getz()) / scale.getz()
+		scaleSize.getz() / mapSize.getHeight()
+	);
+
+	Vector3D tempPoint = Vector3D(
+		(worldPoint.getx() - worldPos.getx()) / scale.getx(),
+		0,
+		(worldPoint.getz() - worldPos.getz()) / scale.getz()
 	);
 
 	if (tempPoint.getx() < 0 || tempPoint.getz() < 0)
 		return 0;
 
-	auto x = (f32)(ui32)tempPoint.getx();
-	auto y = (f32)(ui32)tempPoint.getz();
+	ui32 x = static_cast<ui32>(tempPoint.getx());
+	ui32 y = static_cast<ui32>(tempPoint.getz());
 
-	auto deltaX = tempPoint.getx() - (i32)tempPoint.getx();
-	auto deltaY = tempPoint.getz() - (i32)tempPoint.getz();
+	f32 deltaX = tempPoint.getx() - static_cast<i32>(tempPoint.getx());
+	f32 deltaY = tempPoint.getz() - static_cast<i32>(tempPoint.getz());
 
-	auto height0 = getPixelFromTexCoord(Vector2D(x,y));
-	auto height1 = getPixelFromTexCoord(Vector2D(x+1, y));
+	// Move the lambda just before usage
+	auto getPixelFromTexCoord = [&](const Vector2D& texcoord)
+		{
+			auto mapSize = m_heightMap->getTexture()->getSize();
+			if (texcoord.x < 0 || texcoord.x >= mapSize.getWidth()) return 0.0f;
+			if (texcoord.y < 0 || texcoord.y >= mapSize.getHeight()) return 0.0f;
 
-	auto height2 = getPixelFromTexCoord(Vector2D(x, y+1));
-	auto height3 = getPixelFromTexCoord(Vector2D(x + 1, y+1));
+			auto pixels = m_heightMap->getTexture()->getPixels();
+			auto bytesPerPixel = m_heightMap->getTexture()->getBitsPerPixel() / 8;
+			auto index = static_cast<ui32>(
+				((mapSize.getWidth() * bytesPerPixel) * texcoord.y) + texcoord.x * bytesPerPixel
+				);
 
-	auto heightX1 = Math::lerp(height0, height1, deltaX);
-	auto heightX2 = Math::lerp(height2, height3, deltaX);
+			f32 height = static_cast<f32>(pixels[index]);
+			height /= 255.0f;
+			return height;
+		};
 
-	auto height = Math::lerp(heightX1, heightX2, deltaY);
+	f32 height0 = getPixelFromTexCoord(Vector2D(x, y));
+	f32 height1 = getPixelFromTexCoord(Vector2D(x + 1, y));
+	f32 height2 = getPixelFromTexCoord(Vector2D(x, y + 1));
+	f32 height3 = getPixelFromTexCoord(Vector2D(x + 1, y + 1));
+
+	f32 heightX1 = Math::lerp(height0, height1, deltaX);
+	f32 heightX2 = Math::lerp(height2, height3, deltaX);
+
+	f32 height = Math::lerp(heightX1, heightX2, deltaY);
 
 	return height * scaleSize.gety();
 }
