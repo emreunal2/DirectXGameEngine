@@ -89,7 +89,6 @@ Window::Window()
 		NULL, NULL, NULL, NULL);
 
 	//if the creation fail return false
-	if (!m_hwnd) DX3DError("Window not created successfully");
 
 	auto hwnd = static_cast<HWND>(m_hwnd);
 	SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)this);
