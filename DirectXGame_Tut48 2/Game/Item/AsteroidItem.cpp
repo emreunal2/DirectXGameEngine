@@ -57,7 +57,7 @@ void AsteroidItem::onUpdate(f32 deltaTime)
 	pos = pos + m_direction * m_speed * deltaTime;
 	getTransform()->setPosition(pos);
 
-	if (pos.y < -100.0f)
+	if (pos.gety() < -100.0f)
 	{
 		this->release();
 	}

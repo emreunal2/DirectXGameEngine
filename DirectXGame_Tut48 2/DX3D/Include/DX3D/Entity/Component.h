@@ -15,9 +15,9 @@ public:
 	void release();
 
 	Entity* getEntity();
-protected:
+public:
 	virtual void onCreateInternal();
-protected:
+public:
 	size_t m_typeId = 0;
 	Entity* m_entity = nullptr;
 

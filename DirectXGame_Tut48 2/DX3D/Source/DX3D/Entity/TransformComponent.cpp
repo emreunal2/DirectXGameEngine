@@ -61,15 +61,15 @@ void TransformComponent::updateWorldMatrix()
 	rot.setIdentity();
 	
 	temp.setIdentity();
-	temp.setRotationX(m_rotation.x);
+	temp.setRotationX(m_rotation.getx());
 	rot *= temp;
 
 	temp.setIdentity();
-	temp.setRotationY(m_rotation.y);
+	temp.setRotationY(m_rotation.gety());
 	rot *= temp;
 
 	temp.setIdentity();
-	temp.setRotationZ(m_rotation.z);
+	temp.setRotationZ(m_rotation.getz());
 	rot *= temp;
 
 	m_direction = rot.getZDirection();

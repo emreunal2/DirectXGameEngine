@@ -301,9 +301,9 @@ void Level::onUpdate(f32 deltaTime)
 			auto dirr = m_player->getTransform()->getPosition() + m_player->getTransform()->getDirection() * (400.0f - (25.0f * (f32)m_levels));
 
 			auto entity = m_game->getWorld()->createEntity<AsteroidItem>();
-			auto pos = Vector3D((f32)(dirr.x) + (f32)((rand() % 600) - 300),
+			auto pos = Vector3D((f32)(dirr.getx()) + (f32)((rand() % 600) - 300),
 				(f32)(rand() % 100) + (400.0f - (5.0f * (f32)m_levels)),
-				(f32)(dirr.z) + (f32)((rand() % 600) - 300));
+				(f32)(dirr.getz()) + (f32)((rand() % 600) - 300));
 			auto dir = Vector3D::normalize(m_player->getTransform()->getPosition() - pos);
 
 			entity->setAPosition(pos);

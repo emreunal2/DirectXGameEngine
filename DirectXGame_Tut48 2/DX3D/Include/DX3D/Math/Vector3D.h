@@ -54,22 +54,28 @@ public:
 	~Vector3D()
 	{
 	}
+	inline f32 getx() const { return x; }
+	inline f32 gety() const { return y; }
+	inline f32 getz() const { return z; }
 
-public:
+	inline void setx(f32 val) { x = val; }
+	inline void sety(f32 val) { y = val; }
+	inline void setz(f32 val) { z = val; }
+private:
 	f32 x, y, z;
 };
 
 inline Vector3D operator*(const Vector3D& vec, f32 num)
 {
-	return Vector3D(vec.x * num, vec.y * num, vec.z * num);
+	return Vector3D(vec.getx() * num, vec.gety() * num, vec.getz() * num);
 }
 
 inline Vector3D operator+(const Vector3D& a, const Vector3D& b)
 {
-	return Vector3D(a.x + b.x, a.y + b.y, a.z + b.z);
+	return Vector3D(a.getx() + b.getx(), a.gety() + b.gety(), a.getz() + b.getz());
 }
 
 inline Vector3D operator-(const Vector3D& a, const Vector3D& b)
 {
-	return Vector3D(a.x - b.x, a.y - b.y, a.z - b.z);
+	return Vector3D(a.getx() - b.getx(), a.gety() - b.gety(), a.getz() - b.getz());
 }

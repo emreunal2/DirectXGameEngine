@@ -155,9 +155,9 @@ void Spaceship::onCollision(Component* body1, Component* body2)
 		auto zdir = w.getZDirection();
 		auto pos = getTransform()->getPosition();
 
-		if (pos.x > -50 && pos.x < 500 && pos.z > -50 && pos.z < 500)
+		if (pos.getx() > -50 && pos.getx() < 500 && pos.getz() > -50 && pos.getz() < 500)
 		{
-			pos.y+= 100.0f;
+			pos.sety(pos.gety() + 100.0f);
 			getTransform()->setPosition(pos);
 
 			m_yaw = 0;

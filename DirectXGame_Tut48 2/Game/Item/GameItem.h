@@ -18,7 +18,7 @@ protected:
 	virtual void onCreate();
 	virtual void onUpdate(f32 deltaTime);
 
-protected:
+public:
 	MeshComponent* m_itemMesh = nullptr;
 	SphereColliderComponent* m_collider = nullptr;
 

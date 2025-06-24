@@ -15,7 +15,7 @@ public:
 	Vector4D(const Vector4D& vector) :x(vector.x), y(vector.y), z(vector.z), m_w(vector.m_w)
 	{
 	}
-	explicit Vector4D(const Vector3D& vector) :x(vector.x), y(vector.y), z(vector.z), m_w(1.0)
+	explicit Vector4D(const Vector3D& vector) :x(vector.getx()), y(vector.gety()), z(vector.getz()), m_w(1.0)
 	{
 	}
 
@@ -30,7 +30,15 @@ public:
 	~Vector4D()
 	{
 	}
+	inline f32 getx() const { return x; }
+	inline f32 gety() const { return y; }
+	inline f32 getz() const { return z; }
+	inline f32 getm_w() const { return m_w; }
 
-public:
+	inline void setx(f32 val) { x = val; }
+	inline void sety(f32 val) { y = val; }
+	inline void setz(f32 val) { z = val; }
+	inline void setm_w(f32 val) { m_w = val; }
+private:
 	f32 x, y, z,m_w;
 };

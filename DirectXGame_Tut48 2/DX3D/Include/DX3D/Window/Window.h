@@ -24,7 +24,7 @@ public:
 	virtual void onKillFocus();
 	virtual void onSize(const Rect& size);
 
-protected:
+public:
 	void* m_hwnd;
 	Rect m_size = { 0,0,1440,900 };
 };

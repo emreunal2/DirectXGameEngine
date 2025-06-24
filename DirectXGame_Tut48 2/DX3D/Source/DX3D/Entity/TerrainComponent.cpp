@@ -95,22 +95,22 @@ f32 TerrainComponent::getHeightFromWorldPoint(const Vector3D& worldPoint)
 	auto worldPos = m_entity->getTransform()->getPosition();
 
 
-	auto scale = Vector3D(scaleSize.x / mapSize.getWidth(), 0, scaleSize.z / mapSize.getHeight());
+	auto scale = Vector3D(scaleSize.getx() / mapSize.getWidth(), 0, scaleSize.getz() / mapSize.getHeight());
 	auto tempPoint = worldPoint;
 	tempPoint = Vector3D(
-		(tempPoint.x - worldPos.x) / scale.x,
+		(tempPoint.getx() - worldPos.getx()) / scale.getx(),
 		0,
-		(tempPoint.z - worldPos.z) / scale.z
+		(tempPoint.getz() - worldPos.getz()) / scale.getz()
 	);
 
-	if (tempPoint.x < 0 || tempPoint.z < 0)
+	if (tempPoint.getx() < 0 || tempPoint.getz() < 0)
 		return 0;
 
-	auto x = (f32)(ui32)tempPoint.x;
-	auto y = (f32)(ui32)tempPoint.z;
+	auto x = (f32)(ui32)tempPoint.getx();
+	auto y = (f32)(ui32)tempPoint.getz();
 
-	auto deltaX = tempPoint.x - (i32)tempPoint.x;
-	auto deltaY = tempPoint.z - (i32)tempPoint.z;
+	auto deltaX = tempPoint.getx() - (i32)tempPoint.getx();
+	auto deltaY = tempPoint.getz() - (i32)tempPoint.getz();
 
 	auto height0 = getPixelFromTexCoord(Vector2D(x,y));
 	auto height1 = getPixelFromTexCoord(Vector2D(x+1, y));
@@ -123,7 +123,7 @@ f32 TerrainComponent::getHeightFromWorldPoint(const Vector3D& worldPoint)
 
 	auto height = Math::lerp(heightX1, heightX2, deltaY);
 
-	return height * scaleSize.y;
+	return height * scaleSize.gety();
 }
 
 bool TerrainComponent::intersect(const Vector3D& pos, const Vector3D& dir, f32 distance, f32 minDistance, Vector3D& res)
@@ -144,11 +144,11 @@ bool TerrainComponent::intersect(const Vector3D& pos, const Vector3D& dir, f32 d
 
 		auto height = Math::lerp(height0, height1, dist / distance);
 
-		auto diff = f.y - height;
+		auto diff = f.gety() - height;
 
 		if ((diff >= 0 && diff < minDist) || diff < 0)
 		{
-			res = Vector3D(f.x, height, f.z);
+			res = Vector3D(f.getx(), height, f.getz());
 			return true;
 		}
 

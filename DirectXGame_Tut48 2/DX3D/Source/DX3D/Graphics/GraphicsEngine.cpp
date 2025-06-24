@@ -115,7 +115,7 @@ void GraphicsEngine::update()
 		constData.fog.end = f->getEnd();
 	}
 
-	context->clearRenderTargetColor(swapChain, fogColor.x, fogColor.y, fogColor.z, 1);
+	context->clearRenderTargetColor(swapChain, fogColor.getx(), fogColor.gety(), fogColor.getz(), 1);
 	auto winSize = m_game->m_display->getClientSize();
 	context->setViewportSize(winSize.getWidth(), winSize.getHeight());
 
@@ -245,7 +245,7 @@ void GraphicsEngine::update()
 			auto font = t->getFont()->getFont();
 
 			font->m_batch->Begin();
-			font->m_font->DrawString(font->m_batch.get(), t->getText(), DirectX::XMFLOAT2(pos.x, pos.y));
+			font->m_font->DrawString(font->m_batch.get(), t->getText(), DirectX::XMFLOAT2(pos.getx(), pos.gety()));
 			font->m_batch->End();
 		}
 		else if (auto i = dynamic_cast<ImageComponent*>(c))
@@ -255,7 +255,7 @@ void GraphicsEngine::update()
 
 			auto texture = i->getImage()->getTexture();
 			auto size = i->getSize();
-			m_render_system->drawImage(texture, { (i32)pos.x,(i32)pos.y,size.getWidth(),size.getHeight() });
+			m_render_system->drawImage(texture, { (i32)pos.getx(),(i32)pos.gety(),size.getWidth(),size.getHeight()});
 		}
 	}
 	

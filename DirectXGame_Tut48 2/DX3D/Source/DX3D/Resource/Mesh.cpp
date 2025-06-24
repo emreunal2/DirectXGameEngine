@@ -77,21 +77,21 @@ Mesh::Mesh(const wchar_t* full_path,ResourceManager* manager): Resource(full_pat
 
 				for (unsigned char v = 0; v < num_face_verts; v++)
 				{
-					tinyobj::index_t index = shapes[s].mesh.indices[index_offset + v];
+					tinyobj::index_t indexA = shapes[s].mesh.indices[index_offset + v];
 
-					tinyobj::real_t vx = attribs.vertices[index.vertex_index * 3 + 0];
-					tinyobj::real_t vy = attribs.vertices[index.vertex_index * 3 + 1];
-					tinyobj::real_t vz = -attribs.vertices[index.vertex_index * 3 + 2];
+					tinyobj::real_t vxA = attribs.vertices[indexA.vertex_index * 3 + 0];
+					tinyobj::real_t vyA = attribs.vertices[indexA.vertex_index * 3 + 1];
+					tinyobj::real_t vzA = -attribs.vertices[indexA.vertex_index * 3 + 2];
 
-					tinyobj::real_t tx = 0;
-					tinyobj::real_t ty = 0;
+					tinyobj::real_t txA = 0;
+					tinyobj::real_t tyA = 0;
 					if (attribs.texcoords.size())
 					{
-						tx = attribs.texcoords[index.texcoord_index * 2 + 0];
-						ty = 1.0f - attribs.texcoords[index.texcoord_index * 2 + 1];
+						txA = attribs.texcoords[indexA.texcoord_index * 2 + 0];
+						tyA = 1.0f - attribs.texcoords[indexA.texcoord_index * 2 + 1];
 					}
-					vertices_face[v] = Vector3D(vx, vy, vz);
-					texcoords_face[v] = Vector2D(tx, ty);
+					vertices_face[v] = Vector3D(vxA, vyA, vzA);
+					texcoords_face[v] = Vector2D(txA, tyA);
 				}
 
 				Vector3D tangent, binormal;
