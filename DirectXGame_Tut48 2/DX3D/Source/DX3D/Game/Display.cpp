@@ -22,9 +22,7 @@ Display::Display(Game* game): m_game(game)
 	ImGui::StyleColorsDark();
 }
 
-Display::~Display()
-{
-}
+Display::~Display() = default;
 
 void Display::setFullScreen(const Rect& size, bool fullscreen)
 {

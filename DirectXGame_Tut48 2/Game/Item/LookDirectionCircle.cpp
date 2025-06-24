@@ -1,12 +1,9 @@
 #include "LookDirectionCircle.h"
 
-LookDirectionCircle::LookDirectionCircle()
-{
-}
+LookDirectionCircle::LookDirectionCircle() = default;
 
-LookDirectionCircle::~LookDirectionCircle()
-{
-}
+
+LookDirectionCircle::~LookDirectionCircle() = default;
 
 void LookDirectionCircle::onCreate()
 {

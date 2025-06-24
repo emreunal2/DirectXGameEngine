@@ -7,9 +7,7 @@
 #include <DX3D/Physics/PhysicsEngine.h>
 
 
-SphereColliderComponent::SphereColliderComponent()
-{
-}
+SphereColliderComponent::SphereColliderComponent() = default;
 
 SphereColliderComponent::~SphereColliderComponent()
 {

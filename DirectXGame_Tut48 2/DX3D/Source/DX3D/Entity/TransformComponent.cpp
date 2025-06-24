@@ -2,13 +2,9 @@
 
 #include <DX3D/Entity/TransformComponent.h>
 
-TransformComponent::TransformComponent()
-{
-}
+TransformComponent::TransformComponent() = default;
 
-TransformComponent::~TransformComponent()
-{
-}
+TransformComponent::~TransformComponent() = default;
 
 void TransformComponent::setPosition(const Vector3D& position)
 {

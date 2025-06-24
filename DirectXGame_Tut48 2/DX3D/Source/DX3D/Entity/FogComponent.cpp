@@ -7,9 +7,7 @@
 #include <DX3D/Graphics/GraphicsEngine.h>
 
 
-FogComponent::FogComponent()
-{
-}
+FogComponent::FogComponent() = default;
 
 FogComponent::~FogComponent()
 {

@@ -16,9 +16,7 @@ PhysicsEngine::PhysicsEngine(Game* game):m_game(game)
 {
 }
 
-PhysicsEngine::~PhysicsEngine()
-{
-}
+PhysicsEngine::~PhysicsEngine() = default;
 
 void PhysicsEngine::update()
 {

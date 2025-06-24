@@ -59,9 +59,7 @@ RenderSystem::RenderSystem()
 	compilePrivateShaders();
 }
 
-RenderSystem::~RenderSystem()
-{
-}
+RenderSystem::~RenderSystem() = default;
 
 SwapChainPtr RenderSystem::createSwapChain(HWND hwnd, ui32 width, ui32 height)
 {

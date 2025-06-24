@@ -2,13 +2,9 @@
 
 #include "BoxItem.h"
 
-BoxItem::BoxItem()
-{
-}
+BoxItem::BoxItem() = default;
 
-BoxItem::~BoxItem()
-{
-}
+BoxItem::~BoxItem() = default;
 
 void BoxItem::onCreate()
 {

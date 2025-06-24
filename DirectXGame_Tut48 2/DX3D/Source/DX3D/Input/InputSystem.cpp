@@ -6,13 +6,9 @@
 #include <DX3D/Input/InputSystem.h>
 #include <Windows.h>
 
-InputSystem::InputSystem()
-{
-}
+InputSystem::InputSystem() = default;
 
-InputSystem::~InputSystem()
-{
-}
+InputSystem::~InputSystem() = default;
 
 bool InputSystem::isKeyDown(const Key& key)
 {

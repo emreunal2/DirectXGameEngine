@@ -7,13 +7,9 @@
 #include "LookDirectionCircle.h"
 
 
-Spaceship::Spaceship()
-{
-}
+Spaceship::Spaceship() = default;
 
-Spaceship::~Spaceship()
-{
-}
+Spaceship::~Spaceship() = default;
 
 f32 Spaceship::getScore()
 {

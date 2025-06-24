@@ -13,9 +13,7 @@ ResourceManager::ResourceManager(Game* game):m_game(game)
 }
 
 
-ResourceManager::~ResourceManager()
-{
-}
+ResourceManager::~ResourceManager() = default;
 
 Game* ResourceManager::getGame()
 {

@@ -28,9 +28,7 @@ public:
 	{
 	}
 
-	~VertexMesh()
-	{
-	}
+	~VertexMesh() = default;
 
 private:
 	Vector3D m_position;

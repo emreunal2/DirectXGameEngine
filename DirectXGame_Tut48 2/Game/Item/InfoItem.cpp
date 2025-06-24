@@ -2,13 +2,9 @@
 
 #include "InfoItem.h"
 
-InfoItem::InfoItem()
-{
-}
+InfoItem::InfoItem() = default;
 
-InfoItem::~InfoItem()
-{
-}
+InfoItem::~InfoItem() = default;
 
 void InfoItem::setText(const wchar_t* text)
 {

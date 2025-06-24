@@ -7,9 +7,7 @@ World::World(Game* game): m_game(game)
 {
 }
 
-World::~World()
-{
-}
+World::~World() = default;
 
 void World::update(f32 deltaTime)
 {

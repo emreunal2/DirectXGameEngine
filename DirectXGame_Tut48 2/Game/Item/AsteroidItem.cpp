@@ -4,13 +4,9 @@
 #include "../MainGame.h"
 
 
-AsteroidItem::AsteroidItem()
-{
-}
+AsteroidItem::AsteroidItem() = default;
 
-AsteroidItem::~AsteroidItem()
-{
-}
+AsteroidItem::~AsteroidItem() = default;
 
 void AsteroidItem::setAPosition(const Vector3D& position)
 {

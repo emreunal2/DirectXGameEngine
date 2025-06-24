@@ -27,9 +27,7 @@ public:
 		this->m_w = -(v1.x * (v2.y * v3.z - v3.y * v2.z) - v1.y * (v2.x * v3.z - v3.x *v2.z) + v1.z * (v2.x * v3.y - v3.x * v2.y));
 	}
 
-	~Vector4D()
-	{
-	}
+	~Vector4D() = default;
 	inline f32 getx() const { return x; }
 	inline f32 gety() const { return y; }
 	inline f32 getz() const { return z; }

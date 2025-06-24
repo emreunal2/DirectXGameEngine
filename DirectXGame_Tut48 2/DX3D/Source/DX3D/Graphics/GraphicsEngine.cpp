@@ -359,6 +359,4 @@ void GraphicsEngine::removeComponent(Component* component)
 		m_uiComponents.remove(c);
 }
 
-GraphicsEngine::~GraphicsEngine()
-{
-}
+GraphicsEngine::~GraphicsEngine() = default;

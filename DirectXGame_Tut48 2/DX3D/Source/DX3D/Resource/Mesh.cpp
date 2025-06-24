@@ -136,7 +136,7 @@ Mesh::Mesh(const wchar_t* full_path,ResourceManager* manager): Resource(full_pat
 					VertexMesh vertex(Vector3D(vx, vy, vz), Vector2D(tx, ty), Vector3D(nx, ny, nz),v_tangent,v_binormal);
 					list_vertices.push_back(vertex);
 
-					list_indices.push_back((unsigned int)index_global_offset + v);
+					list_indices.push_back(static_cast<unsigned int>(index_global_offset + v));
 				}
 
 				index_offset += num_face_verts;
@@ -150,8 +150,8 @@ Mesh::Mesh(const wchar_t* full_path,ResourceManager* manager): Resource(full_pat
 	auto rsys = m_manager->getGame()->getGraphicsEngine()->getRenderSystem();
 	
 	m_vertex_buffer = rsys->createVertexBuffer(&list_vertices[0], sizeof(VertexMesh),
-		(UINT)list_vertices.size());
-	m_index_buffer = rsys->createIndexBuffer(&list_indices[0], (UINT)list_indices.size());
+		static_cast<UINT>(list_vertices.size()));
+	m_index_buffer = rsys->createIndexBuffer(&list_indices[0], static_cast<UINT>(list_indices.size()));
 }
 
 Mesh::Mesh(VertexMesh * vertex_list_data, ui32 vertex_list_size, 
@@ -162,9 +162,9 @@ Mesh::Mesh(VertexMesh * vertex_list_data, ui32 vertex_list_size,
 
 	m_vertex_buffer = rsys->createVertexBuffer(vertex_list_data,
 		sizeof(VertexMesh),
-		(UINT)vertex_list_size);
+		static_cast<UINT>(vertex_list_size));
 	m_index_buffer = rsys->createIndexBuffer(index_list_data,
-		(UINT)index_list_size);
+		static_cast<UINT>(index_list_size));
 
 	m_mat_slots.resize(material_slot_list_size);
 
@@ -175,9 +175,7 @@ Mesh::Mesh(VertexMesh * vertex_list_data, ui32 vertex_list_size,
 }
 
 
-Mesh::~Mesh()
-{
-}
+Mesh::~Mesh() = default;
 
 MaterialSlot Mesh::getMaterialSlot(ui32 slot)
 {

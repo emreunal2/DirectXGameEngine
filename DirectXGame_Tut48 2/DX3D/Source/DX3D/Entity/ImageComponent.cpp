@@ -8,10 +8,7 @@
 #include <DX3D/Resource/Texture.h>
 #include <DX3D/Graphics/Texture2D.h>
 
-ImageComponent::ImageComponent()
-{
-}
-
+ImageComponent::ImageComponent() = default;
 ImageComponent::~ImageComponent()
 {
 	try {

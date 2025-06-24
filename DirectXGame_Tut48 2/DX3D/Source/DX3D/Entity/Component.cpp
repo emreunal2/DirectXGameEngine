@@ -3,13 +3,9 @@
 #include <DX3D/Entity/Component.h>
 #include <DX3D/Entity/Entity.h>
 
-Component::Component()
-{
-}
+Component::Component() = default;
 
-Component::~Component()
-{
-}
+Component::~Component() = default;
 
 void Component::release()
 {

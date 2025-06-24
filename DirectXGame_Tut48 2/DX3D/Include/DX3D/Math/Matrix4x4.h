@@ -174,9 +174,7 @@ public:
 		m_mat[3][2] = -(near_plane / (far_plane - near_plane));
 	}
 
-	~Matrix4x4()
-	{
-	}
+	~Matrix4x4() = default;
 
 private:
 	f32 m_mat[4][4] = {};

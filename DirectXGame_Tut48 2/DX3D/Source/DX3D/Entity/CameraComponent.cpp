@@ -8,9 +8,7 @@
 #include <DX3D/Graphics/GraphicsEngine.h>
 
 
-CameraComponent::CameraComponent()
-{
-}
+CameraComponent::CameraComponent() = default;
 
 CameraComponent::~CameraComponent()
 {

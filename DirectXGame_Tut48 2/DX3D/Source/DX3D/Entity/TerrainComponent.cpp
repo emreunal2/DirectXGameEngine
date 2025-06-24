@@ -17,9 +17,7 @@
 #include <DX3D/Physics/PhysicsEngine.h>
 
 
-TerrainComponent::TerrainComponent()
-{
-}
+TerrainComponent::TerrainComponent() = default;
 
 TerrainComponent::~TerrainComponent()
 {

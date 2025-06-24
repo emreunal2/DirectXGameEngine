@@ -11,10 +11,7 @@
 
 
 
-TextComponent::TextComponent()
-{
-}
-
+TextComponent::TextComponent() = default;
 TextComponent::~TextComponent()
 {
 	try {

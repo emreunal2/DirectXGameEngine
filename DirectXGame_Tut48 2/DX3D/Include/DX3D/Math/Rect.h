@@ -17,9 +17,7 @@ public:
 	Rect(const Rect& rect) :left(rect.left), top(rect.top), width(rect.width), height(rect.height)
 	{
 	}
-	~Rect()
-	{
-	}
+	~Rect() = default;
 
 	i32 getWidth() const { return width; }
 	void setWidth(i32 w) { width = w; }

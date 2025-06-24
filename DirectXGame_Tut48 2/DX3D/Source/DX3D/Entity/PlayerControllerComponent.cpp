@@ -7,9 +7,7 @@
 #include <DX3D/Physics/PhysicsEngine.h>
 
 
-PlayerControllerComponent::PlayerControllerComponent()
-{
-}
+PlayerControllerComponent::PlayerControllerComponent() = default;
 
 PlayerControllerComponent::~PlayerControllerComponent()
 {

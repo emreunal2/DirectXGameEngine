@@ -10,9 +10,7 @@
 
 
 
-MeshComponent::MeshComponent()
-{
-}
+MeshComponent::MeshComponent() = default;
 
 MeshComponent::~MeshComponent()
 {

@@ -13,10 +13,7 @@ Entity::Entity()
 	m_transform = createComponent<TransformComponent>();
 }
 
-Entity::~Entity()
-{
-}
-
+Entity::~Entity() = default;
 void Entity::release()
 {
 	m_world->removeEntity(this);

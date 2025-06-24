@@ -10,9 +10,7 @@
 
 #include <DX3D/Math/VertexMesh.h>
 
-WaterComponent::WaterComponent()
-{
-}
+WaterComponent::WaterComponent() = default;
 
 WaterComponent::~WaterComponent()
 {

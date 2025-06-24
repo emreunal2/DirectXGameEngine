@@ -1,12 +1,8 @@
 #include "Platform.h"
 
-Platform::Platform()
-{
-}
+Platform::Platform() = default;
 
-Platform::~Platform()
-{
-}
+Platform::~Platform() = default;
 
 
 

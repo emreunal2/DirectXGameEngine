@@ -2,13 +2,9 @@
 
 #include "GameItem.h"
 
-GameItem::GameItem()
-{
-}
+GameItem::GameItem() = default;
 
-GameItem::~GameItem()
-{
-}
+GameItem::~GameItem() = default;
 
 void GameItem::setPosition(const Vector3D& position)
 {
