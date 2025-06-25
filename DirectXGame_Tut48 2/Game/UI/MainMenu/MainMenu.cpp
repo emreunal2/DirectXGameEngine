@@ -34,7 +34,18 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 		meshComponent->setMesh(spaceship);
 		mat->addTexture(normalMap);
 		meshComponent->addMaterial(mat);
-		entity->getTransform()->setPosition(Vector3D(125, 75, 100));
+		entity->getTransform()->setPosition(Vector3D(-60, 75, 100));
+		entity->getTransform()->setScale(Vector3D(25, 25, 25));
+	}
+	//vertex shader
+	{
+		auto vertexShader = m_game->getResourceManager()->createResourceFromFile<Material>(L"Assets/Shaders/vertexShader.hlsl");
+		auto entity = m_game->getWorld()->createEntity<Entity>();
+		auto meshComponent = entity->createComponent<MeshComponent>();
+		meshComponent->setMesh(spaceship);
+		vertexShader->addTexture(normalMap);
+		meshComponent->addMaterial(vertexShader);
+		entity->getTransform()->setPosition(Vector3D(-120, 75, 100));
 		entity->getTransform()->setScale(Vector3D(25, 25, 25));
 	}
 	//Toon
@@ -45,7 +56,7 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 		meshComponent->setMesh(spaceship);
 		ToonShading->addTexture(normalMap);
 		meshComponent->addMaterial(ToonShading);
-		entity->getTransform()->setPosition(Vector3D(50, 75, 100));
+		entity->getTransform()->setPosition(Vector3D(0, 75, 100));
 		entity->getTransform()->setScale(Vector3D(25, 25, 25));
 	}
 	//Bump
@@ -56,7 +67,7 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 		meshComponent1->setMesh(spaceship);
 		bumpShading->addTexture(normalMap);
 		meshComponent1->addMaterial(bumpShading);
-		entity1->getTransform()->setPosition(Vector3D(-25, 75, 100));
+		entity1->getTransform()->setPosition(Vector3D(60, 75, 100));
 		entity1->getTransform()->setScale(Vector3D(25, 25, 25));
 	}
 	// Displacement
@@ -67,7 +78,7 @@ MainMenu::MainMenu(Game* game) : m_game(game)
 		meshComponent1->setMesh(spaceship);
 		displacementShading->addTexture(normalMap);
 		meshComponent1->addMaterial(displacementShading);
-		entity1->getTransform()->setPosition(Vector3D(-100, 75, 100));
+		entity1->getTransform()->setPosition(Vector3D(120, 75, 100));
 		entity1->getTransform()->setScale(Vector3D(25, 25, 25));
 	}
 
