@@ -79,3 +79,19 @@ inline Vector3D operator-(const Vector3D& a, const Vector3D& b)
 {
 	return Vector3D(a.getx() - b.getx(), a.gety() - b.gety(), a.getz() - b.getz());
 }
+
+inline Vector3D& operator+=(Vector3D& a, const Vector3D& b)
+{
+	a.setx(a.getx() + b.getx());
+	a.sety(a.gety() + b.gety());
+	a.setz(a.getz() + b.getz());
+	return a;
+}
+
+inline Vector3D& operator-=(Vector3D& a, const Vector3D& b)
+{
+	a.setx(a.getx() - b.getx());
+	a.sety(a.gety() - b.gety());
+	a.setz(a.getz() - b.getz());
+	return a;
+}

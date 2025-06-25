@@ -35,7 +35,7 @@ bool FontUtility::createFont(const wchar_t* fontName, f32 fontSize, const wchar_
 		command << "/FontSize:" << fontSize;
 
 		if (_wsystem(command.str().c_str()) != 0)
-			DX3DError("Creation of the font " << fontName << " failed");
+		{ }
 
 		return true;
 	}

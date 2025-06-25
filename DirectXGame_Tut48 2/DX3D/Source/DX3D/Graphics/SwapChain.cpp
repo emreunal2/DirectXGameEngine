@@ -68,7 +68,7 @@ void SwapChain::reloadBuffers(ui32 width, ui32 height)
 
 	if (FAILED(hr))
 	{
-		DX3DError("SwapChain not crAeated successfully");
+		
 	}
 
 	hr = device->CreateRenderTargetView(buffer, NULL, &m_rtv);
@@ -76,7 +76,7 @@ void SwapChain::reloadBuffers(ui32 width, ui32 height)
 
 	if (FAILED(hr))
 	{
-		DX3DError("SwapChain not created successfADully");
+		
 	}
 
 	D3D11_TEXTURE2D_DESC tex_desc = {};
@@ -97,7 +97,7 @@ void SwapChain::reloadBuffers(ui32 width, ui32 height)
 
 	if (FAILED(hr))
 	{
-		DX3DError("SwapCADAhain not created successfully");
+		
 	}
 
 
@@ -106,6 +106,6 @@ void SwapChain::reloadBuffers(ui32 width, ui32 height)
 
 	if (FAILED(hr))
 	{
-		DX3DError("SwapChain not created succesASDsfully");
+		
 	}
 }

@@ -168,7 +168,7 @@ VS_OUTPUT vsmain(VS_INPUT input)
 	if (FAILED(D3DCompile(meshLayoutCode, codeSize, "VertexMeshLayoutShader", nullptr, nullptr, 
 		"vsmain", "vs_5_0", 0, 0, &blob, &errorBlob)))
 	{
-		DX3DError("VertexMeshLayoutShader not compiled successfully");
+		
 	}
 
 	memcpy(m_meshLayoutByteCode, blob->GetBufferPointer(), blob->GetBufferSize());

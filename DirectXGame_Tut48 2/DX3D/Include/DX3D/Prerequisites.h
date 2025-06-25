@@ -48,26 +48,28 @@ class SphereColliderComponent;
 class Entity;
 class World;
 
-using SwapChainPtr = std::shared_ptr<SwapChain>;
-using DeviceContextPtr = std::shared_ptr<DeviceContext>;
-using VertexBufferPtr = std::shared_ptr<VertexBuffer>;
-using IndexBufferPtr = std::shared_ptr<IndexBuffer>;
-using ConstantBufferPtr = std::shared_ptr<ConstantBuffer>;
-using VertexShaderPtr = std::shared_ptr<VertexShader>;
-using PixelShaderPtr = std::shared_ptr<PixelShader>;
-using Texture2DPtr = std::shared_ptr<Texture2D>;
-using Font2DPtr = std::shared_ptr<Font2D>;
-using ResourcePtr = std::shared_ptr<Resource>;
-using TexturePtr = std::shared_ptr<Texture>;
-using MeshPtr = std::shared_ptr<Mesh>;
-using MaterialPtr = std::shared_ptr<Material>;
-using FontPtr = std::shared_ptr<Font>;
-using FrameBufferPtr = std::shared_ptr<FrameBuffer>;
+typedef std::shared_ptr<SwapChain> SwapChainPtr;
+typedef std::shared_ptr<DeviceContext> DeviceContextPtr;
+typedef std::shared_ptr<VertexBuffer> VertexBufferPtr;
+typedef std::shared_ptr<IndexBuffer> IndexBufferPtr;
+typedef std::shared_ptr<ConstantBuffer> ConstantBufferPtr;
+typedef std::shared_ptr<VertexShader> VertexShaderPtr;
+typedef std::shared_ptr<PixelShader> PixelShaderPtr;
+typedef std::shared_ptr<Texture2D> Texture2DPtr;
+typedef std::shared_ptr<Font2D> Font2DPtr;
+typedef std::shared_ptr<Resource> ResourcePtr;
+typedef std::shared_ptr<Texture> TexturePtr;
+typedef std::shared_ptr<Mesh> MeshPtr;
+typedef std::shared_ptr<Material> MaterialPtr;
+typedef std::shared_ptr<Font> FontPtr;
 
-using ui32 = unsigned int;
-using i32 = int;
-using f32 = float;
-using d64 = double;
+typedef std::shared_ptr<FrameBuffer> FrameBufferPtr;
+
+
+typedef unsigned int ui32;
+typedef int           i32;
+typedef float         f32;
+typedef double        d64;
 
 
 
@@ -140,16 +142,3 @@ enum class CullMode
 	Front,
 	Back
 };
-
-
-#define DX3DError(message)\
-{\
-std::wclog << "DX3D Error: " << message << std::endl;\
-throw std::runtime_error("");\
-}
-
-#define DX3DWarning(message)\
-std::wclog << "DX3D Warning: " << message << std::endl;
-
-#define DX3DInfo(message)\
-std::wclog << "DX3D Info: " << message << std::endl;

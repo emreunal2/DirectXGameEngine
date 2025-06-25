@@ -64,7 +64,7 @@ void DeviceContext::setVertexBuffer(const VertexBufferPtr& vertex_buffer)
 {
 	if (!vertex_buffer)
 	{
-		DX3DWarning("VertexBuffer is null");
+		
 		return;
 	}
 	ui32 stride = vertex_buffer->m_size_vertex;
