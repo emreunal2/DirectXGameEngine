@@ -11,9 +11,7 @@ public:
 	Vector3D(f32 n_x,f32 n_y, f32 n_z) :x(n_x), y(n_y), z(n_z)
 	{
 	}
-	Vector3D(const Vector3D& vector) :x(vector.x), y(vector.y), z(vector.z)
-	{
-	}
+	Vector3D(const Vector3D& vector) = default;
 
 	static Vector3D lerp(const Vector3D& start, const Vector3D& end, f32 delta)
 	{
@@ -51,9 +49,7 @@ public:
 		return res;
 	}
 
-	~Vector3D()
-	{
-	}
+	~Vector3D() = default;
 	inline f32 getx() const { return x; }
 	inline f32 gety() const { return y; }
 	inline f32 getz() const { return z; }

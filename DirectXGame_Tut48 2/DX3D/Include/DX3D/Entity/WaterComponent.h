@@ -17,7 +17,7 @@ public:
 	const TexturePtr& getWaveHeightMap();
 
 	void setSize(const Vector3D& size);
-	Vector3D getSize();
+	const Vector3D& getSize() const;
 
 
 private:

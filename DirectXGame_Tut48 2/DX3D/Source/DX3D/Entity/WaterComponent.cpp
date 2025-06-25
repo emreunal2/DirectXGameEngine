@@ -38,7 +38,7 @@ void WaterComponent::setSize(const Vector3D& size)
 	m_size = size;
 }
 
-Vector3D WaterComponent::getSize()
+const Vector3D& WaterComponent::getSize() const
 {
 	return m_size;
 }
