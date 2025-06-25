@@ -18,7 +18,7 @@ public:
 	const Rect& getSize() const;
 
 protected:
-	virtual void onCreateInternal();
+	virtual void onCreateInternal() override;
 
 private:
 	TexturePtr m_image;

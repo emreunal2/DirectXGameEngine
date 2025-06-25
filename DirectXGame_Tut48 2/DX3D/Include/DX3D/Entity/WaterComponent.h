@@ -25,7 +25,7 @@ private:
 	void updateData(void* data, ui32 size);
 
 protected:
-	virtual void onCreateInternal();
+	virtual void onCreateInternal() override;
 
 private:
 	TexturePtr m_waveHeightMap;

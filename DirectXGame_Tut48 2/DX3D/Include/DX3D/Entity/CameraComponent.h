@@ -37,7 +37,7 @@ public:
 private:
 	void computeProjectionMatrix();
 protected:
-	virtual void onCreateInternal();
+	virtual void onCreateInternal() override;
 private:
 	Matrix4x4 m_projection;
 

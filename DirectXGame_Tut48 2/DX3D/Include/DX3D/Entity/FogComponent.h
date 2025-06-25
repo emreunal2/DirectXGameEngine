@@ -23,7 +23,7 @@ public:
 	f32 getEnd();
 
 protected:
-	virtual void onCreateInternal();
+	virtual void onCreateInternal() override;
 
 private:
 	Vector4D m_color = Vector4D(0.5f,0.5f,0.5f,1.0f);

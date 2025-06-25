@@ -15,8 +15,8 @@ public:
 	void setDirection(const Vector3D& direction);
 
 protected:
-	virtual void onCreate();
-	virtual void onUpdate(f32 deltaTime);
+	virtual void onCreate() override;
+	virtual void onUpdate(f32 deltaTime) override;
 
 public:
 	MeshComponent* m_itemMesh = nullptr;

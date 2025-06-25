@@ -34,7 +34,7 @@ private:
 	void generateTerrainMesh();
 	void updateData(void* data, ui32 size);
 protected:
-	virtual void onCreateInternal();
+	virtual void onCreateInternal() override;
 private:
 	TexturePtr m_heightMap;
 	TexturePtr m_groundMap;

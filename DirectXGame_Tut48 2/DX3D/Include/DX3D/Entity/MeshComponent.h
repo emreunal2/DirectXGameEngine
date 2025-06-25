@@ -19,7 +19,7 @@ public:
 	void removeMaterial(ui32 index);
 	const std::vector<MaterialPtr>& getMaterials();
 protected:
-	virtual void onCreateInternal();
+	virtual void onCreateInternal() override;
 private:
 	MeshPtr m_mesh;
 	std::vector<MaterialPtr> m_materials;

@@ -12,9 +12,9 @@ public:
 	Spaceship& operator=(const Spaceship&) = delete;
 	f32 getScore();
 
-	virtual void onCreate();
-	virtual void onUpdate(f32 deltaTime);
-	virtual void onCollision(Component* body1, Component* body2);
+	virtual void onCreate() override;
+	virtual void onUpdate(f32 deltaTime) override;
+	virtual void onCollision(Component* body1, Component* body2) override;
 
 private:
 	f32 m_pitch = 0.0f;

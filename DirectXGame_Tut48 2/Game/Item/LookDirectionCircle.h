@@ -7,8 +7,8 @@ public:
 	~LookDirectionCircle();
 	LookDirectionCircle(const LookDirectionCircle&) = delete;
 	LookDirectionCircle& operator=(const LookDirectionCircle&) = delete;
-	virtual void onCreate();
-	virtual void onUpdate(f32 deltaTime);
+	virtual void onCreate() override;
+	virtual void onUpdate(f32 deltaTime) override;
 private:
 	MeshComponent* m_circleMesh = nullptr;
 };

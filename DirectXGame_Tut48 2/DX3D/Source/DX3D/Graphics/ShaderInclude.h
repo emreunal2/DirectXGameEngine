@@ -17,7 +17,7 @@ public:
 	virtual ~ShaderInclude() = default;
 
 	virtual HRESULT Open(D3D_INCLUDE_TYPE IncludeType, LPCSTR pFileName,
-		LPCVOID pParentData, LPCVOID* ppData, UINT* pBytes)
+		LPCVOID pParentData, LPCVOID* ppData, UINT* pBytes) override
 	{
 		auto includePath = m_shaderPath;
 		includePath = includePath.parent_path();

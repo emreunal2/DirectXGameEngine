@@ -17,7 +17,7 @@ public:
 	void setFullScreen(const Rect& size, bool fullscreen);
 
 protected:
-	virtual void onSize(const Rect& size);
+	virtual void onSize(const Rect& size) override;
 private:
 	SwapChainPtr m_swapChain;
 	Game* m_game = nullptr;

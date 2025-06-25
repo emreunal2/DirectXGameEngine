@@ -15,7 +15,7 @@ public:
 	void setRadius(f32 radius);
 	f32 getRadius();
 protected:
-	virtual void onCreateInternal();
+	virtual void onCreateInternal() override;
 private:
 	f32 m_radius = 1.0f;
 };

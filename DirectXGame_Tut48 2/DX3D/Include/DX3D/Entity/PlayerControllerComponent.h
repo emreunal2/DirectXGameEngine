@@ -21,7 +21,7 @@ public:
 	void move(const Vector3D& direction, f32 distance);
 
 protected:
-	virtual void onCreateInternal();
+	virtual void onCreateInternal() override;
 private:
 	f32 m_height = 1.8f;
 	f32 m_distance = 0.0f;

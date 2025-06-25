@@ -14,7 +14,7 @@ public:
 	void setColor(const Vector4D& color);
 	const Vector4D& getColor() const;
 protected:
-	virtual void onCreateInternal();
+	virtual void onCreateInternal() override;
 private:
 	Vector4D m_color = Vector4D(1, 1, 1, 1);
 };

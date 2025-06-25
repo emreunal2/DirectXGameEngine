@@ -11,9 +11,9 @@ public:
 	virtual ~BoxItem();
 
 protected:
-	virtual void onCreate();
-	virtual void onUpdate(f32 deltaTime);
-	virtual void onCollision(Component* body1, Component* body2);
+	virtual void onCreate() override;
+	virtual void onUpdate(f32 deltaTime) override;
+	virtual void onCollision(Component* body1, Component* body2) override;
 
 private:
 	f32 m_angle = 0;

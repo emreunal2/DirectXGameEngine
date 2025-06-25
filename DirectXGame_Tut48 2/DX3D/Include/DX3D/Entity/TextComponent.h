@@ -20,7 +20,7 @@ public:
 
 	Rect getBounds();
 protected:
-	virtual void onCreateInternal();
+	virtual void onCreateInternal() override;
 private:
 	std::wstring m_text = L"";
 	FontPtr m_font;

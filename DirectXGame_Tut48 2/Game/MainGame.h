@@ -17,8 +17,8 @@ public:
 	void onReturnToMainMenu();
 
 protected:
-	virtual void onCreate();
-	virtual void onUpdate(f32 deltaTime);
+	virtual void onCreate() override;
+	virtual void onUpdate(f32 deltaTime) override;
 
 private:
 	std::unique_ptr<MainMenu> m_menu = nullptr;
