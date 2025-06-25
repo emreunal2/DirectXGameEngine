@@ -7,39 +7,37 @@ public:
 	Vector2D(f32 n_x, f32 n_y) : x(n_x), y(n_y) {}
 	Vector2D(const Vector2D& vector) = default;
 
+	Vector2D& operator+=(const Vector2D& other)
+	{
+		x += other.x;
+		y += other.y;
+		return *this;
+	}
+
+	Vector2D& operator-=(const Vector2D& other)
+	{
+		x -= other.x;
+		y -= other.y;
+		return *this;
+	}
+
 	~Vector2D() = default;
 
 public:
 	f32 x, y;
 };
 
-// === Non-member operators declared inline ===
-
 inline Vector2D operator*(const Vector2D& vec, f32 num)
 {
 	return Vector2D(vec.x * num, vec.y * num);
 }
 
-inline Vector2D operator+(const Vector2D& a, const Vector2D& b)
+inline Vector2D operator+(Vector2D a, const Vector2D& b)
 {
-	return Vector2D(a.x + b.x, a.y + b.y);
+	return a += b;
 }
 
-inline Vector2D operator-(const Vector2D& a, const Vector2D& b)
+inline Vector2D operator-(Vector2D a, const Vector2D& b)
 {
-	return Vector2D(a.x - b.x, a.y - b.y);
-}
-
-inline Vector2D& operator+=(Vector2D& a, const Vector2D& b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	return a;
-}
-
-inline Vector2D& operator-=(Vector2D& a, const Vector2D& b)
-{
-	a.x -= b.x;
-	a.y -= b.y;
-	return a;
+	return a -= b;
 }
