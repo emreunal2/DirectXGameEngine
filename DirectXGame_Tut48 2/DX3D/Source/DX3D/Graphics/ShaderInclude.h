@@ -43,7 +43,7 @@ public:
 		}
 		return S_FALSE;
 	}
-	virtual HRESULT Close(LPCVOID pData)
+	virtual HRESULT Close(LPCVOID pData) override
 	{
 		delete pData;
 		return S_OK;
