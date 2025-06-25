@@ -9,7 +9,7 @@
 class Game
 {
 public:
-	Game();
+	Game(); 
 	virtual ~Game();
 
 	void setTimeScale(f32 timeScale);

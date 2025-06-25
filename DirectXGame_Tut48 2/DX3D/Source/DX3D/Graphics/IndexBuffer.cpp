@@ -4,7 +4,8 @@
 #include <DX3D/Graphics/RenderSystem.h>
 #include <exception>
 
-IndexBuffer::IndexBuffer(const void* list_indices, ui32 size_list,RenderSystem * system) : m_system(system) , m_buffer(0)
+IndexBuffer::IndexBuffer(const void* list_indices, ui32 size_list, RenderSystem* system)
+	: m_buffer(0), m_system(system)
 {
 	D3D11_BUFFER_DESC buff_desc = {};
 	buff_desc.Usage = D3D11_USAGE_DEFAULT;

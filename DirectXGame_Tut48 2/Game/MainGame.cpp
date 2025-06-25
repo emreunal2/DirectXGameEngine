@@ -7,13 +7,9 @@
 #include <time.h>
 
 
-MainGame::MainGame()
-{
-}
+MainGame::MainGame() = default;
 
-MainGame::~MainGame()
-{
-}
+MainGame::~MainGame() = default;
 
 
 

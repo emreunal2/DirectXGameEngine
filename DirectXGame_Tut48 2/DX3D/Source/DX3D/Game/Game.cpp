@@ -27,9 +27,7 @@ Game::Game()
 	m_inputSystem->setLockArea(m_display->getClientSize());
 }
 
-Game::~Game()
-{
-}
+Game::~Game() = default;
 
 PhysicsEngine* Game::getPhysicsEngine()
 {
