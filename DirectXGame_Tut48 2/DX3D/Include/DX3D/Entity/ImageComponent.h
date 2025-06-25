@@ -15,7 +15,7 @@ public:
 	const TexturePtr& getImage();
 
 	void setSize(const Rect& size);
-	Rect getSize();
+	const Rect& getSize() const;
 
 protected:
 	virtual void onCreateInternal();

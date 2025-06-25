@@ -12,7 +12,7 @@ void TransformComponent::setPosition(const Vector3D& position)
 	updateWorldMatrix();
 }
 
-Vector3D TransformComponent::getPosition()
+const Vector3D& TransformComponent::getPosition() const
 {
 	return m_position;
 }
@@ -23,7 +23,7 @@ void TransformComponent::setRotation(const Vector3D& rotation)
 	updateWorldMatrix();
 }
 
-Vector3D TransformComponent::getRotation()
+const Vector3D& TransformComponent::getRotation() const
 {
 	return m_rotation;
 }
@@ -34,12 +34,12 @@ void TransformComponent::setScale(const Vector3D& scale)
 	updateWorldMatrix();
 }
 
-Vector3D TransformComponent::getScale()
+const Vector3D& TransformComponent::getScale() const
 {
 	return m_scale;
 }
 
-Vector3D TransformComponent::getDirection()
+const Vector3D& TransformComponent::getDirection() const
 {
 	return m_direction;
 }

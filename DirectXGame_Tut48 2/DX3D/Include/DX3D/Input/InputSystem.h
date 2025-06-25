@@ -13,7 +13,7 @@ public:
 public:
 	bool isKeyDown(const Key& key);
 	bool isKeyUp(const Key& key);
-	Vector2D getDeltaMousePosition();
+	const Vector2D& getDeltaMousePosition() const;
 
 	void lockCursor(bool lock);
 	void setLockArea(const Rect& area);

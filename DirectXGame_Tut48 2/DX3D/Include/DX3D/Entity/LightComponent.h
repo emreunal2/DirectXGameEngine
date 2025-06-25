@@ -12,7 +12,7 @@ public:
 	LightComponent(const LightComponent&) = delete;
 	LightComponent& operator=(const LightComponent&) = delete;
 	void setColor(const Vector4D& color);
-	Vector4D getColor();
+	const Vector4D& getColor() const;
 protected:
 	virtual void onCreateInternal();
 private:

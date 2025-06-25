@@ -99,7 +99,7 @@ Texture2D::Texture2D(const Rect& size, Texture2D::Type type, RenderSystem* syste
 	m_type = type;
 }
 
-Rect Texture2D::getSize()
+const Rect& Texture2D::getSize() const
 {
 	return m_size;
 }

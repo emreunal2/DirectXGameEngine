@@ -83,7 +83,7 @@ void CameraComponent::setScreenArea(const Rect& area)
 	computeProjectionMatrix();
 }
 
-Rect CameraComponent::getScreenArea()
+const Rect& CameraComponent::getScreenArea() const
 {
 	return m_screenArea;
 }

@@ -31,10 +31,10 @@ public:
 	void clearState();
 	void drawImage(const Texture2DPtr& texture, const Rect& size);
 	// Returns the device
-	Microsoft::WRL::ComPtr<ID3D11Device> getDevice() const { return m_d3d_device; }
+	const Microsoft::WRL::ComPtr<ID3D11Device>& getDevice() const { return m_d3d_device; }
 
 	// Returns the immediate context
-	Microsoft::WRL::ComPtr<ID3D11DeviceContext> getImmediateContext() const { return m_imm_context; }
+	const Microsoft::WRL::ComPtr<ID3D11DeviceContext>& getImmediateContext() const { return m_imm_context; }
 
 private:
 	void compilePrivateShaders();

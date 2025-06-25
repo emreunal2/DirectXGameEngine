@@ -24,7 +24,7 @@ public:
 	const TexturePtr& getCliffMap();
 
 	void setSize(const Vector3D& size);
-	Vector3D getSize();
+	const Vector3D& getSize() const;
 
 	f32 getHeightFromWorldPoint(const Vector3D& worldPoint);
 

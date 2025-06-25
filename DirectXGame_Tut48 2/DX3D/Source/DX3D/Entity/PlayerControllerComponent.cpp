@@ -29,7 +29,7 @@ f32 PlayerControllerComponent::getHeight()
 	return m_height;
 }
 
-Vector3D PlayerControllerComponent::getMoveDirection()
+const Vector3D& PlayerControllerComponent::getMoveDirection() const
 {
 	return m_direction;
 }

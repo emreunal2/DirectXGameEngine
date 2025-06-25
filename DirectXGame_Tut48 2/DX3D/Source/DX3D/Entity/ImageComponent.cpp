@@ -34,7 +34,7 @@ void ImageComponent::setSize(const Rect& size)
 	m_size = size;
 }
 
-Rect ImageComponent::getSize()
+const Rect& ImageComponent::getSize() const
 {
 	return m_size;
 }

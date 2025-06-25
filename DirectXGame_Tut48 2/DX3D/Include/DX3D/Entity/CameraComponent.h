@@ -32,7 +32,7 @@ public:
 	CameraType getType();
 
 	void setScreenArea(const Rect& area);
-	Rect getScreenArea();
+	const Rect& getScreenArea() const;
 
 private:
 	void computeProjectionMatrix();

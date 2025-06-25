@@ -20,7 +20,7 @@ bool InputSystem::isKeyUp(const Key& key)
 	return (m_final_keys_state[getInternalKeyCode(key)] == 1);
 }
 
-Vector2D InputSystem::getDeltaMousePosition()
+const Vector2D& InputSystem::getDeltaMousePosition() const
 {
 	return m_deltaMousePos;
 }

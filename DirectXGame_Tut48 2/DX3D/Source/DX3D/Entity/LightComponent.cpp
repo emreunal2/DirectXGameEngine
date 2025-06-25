@@ -23,7 +23,7 @@ void LightComponent::setColor(const Vector4D& color)
 	m_color = color;
 }
 
-Vector4D LightComponent::getColor()
+const Vector4D& LightComponent::getColor() const
 {
 	return m_color;
 }

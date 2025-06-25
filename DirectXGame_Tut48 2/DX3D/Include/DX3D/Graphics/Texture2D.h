@@ -25,7 +25,7 @@ public:
 	Texture2D(const Rect& size, Texture2D::Type type, RenderSystem* system);
 	Texture2D(const Texture2D&) = delete;
 	Texture2D& operator=(const Texture2D&) = delete;
-	Rect getSize();
+	const Rect& getSize() const;
 	unsigned char* getPixels();
 	ui32 getBitsPerPixel();
 private:

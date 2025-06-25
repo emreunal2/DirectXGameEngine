@@ -15,7 +15,7 @@ public:
 	void setHeight(f32 height);
 	f32 getHeight();
 
-	Vector3D getMoveDirection();
+	const Vector3D& getMoveDirection() const;
 	f32 getMoveDistance();
 
 	void move(const Vector3D& direction, f32 distance);

@@ -28,7 +28,7 @@ void FogComponent::setData(const Vector4D& color, f32 start, f32 end)
 	m_end = end;
 }
 
-Vector4D FogComponent::getColor()
+const Vector4D& FogComponent::getColor() const
 {
 	return m_color;
 }

@@ -14,15 +14,15 @@ public:
 	virtual ~TransformComponent();
 
 	void setPosition(const Vector3D& position);
-	Vector3D getPosition();
+	const Vector3D& getPosition() const;
 
 	void setRotation(const Vector3D& rotation);
-	Vector3D getRotation();
+	const Vector3D& getRotation() const;
 
 	void setScale(const Vector3D& scale);
-	Vector3D getScale();
+	const Vector3D& getScale() const;
 
-	Vector3D getDirection();
+	const Vector3D& getDirection() const;
 
 	void getWorldMatrix(Matrix4x4& mat);
 

@@ -65,7 +65,7 @@ void TerrainComponent::setSize(const Vector3D& size)
 	m_size = size;
 }
 
-Vector3D TerrainComponent::getSize()
+const Vector3D& TerrainComponent::getSize() const
 {
 	return m_size;
 }

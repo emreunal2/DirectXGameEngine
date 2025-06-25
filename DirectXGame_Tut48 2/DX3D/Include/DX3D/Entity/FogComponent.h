@@ -18,7 +18,7 @@ public:
 	void setData(const Vector4D& color, f32 start, f32 end);
 
 
-	Vector4D getColor();
+	const Vector4D& getColor() const;
 	f32 getStart();
 	f32 getEnd();
 
