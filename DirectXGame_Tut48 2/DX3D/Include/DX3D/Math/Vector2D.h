@@ -32,12 +32,16 @@ inline Vector2D operator*(const Vector2D& vec, f32 num)
 	return Vector2D(vec.x * num, vec.y * num);
 }
 
-inline Vector2D operator+(Vector2D a, const Vector2D& b)
+inline Vector2D operator+(const Vector2D& a, const Vector2D& b)
 {
-	return a += b;
+	Vector2D result = a;
+	result += b;
+	return result;
 }
 
-inline Vector2D operator-(Vector2D a, const Vector2D& b)
+inline Vector2D operator-(const Vector2D& a, const Vector2D& b)
 {
-	return a -= b;
+	Vector2D result = a;
+	result -= b;
+	return result;
 }

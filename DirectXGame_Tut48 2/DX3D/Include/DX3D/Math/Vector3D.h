@@ -74,12 +74,16 @@ inline Vector3D operator*(const Vector3D& vec, f32 num)
 	return Vector3D(vec.getx() * num, vec.gety() * num, vec.getz() * num);
 }
 
-inline Vector3D operator+(Vector3D a, const Vector3D& b)
+inline Vector3D operator+(const Vector3D& a, const Vector3D& b)
 {
-	return a += b;
+	Vector3D result = a;
+	result += b;
+	return result;
 }
 
-inline Vector3D operator-(Vector3D a, const Vector3D& b)
+inline Vector3D operator-(const Vector3D& a, const Vector3D& b)
 {
-	return a -= b;
+	Vector3D result = a;
+	result -= b;
+	return result;
 }
